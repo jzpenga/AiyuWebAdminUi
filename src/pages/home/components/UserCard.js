@@ -13,7 +13,7 @@ const UserCard = ({userAllTrendData,userDayTrendData})=> {
     <Row>
       <Col span={12}>
         <ALineChart
-          xName={'createdTime'}
+          xName={'creatTime'}
           dataKey={['count']}
           dataSource={userAllTrendData}
         />
@@ -21,7 +21,7 @@ const UserCard = ({userAllTrendData,userDayTrendData})=> {
       </Col>
       <Col span={12}>
         <ALineChart
-          xName={'createdTime'}
+          xName={'creatTime'}
           dataKey={['count']}
           dataSource={userDayTrendData}
         />

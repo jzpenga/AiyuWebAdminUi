@@ -14,7 +14,7 @@ const TeamCard = ({teamData,cardTitle})=>{
         <Row>
           <Col span={16}>
             <AComposedChart
-             xName={'createdTime'}
+             xName={'creatTime'}
             dataSource={teamData}
             dataKey={['totalFunds','totalMember']}
             barLineName={['资产规模','团队规模']}

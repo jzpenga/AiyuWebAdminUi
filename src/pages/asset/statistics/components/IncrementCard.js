@@ -34,7 +34,7 @@ class IncrementCard extends React.Component{
         </Col>
         <Col span={12}>
           <AStackBar
-            xName={'createdTime'}
+            xName={'creatTime'}
             barName={['流动','锁仓']}
             dataKey={['floatingFunds','lockrepoFunds']}
             dataSource={incrementTrendData}

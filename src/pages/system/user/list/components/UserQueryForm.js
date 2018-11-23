@@ -5,38 +5,42 @@ import styles from '../index.less';
 const FormItem = Form.Item;
 const { RangePicker } = DatePicker;
 
+
 class UserQueryForm extends React.Component{
   formItemLayout = {
     labelCol: { span: 5 },
     wrapperCol: { span: 18 },
   };
 
+  handleSubmit = (e) => {
+    const { form: { validateFields } } = this.props;
+    validateFields((errors, values) => {
+      const rangeTimeValue = values['rangeTimePicker'];
+      let registryTimeFrom = rangeTimeValue[0].format('YYYY-MM-DD');
+      let registryTimeTo = rangeTimeValue[1].format('YYYY-MM-DD');
+      values = {...values,registryTimeFrom,registryTimeTo};
+      console.log(values);
+    });
+    e.preventDefault();
+  };
+
+
   render(){
     const { getFieldDecorator } = this.props.form;
 
-    return  <Form  className={styles.formPadding}>
+    return  <Form  onSubmit={this.handleSubmit}  className={styles.formPadding}>
       <Row gutter={24}>
         <Col span={8}>
           <FormItem {...this.formItemLayout} label={`手机号`}>
-            {getFieldDecorator(`phoneNo`, {
-              rules: [{
-                required: true,
-                message: 'Input something!',
-              }],
-            })(
-              <Input  placeholder="placeholder" />
+            {getFieldDecorator(`phoneNo`)(
+              <Input />
             )}
           </FormItem>
         </Col>
         <Col span={8}>
           <FormItem {...this.formItemLayout} label={`昵称`}>
-            {getFieldDecorator(`nickName`, {
-              rules: [{
-                required: true,
-                message: 'Input something!',
-              }],
-            })(
-              <Input  placeholder="placeholder" />
+            {getFieldDecorator(`nickName`)(
+              <Input  />
             )}
           </FormItem>
         </Col>
@@ -44,9 +48,7 @@ class UserQueryForm extends React.Component{
           <FormItem {...this.formItemLayout} label={`资产总量`}>
             <Row gutter={8}>
               <Col span={11}>
-                {getFieldDecorator('assetLow', {
-                  rules: [{ required: true, message: 'Please input the captcha you got!' }],
-                })(
+                {getFieldDecorator('totalCapitalMin')(
                   <Input />
                 )}
               </Col>
@@ -54,9 +56,7 @@ class UserQueryForm extends React.Component{
                 <span style={{textAlign:'center',width:'100%',display:'inline-block'}}>—</span>
               </Col>
               <Col span={11}>
-                {getFieldDecorator('assetHigh', {
-                  rules: [{ required: true, message: 'Please input the captcha you got!' }],
-                })(
+                {getFieldDecorator('totalCapitalMax')(
                   <Input />
                 )}
               </Col>
@@ -67,12 +67,7 @@ class UserQueryForm extends React.Component{
       <Row gutter={24}>
         <Col span={8}>
           <FormItem {...this.formItemLayout}   label={`注册时间`}>
-            {getFieldDecorator(`createTime`, {
-              rules: [{
-                required: true,
-                message: 'Input something!',
-              }],
-            })(
+            {getFieldDecorator(`rangeTimePicker`)(
               <RangePicker />
             )}
           </FormItem>
@@ -81,7 +76,7 @@ class UserQueryForm extends React.Component{
 
         </Col>
         <Col span={8}>
-          <Button className={styles.searchBtn} type="primary">搜索</Button>
+          <Button className={styles.searchBtn} htmlType="submit" type="primary">搜索</Button>
         </Col>
       </Row>
     </Form>;

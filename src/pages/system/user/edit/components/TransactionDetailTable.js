@@ -21,8 +21,8 @@ const userIncomeTransactionColumns = [{
   key: 'transferAddressFrom',
 }, {
   title: '时间',
-  dataIndex: 'createdTime',
-  key: 'createdTime',
+  dataIndex: 'creatTime',
+  key: 'creatTime',
 }];
 
 const userExpenditureTransactionColumns = [{
@@ -43,8 +43,8 @@ const userExpenditureTransactionColumns = [{
   key: 'transferAddressFrom',
 }, {
   title: '时间',
-  dataIndex: 'createdTime',
-  key: 'createdTime',
+  dataIndex: 'creatTime',
+  key: 'creatTime',
 }];
 
 const userTransactionData = [{
@@ -53,7 +53,7 @@ const userTransactionData = [{
   'funds':'30000',
   'tranceType':'转账',
   'transferAddressFrom':'address',
-  'createdTime':'2018-11-23'
+  'creatTime':'2018-11-23'
 }];
 class TransactionDetailTable extends Component{
 

@@ -37,7 +37,7 @@ class UserIncomePayCard extends React.Component{
         </Col>
         <Col span={12}>
           <AStackBar
-            xName={'createdTime'}
+            xName={'creatTime'}
             barName={['团队','锁仓','推荐']}
             dataKey={['profitsTeam','profitsLockrepo','profitsReferee']}
             dataSource={userIncomePayTrendData}
@@ -70,7 +70,7 @@ class UserIncomePayCard extends React.Component{
         </Col>
         <Col span={12}>
           <AStackBar
-            xName={'createdTime'}
+            xName={'creatTime'}
             barName={['团队','锁仓','推荐']}
             dataKey={['profitsTeam','profitsLockrepo','profitsReferee']}
             dataSource={userIncomePayTrendLastDayData}

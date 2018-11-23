@@ -9,7 +9,7 @@ const userListData = [{
   'totalFunds': '10000',
   'floatingFunds': '2000',
   'lockRepoFunds': '8000',
-  'createdTime': '2018-11-09',
+  'creatTime': '2018-11-09',
   'lastLoginTime': '20180-11-12 09:12',
 },{
   'id':'2',
@@ -18,7 +18,7 @@ const userListData = [{
   'totalFunds': '10000',
   'floatingFunds': '2000',
   'lockRepoFunds': '8000',
-  'createdTime': '2018-11-09',
+  'creatTime': '2018-11-09',
   'lastLoginTime': '20180-11-12 09:12',
 }];
 
@@ -64,8 +64,8 @@ class UserListCard extends React.Component{
     key: 'lockRepoFunds',
   }, {
     title: '注册时间',
-    dataIndex: 'createdTime',
-    key: 'createdTime',
+    dataIndex: 'creatTime',
+    key: 'creatTime',
   }, {
     title: '上次登录时间',
     dataIndex: 'lastLoginTime',

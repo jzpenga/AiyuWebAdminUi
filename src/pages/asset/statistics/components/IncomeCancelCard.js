@@ -25,7 +25,7 @@ class IncomeCancelCard extends React.Component{
       <Row>
         <Col span={12}>
           <ALineChart
-            xName={'createdTime'}
+            xName={'creatTime'}
             dataKey={['count']}
             dataSource={incomeCancelTrendData}
           />
@@ -33,7 +33,7 @@ class IncomeCancelCard extends React.Component{
         </Col>
         <Col span={12}>
           <ALineChart
-            xName={'createdTime'}
+            xName={'creatTime'}
             dataKey={['count']}
             dataSource={dayIncomeCancelTrendData}
           />

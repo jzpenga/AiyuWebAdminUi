@@ -78,7 +78,7 @@ class AssetStatusCard extends React.Component {
         centered
         closable={false}>
         <AStackBar
-          xName={'createdTime'}
+          xName={'creatTime'}
           barName={['流动','锁仓']}
           dataKey={['floatingFunds','lockrepoFunds']}
           dataSource={assetTrendData}
