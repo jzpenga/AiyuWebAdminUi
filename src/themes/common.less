@@ -1,0 +1,152 @@
+@import "default";
+
+
+/**高度适配屏幕**/
+@navTop: 64px;
+.fixScreen{
+  height: calc(100vh);
+}
+
+//====主要用色=====//
+//主色调
+@color-main: #FFB923;
+
+//背景颜色
+@color-bg: #F6F6F7;
+
+//====文字颜色=====//
+//标题性文字
+@color-text-title: #333333;
+//常规文字
+@color-text-common: #666666;
+//辅助文字
+@color-text-support: #999999;
+//部分按钮文字
+@color-text-blue: #018ffd;
+
+@color-text-white: #ffffff;
+
+
+
+//====边框分割线颜色=====//
+@color-border: #E3E3E7;
+
+@item-height: 32px;
+@item-padding: 10px;
+
+.pageTitle{
+  margin:10px 0;
+}
+
+.titleLabel{
+  height: @item-height;
+  background: #F3F8FF;
+  line-height: @item-height;
+  padding: 0 @item-padding;
+  border-bottom: @color-border solid 1px;
+
+  .rightTitleOption{
+    display: inline-block;
+    float: right;
+    color: @color-main;
+    cursor: pointer;
+  }
+}
+
+
+
+.commonCard{
+  margin-top: @item-padding;
+  margin-bottom: @item-padding;
+  width: 100%;
+  border: 1px solid @color-border;
+  padding-bottom: @item-padding;
+}
+
+.commonQueryCard{
+  margin-top: @item-padding;
+  margin-bottom: @item-padding;
+  width: 100%;
+  border: 1px solid @color-border;
+}
+
+.cardOuterMargin{
+
+}
+
+.charts{
+  width: 100%;
+  height: 400px;
+}
+
+.queryInput{
+  width: 80%;
+  height: @item-height;
+  color: @color-text-support;
+}
+
+.queryShortInput{
+  width: 50%;
+  height: @item-height;
+  color: @color-text-support;
+}
+
+.queryRow {
+  margin: @item-padding 0;
+  height: @item-height;
+}
+
+.queryLabel {
+  display: inline-block;
+  color: @color-text-support;
+  height: @item-height;
+  margin-left: @item-padding;
+  font-size: 12px;
+  line-height: @item-height;
+  width: 48px;
+}
+
+.queryLongLabel {
+  display: inline-block;
+  color: @color-text-support;
+  height: @item-height;
+  margin-left: @item-padding;
+  font-size: 12px;
+  line-height: @item-height;
+  width: 72px;
+}
+
+.searchBtn {
+  float: right;
+  margin-right: 4%;
+}
+
+.paginationTextTip{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  color: @color-text-common;
+  font-size: 12px;
+  height: @item-height;
+  margin: 10px;
+  line-height: @item-height;
+}
+
+.commonRadioGroup{
+  display: inline-block;
+  margin-top: @item-padding;
+  margin-bottom: @item-padding;
+  margin-left: 50%;
+  transform: translateX(-50%);
+}
+
+.formPadding{
+  padding: @item-padding;
+}
+
+.chartTitle{
+  text-align: center;
+  display: block;
+  width: 100%;
+  margin: 10px 0 auto;
+}

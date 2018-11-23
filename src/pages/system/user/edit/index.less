@@ -1,0 +1,57 @@
+@import "../../../../themes/common";
+.assetsTextContainer{
+  position: absolute;
+  top: 100px;
+  left: 100px;
+  span{
+    display: block;
+    width: 100%;
+  }
+  .textLabel{
+    color: @color-text-support;
+    font-size: 12px;
+  }
+  .textValue{
+    color: @color-text-common;
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+}
+
+
+.bottomBtnContainer{
+  left: 50%;
+  position: absolute;
+  margin-top: @item-padding;
+  margin-bottom: 40px;
+  transform: translateX(-50%);
+
+  .btnBack{
+    background: #B4B4B4;
+    color: white;
+    border: 0;
+    margin-right: @item-padding;
+
+  }
+  .btnBack:hover{
+    border: 0;
+  }
+  .btnBack:active{
+    background: #9b9b9e;
+  }
+
+  .btnDelete{
+    background: #F9922D;
+    color: white;
+    border: 0;
+    margin-left: @item-padding;
+
+  }
+  .btnDelete:hover{
+    border: 0;
+  }
+  .btnDelete:active{
+    background: #de8228;
+  }
+}
+

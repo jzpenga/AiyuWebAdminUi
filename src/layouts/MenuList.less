@@ -1,0 +1,48 @@
+@import '~antd/lib/style/themes/default.less';
+@import "../../src/themes/common";
+@ease-in-out-circ: cubic-bezier(0.78, 0.14, 0.15, 0.86);
+:global {
+  .ant-menu-dark, .ant-menu-dark .ant-menu-sub {
+    //color: rgba(255, 255, 255, 0.65);
+    background: #001529;
+  }
+  .ant-menu-dark .ant-menu-inline.ant-menu-sub {
+    background: #001529;
+   // -webkit-box-shadow: 0 0 0;
+    box-shadow: 0 0 0;
+  }
+  .ant-layout-sider .ant-menu-root {
+    //-webkit-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.45) inset;
+    //box-shadow: 0 2px 8px rgba(0, 0, 0, 0.45) inset;
+  }
+
+  .ant-menu.ant-menu-dark .ant-menu-item-selected, .ant-menu-submenu-popup.ant-menu-dark .ant-menu-item-selected {
+    background-color: @color-main;
+  }
+
+  .ant-menu-inline-collapsed {
+    & > .ant-menu-item .sider-menu-item-img + span,
+    &
+    > .ant-menu-item-group
+    > .ant-menu-item-group-list
+    > .ant-menu-item
+    .sider-menu-item-img
+    + span,
+    & > .ant-menu-submenu > .ant-menu-submenu-title .sider-menu-item-img + span {
+      max-width: 0;
+      display: inline-block;
+      opacity: 0;
+    }
+  }
+  .ant-menu-item .sider-menu-item-img + span,
+  .ant-menu-submenu-title .sider-menu-item-img + span {
+    transition: opacity 0.2s ease-in-out, width 0.2s ease-in-out;
+    opacity: 1;
+  }
+}
+
+.icon {
+  width: 14px;
+  margin-top: -4px;
+  margin-right: 10px;
+}
