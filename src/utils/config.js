@@ -15,6 +15,7 @@ module.exports = {
     dayWeightTrend:`${API}/statistics/capitaldaily`,
     userAllTrend:`${API}/statistics/consumertotal`,
     userDayTrend:`${API}/statistics/consumerdaily`,
+    userRankinList:`${API}/statistics/rankinlist`,
     //用户管理
     userAsset:`${API}/consumer/capitaltotal/:id`,
     userIncome:`${API}/consumer/profitstotal/:id`,

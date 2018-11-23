@@ -46,6 +46,7 @@ export default{
       { createdTime: '11-06', count: 2800 },
       { createdTime: '11-07', count: 2800 },
     ],
+    // /admin/manage/statistics/rankinlist
     userListData:[
       {
         'id':'1',
@@ -53,56 +54,56 @@ export default{
         'phoneNo': '18317907145',
         'totalFunds': '10000',
         'floatingFunds': '2000',
-        'lockRepoFunds': '8000'
+        'lockrepoFunds': '8000'
       },{
         'id':'2',
         'nickName': '刘德华',
         'phoneNo': '18317907145',
         'totalFunds': '10000',
         'floatingFunds': '2000',
-        'lockRepoFunds': '8000'
+        'lockrepoFunds': '8000'
       },{
         'id':'3',
         'nickName': '刘德华',
         'phoneNo': '18317907145',
         'totalFunds': '10000',
         'floatingFunds': '2000',
-        'lockRepoFunds': '8000'
+        'lockrepoFunds': '8000'
       },{
         'id':'4',
         'nickName': '刘德华',
         'phoneNo': '18317907145',
         'totalFunds': '10000',
         'floatingFunds': '2000',
-        'lockRepoFunds': '8000'
+        'lockrepoFunds': '8000'
       },{
         'id':'5',
         'nickName': '刘德华',
         'phoneNo': '18317907145',
         'totalFunds': '10000',
         'floatingFunds': '2000',
-        'lockRepoFunds': '8000'
+        'lockrepoFunds': '8000'
       },{
         'id':'6',
         'nickName': '刘德华',
         'phoneNo': '18317907145',
         'totalFunds': '10000',
         'floatingFunds': '2000',
-        'lockRepoFunds': '8000'
+        'lockrepoFunds': '8000'
       },{
         'id':'7',
         'nickName': '刘德华',
         'phoneNo': '18317907145',
         'totalFunds': '10000',
         'floatingFunds': '2000',
-        'lockRepoFunds': '8000'
+        'lockrepoFunds': '8000'
       },{
         'id':'8',
         'nickName': '刘德华',
         'phoneNo': '18317907145',
         'totalFunds': '10000',
         'floatingFunds': '2000',
-        'lockRepoFunds': '8000'
+        'lockrepoFunds': '8000'
       }
     ]
   },

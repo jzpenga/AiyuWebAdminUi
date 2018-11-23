@@ -23,8 +23,8 @@ const userListColumns = [{
   key: 'floatingFunds',
 }, {
   title: '锁仓资产',
-  dataIndex: 'lockRepoFunds',
-  key: 'lockRepoFunds',
+  dataIndex: 'lockrepoFunds',
+  key: 'lockrepoFunds',
 }];
 const UserRankingCard = ({userListData})=>{
   return <Card className={styles.commonCard}>
