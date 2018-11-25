@@ -1,28 +1,12 @@
 import React from 'react';
 import styles from '../index.less';
 import router from 'umi/router';
-import {  Card, Row, Col, Table } from 'antd';
-const userListData = [{
-  'id':'1',
-  'nickName': '刘德华',
-  'phoneNo': '18317907145',
-  'totalFunds': '10000',
-  'floatingFunds': '2000',
-  'lockRepoFunds': '8000',
-  'creatTime': '2018-11-09',
-  'lastLoginTime': '20180-11-12 09:12',
-},{
-  'id':'2',
-  'nickName': '刘德华',
-  'phoneNo': '18317907146',
-  'totalFunds': '10000',
-  'floatingFunds': '2000',
-  'lockRepoFunds': '8000',
-  'creatTime': '2018-11-09',
-  'lastLoginTime': '20180-11-12 09:12',
-}];
+import { Card, Row, Col, Table } from 'antd';
+import config from '../../../../../utils/config';
+import { connect } from 'dva';
 
-class UserListCard extends React.Component{
+
+class UserListCard extends React.Component {
 
 
   state = {
@@ -76,21 +60,39 @@ class UserListCard extends React.Component{
     key: 'x',
     render: (record) => <div>
       <a onClick={() => this.handleUserEdit(record)}>编辑</a>
-      <span style={{margin:5}}> </span>
+      <span style={{ margin: 5 }}> </span>
       <a onClick={() => this.handleUserDelete(record)}>删除</a>
     </div>,
   }];
 
-  handleUserEdit(record){
-    console.log('edit',record.id);
+  handleUserEdit(record) {
+    console.log('edit', record.id);
     router.push(`/system/user/edit?id=${record.id}`);
   }
 
-  handleUserDelete(record){
-    console.log('delete',record.id)
+  handleUserDelete(record) {
+    console.log('delete', record.id);
   }
 
-  render(){
+  onPageChange = (page, pageSize) => {
+    let props = this.props;
+    let {phoneNo,nickName,totalCapitalMin,totalCapitalMax,registryTimeTo,registryTimeFrom} = props.queryParam;
+    props.dispatch({
+      type: 'userList/queryUserList',
+      payload: {
+        registryTimeFrom:registryTimeFrom,
+        registryTimeTo:registryTimeTo,
+        phoneNo:phoneNo,
+        nickName:nickName,
+        totalCapitalMin:totalCapitalMin,
+        totalCapitalMax:totalCapitalMax,
+        pageNo: page,
+        pageSize: pageSize,
+      },
+    });
+  };
+
+  render() {
 
     const { selectedRowKeys } = this.state;
     const rowSelection = {
@@ -99,8 +101,7 @@ class UserListCard extends React.Component{
       onSelect: this.onSelect,
       onSelectAll: this.onSelectAll,
     };
-
-
+    const { userListData, pageNo, total } = this.props;
     return <Card className={styles.commonCard}>
       <Row className={styles.titleLabel}>
         <Col span={24}>数据列表</Col>
@@ -109,7 +110,11 @@ class UserListCard extends React.Component{
         <Col span={24}>
           <Table
             pagination={{
-              showTotal: (total) => <div className={styles.paginationTextTip}>共{total}条记录，当前0/0页，每页10条记录</div>,
+              showTotal: (total) => <div className={styles.paginationTextTip}>共{total}条记录，当前{pageNo}/{Math.ceil(total/config.pageSize)}页，每页{config.pageSize}条记录</div>,
+              onChange: this.onPageChange,
+              defaultPageSize: config.pageSize,
+              total: total,
+              current: pageNo,
             }}
             rowKey={record => record.id}
             rowSelection={rowSelection}
@@ -118,8 +123,15 @@ class UserListCard extends React.Component{
             dataSource={userListData}/>
         </Col>
       </Row>
-    </Card>
+    </Card>;
   }
 }
 
-export default UserListCard;
+const mapStateToProps = (state) => {
+  const { queryParam, userListData, pageNo, total } = state.userList;
+  return {
+    queryParam, userListData, pageNo, total,
+  };
+};
+
+export default connect(mapStateToProps)(UserListCard);

@@ -22,6 +22,7 @@ module.exports = {
     userAssetTrend:`${API}/consumer/profitstotal/:id`,
     userIncomeTrend:`${API}/consumer/profitsdetail/:id`,
     userTeam:`${API}/consumer/team/:id`,
+    userList:`${API}/consumer/consumers`,
     //今日统计
     statisticsAsset:`${API}/statistics/capitaltotal`,
     statisticsAssetTrend:`${API}/statistics/capitaldaily`,
@@ -53,5 +54,6 @@ module.exports = {
       y:160,
       color:[  '#F5736E', '#FFCD3B'],
     }
-  }
+  },
+  pageSize:1
 };
