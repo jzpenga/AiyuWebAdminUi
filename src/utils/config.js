@@ -46,6 +46,11 @@ module.exports = {
     teamParamList:`${API}/parameter/teamprofits/teamprofitses`,
     deleteTeamParam:`${API}/parameter/teamprofits/delete/1`,
     deleteTeamParamList:`${API}/parameter/teamprofits/delete`,//批量删除
+    //其他收益参数
+    saveOtherParam:`${API}/parameter/sysparam/savesysparameter`,
+    otherParamList:`${API}/parameter/sysparam/sysparameters`,
+    deleteOtherParam:`${API}/parameter/sysparam/delete/1`,
+    deleteOtherParamList:`${API}/parameter/sysparam/delete`,//批量删除
   },
   chartOpt : {
     chartMargin: { top: 20, left: 50, right: 50, bottom: 5 },
