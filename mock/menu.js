@@ -28,7 +28,7 @@ const menuData = [
     children:[{
       name: '锁仓收益参数',
       icon: './icon-param-lock.png',
-      path: '/param/local',
+      path: '/param/lock',
     },{
       name: '团队收益参数',
       icon: './icon-param-team.png',

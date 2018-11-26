@@ -36,6 +36,10 @@ module.exports = {
     statisticsDayChargeTrend:`${API}/statistics/feedaily`,
     statisticsIncomeCancelTrend:`${API}/statistics/destroytotal`,
     statisticsDayIncomeCancelTrend:`${API}/statistics/destroydaily`,
+    //锁仓收益参数
+    saveLockedParam:`${API}/parameter/lockrepo/savelockrepo`,
+    lockedParamList:`${API}/parameter/lockrepo/lockrepos`,
+    deleteLockedParam:`${API}/parameter/lockrepo/delete/1`,
   },
   chartOpt : {
     chartMargin: { top: 20, left: 50, right: 50, bottom: 5 },
