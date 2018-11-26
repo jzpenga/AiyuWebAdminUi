@@ -2,7 +2,6 @@ import config from '../src/utils/config';
 
 export default {
   [`POST ${config.api.saveLockedParam}`]: (req, res) => {
-    console.log(req.body);
     let response = {
       'data': {
         'id': req.body.id===''?3:req.body.id,
