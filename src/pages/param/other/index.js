@@ -67,18 +67,21 @@ const OtherParam = ({ dispatch, loading, editingKey,paramListData,selectedRowKey
       title: '编号',
       dataIndex: 'paramCode',
       width: '25%',
+      inputType: 'number',
       editable: true,
     },
     {
       title: '参数名称',
       dataIndex: 'paramName',
       width: '25%',
+      inputType: 'text',
       editable: true,
     },
     {
       title: '比例',
       dataIndex: 'paramValue',
       width: '25%',
+      inputType: 'number',
       editable: true,
     }
   ];
