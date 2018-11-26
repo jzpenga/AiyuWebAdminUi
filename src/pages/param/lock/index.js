@@ -14,6 +14,16 @@ const LockedParam = ({ dispatch, loading, editingKey,paramListData,selectedRowKe
       message.warning('请先保存正在编辑的字段信息！');
       return false;
     }
+    dispatch({
+      type:'paramLock/addEmptyColumn',
+      payload:{
+        'id': -1,
+        'profitsCode': '',
+        'lowerLimit': '',
+        'upperLimit': '',
+        'ratio': '',
+      }
+    });
   };
 
   const saveColumn = (form, data) => {
@@ -79,8 +89,28 @@ const LockedParam = ({ dispatch, loading, editingKey,paramListData,selectedRowKe
     },
   ];
 
+  const onSelectChange = (selectedRowKeys) => {
+    //console.log('selectedRowKeys changed: ', selectedRowKeys);
+   // this.setState({ selectedRowKeys });
+    dispatch({
+      type:'paramLock/updateSelectedRowKeys',
+      selectedRowKeys:selectedRowKeys
+    })
+  };
+
+  const onSelect = (record, selected, selectedRows) => {
+    //console.log(record, selected, selectedRows);
+  };
+
+  const onSelectAll = (selected, selectedRows, changeRows) => {
+    //console.log(selected, selectedRows, changeRows);
+  };
+
   const rowSelection = {
-    selectedRowKeys
+    selectedRowKeys,
+    onChange: onSelectChange,
+    onSelect: onSelect,
+    onSelectAll: onSelectAll,
   };
 
   const editableTableProps = {
@@ -96,13 +126,25 @@ const LockedParam = ({ dispatch, loading, editingKey,paramListData,selectedRowKe
     selections:rowSelection
   };
 
-  console.log(paramListData);
+  //console.log('selectedRowKeys',selectedRowKeys);
 
+  const deleteBatch = ()=>{
+    dispatch({
+      type:'paramLock/deleteLockedParamList',
+      selectedRowKeys:selectedRowKeys
+    })
+  };
 
   return (
     <Card className={styles.commonCard}>
       <Row className={styles.titleLabel}>
-        <Col span={24}>锁仓收益参数</Col>
+        <Col span={24}>
+          <div className={styles.titleLabel}>
+            <span>锁仓收益参数</span>
+            <span onClick={deleteBatch} className={styles.rightTitleOption}>批量删除</span>
+            <span onClick={addColumn} className={styles.rightTitleOption}>新增</span>
+          </div>
+        </Col>
       </Row>
       <Row>
         <Col span={24}>

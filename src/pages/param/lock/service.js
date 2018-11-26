@@ -20,9 +20,16 @@ export function fetchLockedParamList(data) {
 }
 
 export function deleteParam(data) {
-  console.log(data);
   return request({
     url:`${apiPrefix}/parameter/lockrepo/delete/${data.id}`,
+    method:'post',
+    data
+  });
+}
+
+export function deleteParamList(data) {
+  return request({
+    url:config.api.deleteLockedParamList,
     method:'post',
     data
   });

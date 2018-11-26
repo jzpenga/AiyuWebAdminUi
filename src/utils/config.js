@@ -40,6 +40,7 @@ module.exports = {
     saveLockedParam:`${API}/parameter/lockrepo/savelockrepo`,
     lockedParamList:`${API}/parameter/lockrepo/lockrepos`,
     deleteLockedParam:`${API}/parameter/lockrepo/delete/1`,
+    deleteLockedParamList:`${API}/parameter/lockrepo/delete`,//批量删除
   },
   chartOpt : {
     chartMargin: { top: 20, left: 50, right: 50, bottom: 5 },
