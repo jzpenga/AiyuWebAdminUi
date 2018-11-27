@@ -71,7 +71,10 @@ class UserListCard extends React.Component {
   }
 
   handleUserDelete(record) {
-    console.log('delete', record.id);
+    this.props.dispatch({
+      type: 'userList/deleteUser',
+      payload: record.id
+    })
   }
 
   onPageChange = (page, pageSize) => {
@@ -93,7 +96,10 @@ class UserListCard extends React.Component {
   };
 
   deleteBatch = ()=>{
-
+    this.props.dispatch({
+      type: 'userList/deleteUserList',
+      payload: this.state.selectedRowKeys
+    })
   };
 
   addUser = ()=>{
@@ -142,7 +148,7 @@ class UserListCard extends React.Component {
 const mapStateToProps = (state) => {
   const { queryParam, userListData, pageNo, total } = state.userList;
   return {
-    queryParam, userListData, pageNo, total,
+    queryParam, userListData, pageNo, total
   };
 };
 

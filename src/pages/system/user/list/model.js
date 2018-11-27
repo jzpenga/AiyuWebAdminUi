@@ -27,6 +27,24 @@ export default {
         payload: {userListData,pageNo:data.pageNum,total: data.total},
       });
     },
+   * deleteUser({payload},{call,put}){
+      let data = yield call(service.deleteUser,{id:payload});
+     yield put({
+       type: 'queryParamChange',
+       payload: { queryParam: {} }
+     })
+    },
+    * deleteUserList({payload},{call,put}){
+      let data = yield call(service.deleteUserList,payload);
+      yield put({
+        type: 'queryUserList',
+        payload: { pageNo: 1 }
+      });
+      yield put({
+        type: 'queryParamChange',
+        payload: { queryParam: {} }
+      })
+    }
   },
   subscriptions: {
     setup({ dispatch, history }) {
