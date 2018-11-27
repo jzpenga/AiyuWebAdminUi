@@ -7,7 +7,7 @@ const defaultUser = {
   password: '123456',
 };
 
-export default {
+module.exports = {
   [`POST ${apiPrefix}/sysuser/login`]: (req, res) => {
     let { userName, password } = req.body;
     if (userName === defaultUser.userName && password === defaultUser.password) {

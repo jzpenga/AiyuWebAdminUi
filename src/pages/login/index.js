@@ -17,7 +17,7 @@ class Login extends Component {
           <FormItem
             hasFeedback
           >
-            {getFieldDecorator('userName', {
+            {getFieldDecorator('account', {
               rules: [{ required: true, message: '请输入用户名!' }],
             })(
               <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }}/>} placeholder="用户名" autoComplete="off" disableautocomplete="true"/>,

@@ -1,11 +1,11 @@
-const API = '/admin/manger';
+const API = '/admin/manage';
 
 module.exports = {
   name: '环宇智谷',
   prefix: 'walletAdmin',
   logo: '/public/logo.svg',
   loginPage: '/login',
-  apiPrefix: '/admin/manger',
+  apiPrefix: '/admin/manage',
   API,
   api: {
     //登录
