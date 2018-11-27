@@ -54,7 +54,6 @@ export default {
         param = { ...row, id: data.id };
       }
       let resData = yield call(service.saveLockedParamToServer, param);
-      console.log(resData);
       if (resData.responseCode === 200) {
         let newData = resData.data;
         //更新本地
@@ -88,7 +87,7 @@ export default {
     * deleteLockedParamList({selectedRowKeys},{put,call}){
       const ids = [];
       ids.push(...selectedRowKeys);
-      const data = yield call(service.deleteParamList,{ids:ids});
+      const data = yield call(service.deleteParamList,ids);
       yield put({
         type:'deleteDataList',
         ids:ids

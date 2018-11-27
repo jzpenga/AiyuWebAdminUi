@@ -23,6 +23,9 @@ module.exports = {
     userIncomeTrend:`${API}/consumer/profitsdetail/:id`,
     userTeam:`${API}/consumer/team/:id`,
     userList:`${API}/consumer/consumers`,
+    userDeleteList:`${API}/consumer/delete`,
+    userDelete:`${API}/consumer/delete/:id`,
+    userAdd:`${API}/consumer/consumer/add`,
     //今日统计
     statisticsAsset:`${API}/statistics/capitaltotal`,
     statisticsAssetTrend:`${API}/statistics/capitaldaily`,
@@ -70,5 +73,5 @@ module.exports = {
       color:[  '#F5736E', '#FFCD3B'],
     }
   },
-  pageSize:1
+  pageSize:10
 };

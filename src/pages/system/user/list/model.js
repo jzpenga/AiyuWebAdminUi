@@ -1,4 +1,4 @@
-import * as service from './service';
+import * as service from '../service';
 import config from '../../../../utils/config';
 import * as routerRedux from 'react-router-redux';
 
@@ -7,25 +7,24 @@ export default {
   state: {
     queryParam: {},
     userListData: [],
-    pageNo: 1,
-    total: 4,
+    pageNo: 0,
+    total: 0,
   },
   reducers: {
     queryParamChange: (state,{payload:{queryParam}}) => {
       return { ...state, queryParam };
     },
-    refreshUserList: (state,{payload:{userListData,pageNo}}) => {
-      return {...state,userListData,pageNo};
+    refreshUserList: (state,{payload:{userListData,pageNo,total}}) => {
+      return {...state,userListData,pageNo,total};
     },
   },
   effects: {
     * queryUserList({ payload }, { call, put }) {
       let {data} = yield call(service.fetchUserList,payload);
       let userListData = data.list;
-      let pageNo = data.pageNum;
       yield put({
         type: 'refreshUserList',
-        payload: {userListData,pageNo},
+        payload: {userListData,pageNo:data.pageNum,total: data.total},
       });
     },
   },

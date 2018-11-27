@@ -68,7 +68,7 @@ class App extends React.Component {
    * @param item
    */
   onMenuClick(item){
-    console.log(item);
+
   };
 
   render() {

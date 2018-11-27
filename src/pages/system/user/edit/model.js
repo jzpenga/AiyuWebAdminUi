@@ -1,5 +1,5 @@
-
-
+import * as service from '../service';
+import router from 'umi/router';
 
 export default{
   namespace:'userEdit',
@@ -50,5 +50,12 @@ export default{
   reducers: {
 
   },
+  effects:{
+    * saveUserInfo({payload},{call,put}){
+      //let data = yield call(service.save,payload);
+      //返回
+      router.goBack();
+    }
+  }
 
 }

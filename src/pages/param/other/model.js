@@ -87,7 +87,7 @@ export default {
     * deleteParamList({selectedRowKeys},{put,call}){
       const ids = [];
       ids.push(...selectedRowKeys);
-      const data = yield call(service.deleteParamList,{ids:ids});
+      const data = yield call(service.deleteParamList,ids);
       yield put({
         type:'deleteDataList',
         ids:ids

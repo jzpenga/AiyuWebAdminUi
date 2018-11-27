@@ -92,6 +92,14 @@ class UserListCard extends React.Component {
     });
   };
 
+  deleteBatch = ()=>{
+
+  };
+
+  addUser = ()=>{
+    router.push(`/system/user/edit?id=-1`);
+  };
+
   render() {
 
     const { selectedRowKeys } = this.state;
@@ -103,8 +111,12 @@ class UserListCard extends React.Component {
     };
     const { userListData, pageNo, total } = this.props;
     return <Card className={styles.commonCard}>
-      <Row className={styles.titleLabel}>
-        <Col span={24}>数据列表</Col>
+      <Row>
+        <div className={styles.titleLabel}>
+          <span>数据列表</span>
+          <span onClick={this.deleteBatch} className={styles.rightTitleOption}>批量删除</span>
+          <span onClick={this.addUser} className={styles.rightTitleOption}>新增</span>
+        </div>
       </Row>
       <Row>
         <Col span={24}>
