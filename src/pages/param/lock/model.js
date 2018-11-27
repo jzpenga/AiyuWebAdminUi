@@ -54,6 +54,7 @@ export default {
         param = { ...row, id: data.id };
       }
       let resData = yield call(service.saveLockedParamToServer, param);
+      console.log(resData);
       if (resData.responseCode === 200) {
         let newData = resData.data;
         //更新本地

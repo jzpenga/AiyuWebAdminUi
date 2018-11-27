@@ -3,10 +3,9 @@ import request from '../../utils/request';
 
 const {apiPrefix} = config;
 
-export function login(data) {
+export function fetchUserRanking() {
   return request({
-    url:`${apiPrefix}/login`,
-    method:'post',
-    data
+    url:config.api.userRankinList,
+    method:'get'
   });
 }
