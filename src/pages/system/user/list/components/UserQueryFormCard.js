@@ -18,8 +18,9 @@ class UserQueryFormCard extends React.Component {
     e.preventDefault();
     validateFields((errors, values) => {
       const rangeTimeValue = values['rangeTimePicker'];
-      let registryTimeFrom = rangeTimeValue===undefined?'':rangeTimeValue[0].format('YYYY-MM-DD');
-      let registryTimeTo = rangeTimeValue===undefined?'':rangeTimeValue[1].format('YYYY-MM-DD');
+      console.log('handleSubmit',rangeTimeValue);
+      let registryTimeFrom = (rangeTimeValue.length===0 || rangeTimeValue===undefined)?'':rangeTimeValue[0].format('YYYY-MM-DD');
+      let registryTimeTo = (rangeTimeValue.length===0 ||rangeTimeValue===undefined)?'':rangeTimeValue[1].format('YYYY-MM-DD');
       values = {...values,registryTimeFrom,registryTimeTo};
       let {phoneNo,nickName,totalCapitalMin,totalCapitalMax} = values;
       this.props.dispatch({

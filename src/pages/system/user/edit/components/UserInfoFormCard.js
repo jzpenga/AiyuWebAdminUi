@@ -35,7 +35,7 @@ class UserInfoFormCard extends React.Component{
               </Col>
               <Col span={12}>
                 <FormItem {...this.formItemLayout} label={`密码`}>
-                  {getFieldDecorator(`password`, {
+                  {getFieldDecorator(`passWord`, {
                     rules: [{
                       required: true,
                       message: 'Input something!',

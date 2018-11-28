@@ -3,6 +3,7 @@ import axios from 'axios'
 import cloneDeep from 'lodash.clonedeep'
 import config from '../utils/config'
 
+
 const fetch = (options) => {
   let headers;
 
@@ -56,7 +57,11 @@ const fetch = (options) => {
 export default function request(options) {
   return fetch(options).then(response => {
     const {statusText, status} = response;
+
     let data = response.data;
+    if (data.responseCode !== 200) {
+      throw '';
+    }
     if (data instanceof Array) {
       data = {
         list: data,
@@ -70,7 +75,6 @@ export default function request(options) {
     })
   }).catch(error => {
 
-    console.log('error', error);
     const {response} = error;
     let msg;
     let statusCode;

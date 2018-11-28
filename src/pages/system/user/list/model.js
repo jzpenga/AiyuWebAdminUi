@@ -11,40 +11,44 @@ export default {
     total: 0,
   },
   reducers: {
-    queryParamChange: (state,{payload:{queryParam}}) => {
+    queryParamChange: (state, { payload: { queryParam } }) => {
       return { ...state, queryParam };
     },
-    refreshUserList: (state,{payload:{userListData,pageNo,total}}) => {
-      return {...state,userListData,pageNo,total};
+    refreshUserList: (state, { payload: { userListData, pageNo, total } }) => {
+      return { ...state, userListData, pageNo, total };
     },
   },
   effects: {
     * queryUserList({ payload }, { call, put }) {
-      let {data} = yield call(service.fetchUserList,payload);
+      let { data } = yield call(service.fetchUserList, payload);
       let userListData = data.list;
       yield put({
         type: 'refreshUserList',
-        payload: {userListData,pageNo:data.pageNum,total: data.total},
+        payload: { userListData, pageNo: data.pageNum, total: data.total },
       });
     },
-   * deleteUser({payload},{call,put}){
-      let data = yield call(service.deleteUser,{id:payload});
-     yield put({
-       type: 'queryParamChange',
-       payload: { queryParam: {} }
-     })
-    },
-    * deleteUserList({payload},{call,put}){
-      let data = yield call(service.deleteUserList,payload);
+    * deleteUser({ payload }, { call, put }) {
+      let data = yield call(service.deleteUser, { id: payload });
       yield put({
         type: 'queryUserList',
-        payload: { pageNo: 1 }
+        payload: { pageNo: 1 },
       });
       yield put({
         type: 'queryParamChange',
-        payload: { queryParam: {} }
-      })
-    }
+        payload: { queryParam: {} },
+      });
+    },
+    * deleteUserList({ payload }, { call, put }) {
+      let data = yield call(service.deleteUserList, payload);
+      yield put({
+        type: 'queryUserList',
+        payload: { pageNo: 1 },
+      });
+      yield put({
+        type: 'queryParamChange',
+        payload: { queryParam: {} },
+      });
+    },
   },
   subscriptions: {
     setup({ dispatch, history }) {

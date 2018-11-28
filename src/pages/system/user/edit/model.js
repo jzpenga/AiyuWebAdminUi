@@ -52,7 +52,8 @@ export default{
   },
   effects:{
     * saveUserInfo({payload},{call,put}){
-      //let data = yield call(service.save,payload);
+      console.log('query',payload);
+      let data = yield call(service.save,payload);
       //返回
       router.goBack();
     }
