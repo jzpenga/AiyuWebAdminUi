@@ -9,52 +9,8 @@ import TransactionDetailCard from './components/TransactionDetailCard';
 import UserInfoForm from './components/UserInfoFormCard';
 import TeamCard from './components/TeamCard';
 
-
+let oldPassWord = '';
 class UserEdit extends Component {
-
-
-  state = {
-    fields: {
-      phoneNo: {
-        value:this.props.userInfo.phoneNo
-      },
-      passWord: {
-        value:this.props.userInfo.passWord
-      },
-      email: {
-        value:this.props.userInfo.email
-      },
-      nickName: {
-        value:this.props.userInfo.nickName
-      },
-      creatTime: {
-        value:this.props.userInfo.creatTime
-      },
-      lastLoginTime: {
-        value:this.props.userInfo.lastLoginTime
-      },
-    },
-    emptyFields: {
-      phoneNo: {
-        value:''
-      },
-      passWord: {
-        value:''
-      },
-      email: {
-        value:''
-      },
-      nickName: {
-        value:''
-      },
-      creatTime: {
-        value:''
-      },
-      lastLoginTime: {
-        value:''
-      },
-    },
-  };
 
   handleFormChange = (changedFields) => {
     if (this.props.location.query.id>=0 ) {
@@ -66,11 +22,54 @@ class UserEdit extends Component {
         emptyFields: { ...fields, ...changedFields },
       }));
     }
-
   };
 
   constructor(props){
     super(props);
+    oldPassWord = this.props.userInfo.passWord;
+    console.log(props.userInfo);
+    this.state = {
+      fields: {
+        phoneNo: {
+          value:this.props.userInfo.phoneNo
+        },
+        passWord: {
+          value:this.props.userInfo.passWord
+        },
+        email: {
+          value:this.props.userInfo.email
+        },
+        nickName: {
+          value:this.props.userInfo.nickName
+        },
+        creatTime: {
+          value:this.props.userInfo.creatTime
+        },
+        lastLoginTime: {
+          value:this.props.userInfo.lastLoginTime
+        },
+      },
+      emptyFields: {
+        phoneNo: {
+          value:''
+        },
+        passWord: {
+          value:''
+        },
+        email: {
+          value:''
+        },
+        nickName: {
+          value:''
+        },
+        creatTime: {
+          value:''
+        },
+        lastLoginTime: {
+          value:''
+        },
+      },
+    };
     this.userInfoForm = React.createRef();
   }
 
@@ -78,6 +77,12 @@ class UserEdit extends Component {
     const { validateFields } = this.userInfoForm.current.getForm();
     validateFields((errors, values) => {
       const id = this.props.location.query.id>=0?this.props.location.query.id:'';
+      const {passWord} = values;
+      if (oldPassWord !== passWord){
+        values = {...values};
+      } else {
+        values ={...values,passWord:''};
+      }
       this.props.dispatch({
         type:'userEdit/saveUserInfo',
         payload:{...values,id:id}

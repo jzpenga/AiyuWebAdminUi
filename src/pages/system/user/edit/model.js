@@ -55,12 +55,15 @@ export default {
   },
   effects: {
     * saveUserInfo({ payload }, { call, put }) {
-      let data = yield call(service.save, payload);
-      router.goBack();
+      let {data} = yield call(service.save, payload);
+      yield put({
+        type:'updateUserInfo',
+        payload:data
+      });
+      //router.goBack();
     },
     * queryUserInfo({ payload }, { call, put }) {
       let {data} = yield call(service.fetchUserInfo, payload);
-      console.log(data);
       yield put({
         type:'updateUserInfo',
         payload:data
