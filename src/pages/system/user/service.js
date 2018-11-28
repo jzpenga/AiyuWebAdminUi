@@ -42,3 +42,10 @@ export function fetchUserInfo(data) {
 }
 
 
+export function fetchTranList(data) {
+  return request({
+    url: config.api.userTranDetail,
+    method: 'get',
+    data
+  });
+}

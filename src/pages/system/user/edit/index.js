@@ -123,7 +123,7 @@ class UserEdit extends Component {
               <div className={styles.cardOuterMargin}>
                 <Row>
                   <Col span={24}>
-                    <TransactionDetailCard/>
+                    <TransactionDetailCard id={id}/>
                   </Col>
                 </Row>
               </div>

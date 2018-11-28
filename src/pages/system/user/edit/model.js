@@ -47,11 +47,24 @@ export default {
       { creatTime: '11-07', totalFunds: 3490, totalMember: 4300 },
     ],
     userInfo: {},
+    pageNo: 0,
+    total: 0,
+    userTranList:[{
+      'id': '1',
+      'tranceNo': '123',
+      'funds': '30000',
+      'tranceType': '转账',
+      'transferAddressFrom': 'address',
+      'creatTime': '2018-11-23',
+    }],
   },
   reducers: {
     updateUserInfo:(state,{payload})=>{
       return {...state,userInfo: payload};
-    }
+    },
+    updateUserTranList:(state,{payload})=>{
+      return {...state,userTranList: payload};
+    },
   },
   effects: {
     * saveUserInfo({ payload }, { call, put }) {
@@ -60,7 +73,7 @@ export default {
         type:'updateUserInfo',
         payload:data
       });
-      //router.goBack();
+      router.goBack();
     },
     * queryUserInfo({ payload }, { call, put }) {
       let {data} = yield call(service.fetchUserInfo, payload);
@@ -69,6 +82,14 @@ export default {
         payload:data
       })
     },
+    * queryUserTranList({ payload }, { call, put }){
+      let {data} = yield call(service.fetchTranList, payload);
+      let userTranList = data.list;
+      put({
+        type:'updateUserTranList',
+        payload:userTranList
+      });
+    }
   },
   subscriptions: {
     setup({ dispatch, history }) {
