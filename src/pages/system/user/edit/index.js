@@ -13,6 +13,62 @@ import TeamCard from './components/TeamCard';
 class UserEdit extends Component {
 
 
+  state = {
+    fields: {
+      phoneNo: {
+        value:this.props.userInfo.phoneNo
+      },
+      passWord: {
+        value:this.props.userInfo.passWord
+      },
+      email: {
+        value:this.props.userInfo.email
+      },
+      nickName: {
+        value:this.props.userInfo.nickName
+      },
+      creatTime: {
+        value:this.props.userInfo.creatTime
+      },
+      lastLoginTime: {
+        value:this.props.userInfo.lastLoginTime
+      },
+    },
+    emptyFields: {
+      phoneNo: {
+        value:''
+      },
+      passWord: {
+        value:''
+      },
+      email: {
+        value:''
+      },
+      nickName: {
+        value:''
+      },
+      creatTime: {
+        value:''
+      },
+      lastLoginTime: {
+        value:''
+      },
+    },
+  };
+
+  handleFormChange = (changedFields) => {
+    if (this.props.location.query.id>=0 ) {
+      this.setState(({ fields }) => ({
+        fields: { ...fields, ...changedFields },
+      }));
+    }else {
+      this.setState(({ fields }) => ({
+        emptyFields: { ...fields, ...changedFields },
+      }));
+    }
+
+  };
+
   constructor(props){
     super(props);
     this.userInfoForm = React.createRef();
@@ -21,26 +77,25 @@ class UserEdit extends Component {
   saveUser = ()=>{
     const { validateFields } = this.userInfoForm.current.getForm();
     validateFields((errors, values) => {
+      const id = this.props.location.query.id>=0?this.props.location.query.id:'';
       this.props.dispatch({
         type:'userEdit/saveUserInfo',
-        payload:values
+        payload:{...values,id:id}
       });
     });
   };
 
-  userInfoProps = {
-    dispatch:this.props.dispatch,
-  };
 
   render() {
     const id = this.props.location.query.id;
+    const fields = id>0?this.state.fields:this.state.emptyFields;
     const { teamOneData, teamTwoData } = this.props;
     return (
       <div>
         <div className={styles.cardOuterMargin}>
           <Row>
             <Col span={24}>
-              <UserInfoForm userInfoProps ref={this.userInfoForm}/>
+              <UserInfoForm  {...fields} onChange={this.handleFormChange} userInfoProps ref={this.userInfoForm}/>
             </Col>
           </Row>
 
@@ -109,8 +164,8 @@ class UserEdit extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { teamOneData, teamTwoData } = state.userEdit;
-  return { teamOneData, teamTwoData };
+  const { teamOneData, teamTwoData ,userInfo} = state.userEdit;
+  return { teamOneData, teamTwoData,userInfo };
 };
 
 export default connect(mapStateToProps)(UserEdit);

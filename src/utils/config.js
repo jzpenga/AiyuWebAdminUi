@@ -26,6 +26,7 @@ module.exports = {
     userDeleteList:`${API}/consumer/delete`,
     userDelete:`${API}/consumer/delete/:id`,
     userAdd:`${API}/consumer/add`,
+    userInfo:`${API}/consumer/consumer/:id`,
     //今日统计
     statisticsAsset:`${API}/statistics/capitaltotal`,
     statisticsAssetTrend:`${API}/statistics/capitaldaily`,

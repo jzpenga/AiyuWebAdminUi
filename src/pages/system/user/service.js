@@ -32,3 +32,13 @@ export function save(data) {
     data,
   });
 }
+
+
+export function fetchUserInfo(data) {
+  return request({
+    url: `${config.apiPrefix}/consumer/consumer/${data.id}`,
+    method: 'get',
+  });
+}
+
+

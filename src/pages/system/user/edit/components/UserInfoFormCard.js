@@ -23,25 +23,15 @@ class UserInfoFormCard extends React.Component{
             <Row gutter={24}>
               <Col span={12}>
                 <FormItem {...this.formItemLayout} label={`手机号`}>
-                  {getFieldDecorator(`phoneNo`, {
-                    rules: [{
-                      required: true,
-                      message: 'Input something!',
-                    }],
-                  })(
-                    <Input  placeholder="placeholder" />
+                  {getFieldDecorator(`phoneNo`)(
+                    <Input  placeholder="" />
                   )}
                 </FormItem>
               </Col>
               <Col span={12}>
                 <FormItem {...this.formItemLayout} label={`密码`}>
-                  {getFieldDecorator(`passWord`, {
-                    rules: [{
-                      required: true,
-                      message: 'Input something!',
-                    }],
-                  })(
-                    <Input  placeholder="placeholder" />
+                  {getFieldDecorator(`passWord`)(
+                    <Input  placeholder="" />
                   )}
                 </FormItem>
               </Col>
@@ -50,14 +40,14 @@ class UserInfoFormCard extends React.Component{
               <Col span={12}>
                 <FormItem {...this.formItemLayout} label={`昵称`}>
                   {getFieldDecorator(`nickName`)(
-                    <Input  placeholder="placeholder" />
+                    <Input  placeholder="" />
                   )}
                 </FormItem>
               </Col>
               <Col span={12}>
                 <FormItem  {...this.formItemLayout} label={`Email`}>
                   {getFieldDecorator(`email`)(
-                    <Input  placeholder="placeholder" />
+                    <Input  placeholder="" />
                   )}
                 </FormItem>
               </Col>
@@ -65,15 +55,15 @@ class UserInfoFormCard extends React.Component{
             <Row gutter={24}>
               <Col span={12}>
                 <FormItem {...this.formItemLayout} label={`注册时间`}>
-                  {getFieldDecorator(`createdTime`)(
-                    <Input  placeholder="placeholder" />
+                  {getFieldDecorator(`creatTime`)(
+                    <Input  placeholder="" disabled />
                   )}
                 </FormItem>
               </Col>
               <Col span={12}>
                 <FormItem {...this.formItemLayout} label={`上次登录时间`}>
                   {getFieldDecorator(`lastLoginTime`)(
-                    <Input  placeholder="placeholder" />
+                    <Input  placeholder="" disabled />
                   )}
                 </FormItem>
               </Col>
@@ -86,5 +76,40 @@ class UserInfoFormCard extends React.Component{
   }
 }
 
+const formOpt = {
+  onFieldsChange(props, changedFields) {
+    props.onChange(changedFields);
+  },
+  mapPropsToFields(props) {
+    return {
+      phoneNo: Form.createFormField({
+        ...props.phoneNo,
+        value: props.phoneNo.value,
+      }),
+      passWord: Form.createFormField({
+        ...props.passWord,
+        value: props.passWord.value,
+      }),
+      nickName: Form.createFormField({
+        ...props.nickName,
+        value: props.nickName.value,
+      }),
+      email: Form.createFormField({
+        ...props.email,
+        value: props.email.value,
+      }),
+      creatTime: Form.createFormField({
+        ...props.creatTime,
+        value: props.creatTime.value,
+      }),
+      lastLoginTime: Form.createFormField({
+        ...props.lastLoginTime,
+        value: props.lastLoginTime.value,
+      }),
+    };
+  },
+  onValuesChange(_, values) {
+  },
+};
 
-export default Form.create()(UserInfoFormCard);
+export default Form.create(formOpt)(UserInfoFormCard);
