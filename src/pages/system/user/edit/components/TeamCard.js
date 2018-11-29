@@ -105,9 +105,12 @@ class TeamCard extends React.Component{
           barLineName={['资产规模','团队规模']}
         />
         <Table
-          pagination={false}
+          style={{margin:'10px 0'}}
           rowKey={record => record.id}
-          columns={this.userListColumns}
+          pagination={false}
+          showQuickJumper
+          bordered
+          columns={userListColumns}
           dataSource={userListData}/>
         <div style={{ textAlign: 'center' }}>
           <Button onClick={this.handleBack} type={'primary'} htmlType={'button'}>返回</Button>

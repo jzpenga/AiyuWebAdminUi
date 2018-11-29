@@ -6,7 +6,7 @@ import config from '../../utils/config';
 const AComposedChart = ({xName,dataKey,barLineName,dataSource}) => {
 
   return <ResponsiveContainer width="100%" height={config.chartOpt.chartHeight}>
-    <ComposedChart data={dataSource} margin={ {top: 60, left: 5, right: 5, bottom: 5} }>
+    <ComposedChart data={dataSource} margin={ {top: 10, left: 5, right: 5, bottom: 5} }>
       <CartesianGrid stroke='#f5f5f5'/>
       <XAxis dataKey={xName}/>
       <YAxis yAxisId="left" />
