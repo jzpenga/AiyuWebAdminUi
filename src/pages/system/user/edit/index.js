@@ -13,15 +13,9 @@ let oldPassWord = '';
 class UserEdit extends Component {
 
   handleFormChange = (changedFields) => {
-    if (this.props.location.query.id>=0 ) {
-      this.setState(({ fields }) => ({
-        fields: { ...fields, ...changedFields },
-      }));
-    }else {
-      this.setState(({ fields }) => ({
-        emptyFields: { ...fields, ...changedFields },
-      }));
-    }
+    this.setState(({ fields }) => ({
+      fields: { ...fields, ...changedFields },
+    }));
   };
 
   constructor(props){
@@ -47,26 +41,6 @@ class UserEdit extends Component {
         },
         lastLoginTime: {
           value:this.props.userInfo.lastLoginTime
-        },
-      },
-      emptyFields: {
-        phoneNo: {
-          value:''
-        },
-        passWord: {
-          value:''
-        },
-        email: {
-          value:''
-        },
-        nickName: {
-          value:''
-        },
-        creatTime: {
-          value:''
-        },
-        lastLoginTime: {
-          value:''
         },
       },
     };
@@ -118,7 +92,7 @@ class UserEdit extends Component {
 
   render() {
     const id = this.props.location.query.id;
-    const fields = id>0?this.state.fields:this.state.emptyFields;
+    const fields = this.state.fields;
     const { teamOneData, teamTwoData } = this.props;
     return (
       <div>
