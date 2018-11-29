@@ -10,19 +10,29 @@ class AllAssetCard extends React.Component{
 
   render(){
     const {assetData,assetTrendData} = this.props;
+    let lock=0,flow=0,total=0;
+    assetData.forEach((item)=>{
+      if (item.name === '锁仓资产') {
+        lock = item.value;
+        total+=item.value
+      }else if (item.name === '流动资产') {
+        flow = item.value
+        total+=item.value
+      }
+    });
     return <Card className={styles.commonCard}>
       <Row className={styles.titleLabel}>
         <Col span={24}>总量</Col>
       </Row>
       <Row gutter={12}>
         <Col span={8}>
-          <span className={styles.chartTitle}>总资产{` 1500000  `}</span>
+          <span className={styles.chartTitle}>总资产:{total}</span>
         </Col>
         <Col span={8}>
-          <span className={styles.chartTitle}>锁仓资产{` 800000  `}</span>
+          <span className={styles.chartTitle}>锁仓资产:{lock}</span>
         </Col>
         <Col span={8}>
-          <span className={styles.chartTitle}>流动资产{` 700000`}</span>
+          <span className={styles.chartTitle}>流动资产:{flow}</span>
         </Col>
       </Row>
       <Row>

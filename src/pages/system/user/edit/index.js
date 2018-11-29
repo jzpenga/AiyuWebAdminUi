@@ -27,7 +27,7 @@ class UserEdit extends Component {
   constructor(props){
     super(props);
     oldPassWord = this.props.userInfo.passWord;
-    //console.log(props.userInfo);
+
     this.state = {
       fields: {
         phoneNo: {
@@ -71,6 +71,31 @@ class UserEdit extends Component {
       },
     };
     this.userInfoForm = React.createRef();
+  }
+
+  componentWillReceiveProps(nextProps, nextContext) {
+    this.setState({
+      fields: {
+        phoneNo: {
+          value:nextProps.userInfo.phoneNo
+        },
+        passWord: {
+          value:nextProps.userInfo.passWord
+        },
+        email: {
+          value:nextProps.userInfo.email
+        },
+        nickName: {
+          value:nextProps.userInfo.nickName
+        },
+        creatTime: {
+          value:nextProps.userInfo.creatTime
+        },
+        lastLoginTime: {
+          value:nextProps.userInfo.lastLoginTime
+        },
+      },
+    });
   }
 
   saveUser = ()=>{

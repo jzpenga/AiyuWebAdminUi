@@ -74,12 +74,13 @@ class TransactionDetailCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      tranceType: 2,
+      tranceType: '2',
     };
   }
 
   handlerTranceTypeChange = (e) => {
     const tranceType = e.target.value;
+    console.log(tranceType);
     this.setState({
       tranceType: tranceType,
     });
@@ -89,7 +90,7 @@ class TransactionDetailCard extends Component {
         pageNo: 1,
         pageSize: 10,
         consumerId: this.props.id,
-        transType: 2 === this.state.tranceType ? '2' : '1',
+        transType: '2' === this.state.tranceType ? '2' : '1',
       },
     });
   };
@@ -102,7 +103,7 @@ class TransactionDetailCard extends Component {
         pageNo: page,
         pageSize: pageSize,
         consumerId: this.props.id,
-        transType: 2 === this.state.tranceType ? '2' : '1',
+        transType: '2' === this.state.tranceType ? '2' : '1',
       },
     });
   };
@@ -126,7 +127,7 @@ class TransactionDetailCard extends Component {
         <Row>
           <Col span={24}>
             {
-              (2 === this.state.tranceType) ?
+              ('2' === this.state.tranceType) ?
                 <Table
                   style={{ marginLeft: -1, marginRight: -1 }}
                   pagination={{

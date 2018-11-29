@@ -74,6 +74,7 @@ export default {
     },
     * queryUserInfo({ payload }, { call, put }) {
       let {data} = yield call(service.fetchUserInfo, payload);
+      console.log('queryUserInfo',data);
       yield put({
         type:'updateUserInfo',
         payload:data
@@ -95,7 +96,7 @@ export default {
           if (query.id > 0) {
             dispatch({ type: 'queryUserInfo', payload: { id: query.id } });
             dispatch({
-              type: 'userEdit/queryUserTranList',
+              type: 'queryUserTranList',
               payload: {
                 pageNo: 1,
                 pageSize: 10,
@@ -103,6 +104,8 @@ export default {
                 transType: '2',
               },
             });
+          }else {
+            dispatch({type:'updateUserInfo',payload:{}})
           }
         }
       });
