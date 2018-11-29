@@ -49,21 +49,18 @@ export default {
     userInfo: {},
     pageNo: 0,
     total: 0,
-    userTranList:[{
-      'id': '1',
-      'tranceNo': '123',
-      'funds': '30000',
-      'tranceType': '转账',
-      'transferAddressFrom': 'address',
-      'creatTime': '2018-11-23',
-    }],
+    userTranList:[],
   },
   reducers: {
     updateUserInfo:(state,{payload})=>{
       return {...state,userInfo: payload};
     },
-    updateUserTranList:(state,{payload})=>{
-      return {...state,userTranList: payload};
+    updateUserTranList:(state, { payload})=>{
+      return {...state,
+        userTranList:payload.userTranList,
+        pageNo:payload.pageNo,
+        total:payload.total
+      };
     },
   },
   effects: {
@@ -84,11 +81,10 @@ export default {
     },
     * queryUserTranList({ payload }, { call, put }){
       let {data} = yield call(service.fetchTranList, payload);
-      console.log(data);
       let userTranList = data.list;
-      put({
+      yield put({
         type:'updateUserTranList',
-        payload:userTranList
+        payload:{userTranList:userTranList, pageNo: data.pageNum, total: data.total }
       });
     }
   },
@@ -98,6 +94,15 @@ export default {
         if (pathname === '/system/user/edit') {
           if (query.id > 0) {
             dispatch({ type: 'queryUserInfo', payload: { id: query.id } });
+            dispatch({
+              type: 'userEdit/queryUserTranList',
+              payload: {
+                pageNo: 1,
+                pageSize: 10,
+                consumerId: query.id,
+                transType: '1',
+              },
+            });
           }
         }
       });

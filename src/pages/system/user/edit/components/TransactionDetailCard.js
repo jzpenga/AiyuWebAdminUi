@@ -4,52 +4,68 @@ import { Row, Col, Table, Radio, Card } from 'antd';
 import { connect } from 'dva';
 import config from '../../../../../utils/config';
 
-
+const sourceTypeMap = new Map([
+  ['1', '交易转入'],
+  ['2', '锁仓收益'],
+  ['3', '团队收益'],
+  ['4', '推荐收益'],
+  ['5', '锁仓资产释放'],
+  ['6', '交易转出'],
+  ['7', '复投锁仓'],
+  ['8', '锁仓资金销毁'],
+  ['9', '交易手续费'],
+]);
 const userIncomeTransactionColumns = [
   {
-  title: '流水号',
-  dataIndex: 'tranceNo',
-  key: 'tranceNo',
-}, {
-  title: '数量',
-  dataIndex: 'funds',
-  key: 'funds',
-}, {
-  title: '收入类型',
-  dataIndex: 'tranceType',
-  key: 'tranceType',
-}, {
-  title: '来源地址',
-  dataIndex: 'transferAddressFrom',
-  key: 'transferAddressFrom',
-}, {
-  title: '时间',
-  dataIndex: 'creatTime',
-  key: 'creatTime',
-}];
+    title: '流水号',
+    dataIndex: 'tranceNo',
+    key: 'tranceNo',
+  }, {
+    title: '数量',
+    dataIndex: 'funds',
+    key: 'funds',
+  }, {
+    title: '收入类型',
+    dataIndex: 'sourceType',
+    key: 'sourceType',
+    render: (text, row, index) => {
+      return sourceTypeMap.get(text);
+    },
+  }, {
+    title: '来源地址',
+    dataIndex: 'transferAddressFrom',
+    key: 'transferAddressFrom',
+  }, {
+    title: '时间',
+    dataIndex: 'creatTime',
+    key: 'creatTime',
+  }];
 
 const userExpenditureTransactionColumns = [
   {
-  title: '流水号',
-  dataIndex: 'tranceNo',
-  key: 'tranceNo',
-}, {
-  title: '数量',
-  dataIndex: 'funds',
-  key: 'funds',
-}, {
-  title: '支出类型',
-  dataIndex: 'tranceType',
-  key: 'tranceType',
-}, {
-  title: '来源地址',
-  dataIndex: 'transferAddressFrom',
-  key: 'transferAddressFrom',
-}, {
-  title: '时间',
-  dataIndex: 'creatTime',
-  key: 'creatTime',
-}];
+    title: '流水号',
+    dataIndex: 'tranceNo',
+    key: 'tranceNo',
+  }, {
+    title: '数量',
+    dataIndex: 'funds',
+    key: 'funds',
+  }, {
+    title: '支出类型',
+    dataIndex: 'sourceType',
+    key: 'sourceType',
+    render: (text, row, index) => {
+      return sourceTypeMap.get(text);
+    },
+  }, {
+    title: '来源地址',
+    dataIndex: 'transferAddressFrom',
+    key: 'transferAddressFrom',
+  }, {
+    title: '时间',
+    dataIndex: 'creatTime',
+    key: 'creatTime',
+  }];
 
 
 class TransactionDetailCard extends Component {
@@ -67,23 +83,33 @@ class TransactionDetailCard extends Component {
     this.setState({
       tranceType: tranceType,
     });
+    this.props.dispatch({
+      type: 'userEdit/queryUserTranList',
+      payload: {
+        pageNo: 1,
+        pageSize: 10,
+        consumerId: this.props.id,
+        transType: 'income' === this.state.tranceType ? '2' : '1',
+      },
+    });
   };
 
   onPageChange = (page, pageSize) => {
     let props = this.props;
     props.dispatch({
-      type: 'userList/queryUserList',
+      type: 'userEdit/queryUserTranList',
       payload: {
         pageNo: page,
         pageSize: pageSize,
-        consumerId:this.props.id,
-        transType:'income'===this.state.tranceType?'1':'2'
-      }
+        consumerId: this.props.id,
+        transType: 'income' === this.state.tranceType ? '2' : '1',
+      },
     });
   };
 
   render() {
-    const {  pageNo, total,userTranList } = this.props;
+    const { pageNo, total, userTranList } = this.props;
+    console.log('userTranList', userTranList);
     return <Card className={styles.commonCard}>
       <Row className={styles.titleLabel}>
         <Col span={24}>交易明细</Col>
@@ -105,21 +131,25 @@ class TransactionDetailCard extends Component {
                 <Table
                   style={{ marginLeft: -1, marginRight: -1 }}
                   pagination={{
-                    showTotal: (total) => <div className={styles.paginationTextTip}>共{total}条记录，当前{pageNo}/{Math.ceil(total/config.pageSize)}页，每页{config.pageSize}条记录</div>,
+                    showTotal: (total) => <div
+                      className={styles.paginationTextTip}>共{total}条记录，当前{pageNo}/{Math.ceil(total / config.pageSize)}页，每页{config.pageSize}条记录</div>,
                     onChange: this.onPageChange,
                     defaultPageSize: config.pageSize,
                     total: total,
                     current: pageNo,
                   }}
+                  bordered
                   rowKey={record => record.id}
                   showQuickJumper
                   columns={userIncomeTransactionColumns}
                   dataSource={userTranList}/>
                 :
                 <Table
+                  bordered
                   style={{ marginLeft: -1, marginRight: -1 }}
                   pagination={{
-                    showTotal: (total) => <div className={styles.paginationTextTip}>共{total}条记录，当前{pageNo}/{Math.ceil(total/config.pageSize)}页，每页{config.pageSize}条记录</div>,
+                    showTotal: (total) => <div
+                      className={styles.paginationTextTip}>共{total}条记录，当前{pageNo}/{Math.ceil(total / config.pageSize)}页，每页{config.pageSize}条记录</div>,
                     onChange: this.onPageChange,
                     defaultPageSize: config.pageSize,
                     total: total,
@@ -138,9 +168,9 @@ class TransactionDetailCard extends Component {
   }
 }
 
-const mapStateToProps = (state)=>{
-  const {total,pageNo,userTranList} = state.userEdit;
-  return {total,pageNo,userTranList}
+const mapStateToProps = (state) => {
+  const { total, pageNo, userTranList } = state.userEdit;
+  return { total, pageNo, userTranList };
 };
 
 export default connect(mapStateToProps)(TransactionDetailCard);
