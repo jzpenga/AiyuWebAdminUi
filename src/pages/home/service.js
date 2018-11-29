@@ -9,3 +9,31 @@ export function fetchUserRanking() {
     method:'get'
   });
 }
+
+export function allTrend() {
+  return request({
+    url:config.api.allTrend,
+    method:'get'
+  });
+}
+
+export function dayWeightTrend() {
+  return request({
+    url:config.api.dayWeightTrend,
+    method:'get'
+  });
+}
+
+export function userAllTrend() {
+  return request({
+    url:config.api.userAllTrend,
+    method:'get'
+  });
+}
+
+export function userDayTrend() {
+  return request({
+    url:config.api.userDayTrend,
+    method:'get'
+  });
+}

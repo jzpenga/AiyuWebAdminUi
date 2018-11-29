@@ -7,52 +7,31 @@ export default {
   namespace: 'home',
   state: {
     // /admin/manage/statistics/capitaltotal
-    allTrendData: [
-      { creatTime: '11-01', floatingFunds: 2000, lockrepoFunds: 2013 },
-      { creatTime: '11-02', floatingFunds: 3300, lockrepoFunds: 2000 },
-      { creatTime: '11-03', floatingFunds: 3200, lockrepoFunds: 1398 },
-      { creatTime: '11-04', floatingFunds: 2800, lockrepoFunds: 2800 },
-      { creatTime: '11-05', floatingFunds: 2800, lockrepoFunds: 2800 },
-      { creatTime: '11-06', floatingFunds: 2800, lockrepoFunds: 2800 },
-      { creatTime: '11-07', floatingFunds: 2800, lockrepoFunds: 2800 },
-    ],
+    allTrendData: [],
     // /admin/manage/statistics/capitaldaily
-    dayWeightTrendData: [
-      { creatTime: '11-01', floatingFunds: 2000, lockrepoFunds: 2013 },
-      { creatTime: '11-02', floatingFunds: 3300, lockrepoFunds: 2000 },
-      { creatTime: '11-03', floatingFunds: 3200, lockrepoFunds: 1398 },
-      { creatTime: '11-04', floatingFunds: 2800, lockrepoFunds: 2800 },
-      { creatTime: '11-05', floatingFunds: 2800, lockrepoFunds: 2800 },
-      { creatTime: '11-06', floatingFunds: 2800, lockrepoFunds: 2800 },
-      { creatTime: '11-07', floatingFunds: 2800, lockrepoFunds: 2800 },
-    ],
+    dayWeightTrendData: [],
     // /admin/manage/statistics/consumertotal
-    userAllTrendData: [
-      { creatTime: '11-01', count: 2013 },
-      { creatTime: '11-02', count: 2000 },
-      { creatTime: '11-03', count: 1398 },
-      { creatTime: '11-04', count: 2800 },
-      { creatTime: '11-05', count: 2800 },
-      { creatTime: '11-06', count: 2800 },
-      { creatTime: '11-07', count: 2800 },
-    ],
+    userAllTrendData: [],
     // /admin/manage/statistics/consumerdaily
-    userDayTrendData: [
-      { creatTime: '11-01', count: 2013 },
-      { creatTime: '11-02', count: 2000 },
-      { creatTime: '11-03', count: 1398 },
-      { creatTime: '11-04', count: 2800 },
-      { creatTime: '11-05', count: 2800 },
-      { creatTime: '11-06', count: 2800 },
-      { creatTime: '11-07', count: 2800 },
-    ],
+    userDayTrendData: [],
     // /admin/manage/statistics/rankinlist
     userListData: [],
   },
   reducers: {
     updateUserRanking:(state,{payload})=>{
-      console.log(payload)
       return {...state,userListData:payload}
+    },
+    updateAllTrend:(state,{payload})=>{
+      return {...state,allTrendData:payload}
+    },
+    updateDayWeightTrend:(state,{payload})=>{
+      return {...state,dayWeightTrendData:payload}
+    },
+    updateUserAllTrend:(state,{payload})=>{
+      return {...state,userAllTrendData:payload}
+    },
+    updateDayTrend:(state,{payload})=>{
+      return {...state,userDayTrendData:payload}
     },
   },
   effects: {
@@ -62,6 +41,34 @@ export default {
         type: 'updateUserRanking',
         payload:data
       })
+    },
+    * queryAllTrend({payload},{put,call}){
+      let {data} = yield call(service.allTrend);
+      yield put({
+        type:'updateAllTrend',
+        payload:data
+      })
+    },
+    * queryDayWeightTrend({payload},{put,call}){
+      let {data} = yield call(service.dayWeightTrend);
+      yield put({
+        type:'updateDayWeightTrend',
+        payload:data
+      })
+    },
+    * queryUserAllTrendData({payload},{put,call}){
+      let {data} = yield call(service.userAllTrend);
+      yield put({
+        type:'updateUserAllTrend',
+        payload:data
+      })
+    },
+    * queryUserDayTrendData({payload},{put,call}){
+      let {data} = yield call(service.userDayTrend);
+      yield put({
+        type:'updateDayTrend',
+        payload:data
+      })
     }
   },
   subscriptions: {
@@ -69,6 +76,10 @@ export default {
       return history.listen(({ pathname, query }) => {
         if (pathname === '/home') {
           dispatch({ type: 'queryUserRanking' });
+          dispatch({ type: 'queryAllTrend' });
+          dispatch({ type: 'queryDayWeightTrend' });
+          dispatch({ type: 'queryUserAllTrendData' });
+          dispatch({ type: 'queryUserDayTrendData' });
         }
       });
     },
