@@ -100,7 +100,7 @@ export default {
                 pageNo: 1,
                 pageSize: 10,
                 consumerId: query.id,
-                transType: '1',
+                transType: '2',
               },
             });
           }

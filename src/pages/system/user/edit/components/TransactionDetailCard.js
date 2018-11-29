@@ -74,7 +74,7 @@ class TransactionDetailCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      tranceType: 'income',
+      tranceType: 2,
     };
   }
 
@@ -89,7 +89,7 @@ class TransactionDetailCard extends Component {
         pageNo: 1,
         pageSize: 10,
         consumerId: this.props.id,
-        transType: 'income' === this.state.tranceType ? '2' : '1',
+        transType: 2 === this.state.tranceType ? '2' : '1',
       },
     });
   };
@@ -102,14 +102,13 @@ class TransactionDetailCard extends Component {
         pageNo: page,
         pageSize: pageSize,
         consumerId: this.props.id,
-        transType: 'income' === this.state.tranceType ? '2' : '1',
+        transType: 2 === this.state.tranceType ? '2' : '1',
       },
     });
   };
 
   render() {
     const { pageNo, total, userTranList } = this.props;
-    console.log('userTranList', userTranList);
     return <Card className={styles.commonCard}>
       <Row className={styles.titleLabel}>
         <Col span={24}>交易明细</Col>
@@ -118,16 +117,16 @@ class TransactionDetailCard extends Component {
         <Row>
           <Col span={24}>
             <Radio.Group onChange={this.handlerTranceTypeChange} className={styles.commonRadioGroup}
-                         defaultValue="income" buttonStyle="solid">
-              <Radio.Button value="income">收入</Radio.Button>
-              <Radio.Button value="expenditure">支出</Radio.Button>
+                         defaultValue="2" buttonStyle="solid">
+              <Radio.Button value="2">收入</Radio.Button>
+              <Radio.Button value="1">支出</Radio.Button>
             </Radio.Group>
           </Col>
         </Row>
         <Row>
           <Col span={24}>
             {
-              ('income' === this.state.tranceType) ?
+              (2 === this.state.tranceType) ?
                 <Table
                   style={{ marginLeft: -1, marginRight: -1 }}
                   pagination={{

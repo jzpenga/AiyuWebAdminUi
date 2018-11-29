@@ -23,7 +23,7 @@ class ChargeCard extends React.Component {
         <Col span={12}>
           <ALineChart
             xName={'creatTime'}
-            dataKey={['count']}
+            dataKey={['total']}
             dataSource={allChargeTrendData}
           />
           <span className={styles.chartTitle}>总收入趋势</span>
@@ -31,7 +31,7 @@ class ChargeCard extends React.Component {
         <Col span={12}>
           <ALineChart
             xName={'creatTime'}
-            dataKey={['count']}
+            dataKey={['total']}
             dataSource={dayChargeTrendData}
           />
           <span className={styles.chartTitle}>日增收入趋势</span>
