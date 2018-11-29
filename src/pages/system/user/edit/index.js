@@ -27,7 +27,7 @@ class UserEdit extends Component {
   constructor(props){
     super(props);
     oldPassWord = this.props.userInfo.passWord;
-    console.log(props.userInfo);
+    //console.log(props.userInfo);
     this.state = {
       fields: {
         phoneNo: {
@@ -131,12 +131,14 @@ class UserEdit extends Component {
                 <Row gutter={16}>
                   <Col span={12}>
                     <TeamCard
+                      detailTitle={'团队一详情'}
                       cardTitle={'团队一总览'}
                       teamData={teamOneData}
                     />
                   </Col>
                   <Col span={12}>
                     <TeamCard
+                      detailTitle={'团队二详情'}
                       cardTitle={'团队二总览'}
                       teamData={teamTwoData}
                     />

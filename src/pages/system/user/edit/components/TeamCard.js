@@ -1,37 +1,122 @@
 import React from 'react';
 import styles from '../index.less';
-import {  Card, Row, Col } from 'antd';
+import { Card, Row, Col, Button, Modal, Table } from 'antd';
 
 import AComposedChart from '../../../../../components/Charts/AComposedChart';
+import config from '../../../../../utils/config';
 
-const TeamCard = ({teamData,cardTitle})=>{
-  return <Card className={styles.commonCard}>
-    <Row className={styles.titleLabel}>
-      <Col span={24}>{cardTitle}</Col>
-    </Row>
-    <Row>
-      <Col span={24}>
-        <Row>
-          <Col span={16}>
-            <AComposedChart
-             xName={'creatTime'}
-            dataSource={teamData}
-            dataKey={['totalFunds','totalMember']}
-            barLineName={['资产规模','团队规模']}
-            />
-          </Col>
-          <Col span={8}>
-            <div className={styles.assetsTextContainer}>
-              <span className={styles.textLabel}>资产规模</span>
-              <span className={styles.textValue}>15000000</span>
-              <span className={styles.textLabel}>团队规模</span>
-              <span className={styles.textValue}>8000</span>
-            </div>
-          </Col>
-        </Row>
-      </Col>
-    </Row>
-  </Card>
-};
+const userListColumns = [{
+  title: '昵称',
+  dataIndex: 'nickName',
+  key: 'nickName',
+}, {
+  title: '手机号',
+  dataIndex: 'phoneNo',
+  key: 'phoneNo',
+}, {
+  title: '资产总量',
+  dataIndex: 'totalFunds',
+  key: 'totalFunds',
+}, {
+  title: '流动资产',
+  dataIndex: 'floatingFunds',
+  key: 'floatingFunds',
+}, {
+  title: '锁仓资产',
+  dataIndex: 'lockRepoFunds',
+  key: 'lockRepoFunds',
+}];
+const userListData = [{
+  'id': '2',
+  'nickName': '刘德华',
+  'phoneNo': '18317907145',
+  'totalFunds': '10000',
+  'floatingFunds': '2000',
+  'lockrepoFunds': '8000',
+}, {
+  'id': '3',
+  'nickName': '刘德华',
+  'phoneNo': '18317907145',
+  'totalFunds': '10000',
+  'floatingFunds': '2000',
+  'lockrepoFunds': '8000',
+}];
+class TeamCard extends React.Component{
+
+  constructor(props){
+    super(props);
+    this.state = {
+      visible: false,
+    };
+  }
+
+  showTeamDetail=()=>{
+    this.setState({
+      visible: !this.state.visible,
+    });
+  };
+  handleBack = () => {
+    this.setState({
+      visible: false,
+    });
+  };
+  render() {
+    const {cardTitle,teamData,detailTitle} = this.props;
+    return <Card className={styles.commonCard}>
+      <Row>
+        <div className={styles.titleLabel}>
+          <span>{cardTitle}</span>
+          <span onClick={this.showTeamDetail} className={styles.rightTitleOption}>查看明细</span>
+        </div>
+      </Row>
+      <Row>
+        <Col span={24}>
+          <Row>
+            <Col span={16}>
+              <AComposedChart
+                xName={'creatTime'}
+                dataSource={teamData}
+                dataKey={['totalFunds','totalMember']}
+                barLineName={['资产规模','团队规模']}
+              />
+            </Col>
+            <Col span={8}>
+              <div className={styles.assetsTextContainer}>
+                <span className={styles.textLabel}>资产规模</span>
+                <span className={styles.textValue}>15000000</span>
+                <span className={styles.textLabel}>团队规模</span>
+                <span className={styles.textValue}>8000</span>
+              </div>
+            </Col>
+          </Row>
+        </Col>
+      </Row>
+      <Modal
+        title={detailTitle}
+        visible={this.state.visible}
+        footer={null}
+        width={900}
+        centered
+        closable={false}>
+        <AComposedChart
+          xName={'creatTime'}
+          dataSource={teamData}
+          dataKey={['totalFunds','totalMember']}
+          barLineName={['资产规模','团队规模']}
+        />
+        <Table
+          pagination={false}
+          rowKey={record => record.id}
+          columns={this.userListColumns}
+          dataSource={userListData}/>
+        <div style={{ textAlign: 'center' }}>
+          <Button onClick={this.handleBack} type={'primary'} htmlType={'button'}>返回</Button>
+        </div>
+      </Modal>
+    </Card>
+  }
+
+}
+
 
 export default TeamCard;
