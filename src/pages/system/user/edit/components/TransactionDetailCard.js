@@ -81,17 +81,17 @@ class TransactionDetailCard extends Component {
   handlerTranceTypeChange = (e) => {
     const tranceType = e.target.value;
     //console.log(tranceType);
-    this.setState({
-      tranceType: tranceType,
-    });
     this.props.dispatch({
       type: 'userEdit/queryUserTranList',
       payload: {
         pageNo: 1,
         pageSize: 10,
         consumerId: this.props.id,
-        transType: '2' === this.state.tranceType ? '2' : '1',
+        transType: '2' === tranceType ? '2' : '1',
       },
+    });
+    this.setState({
+      tranceType: tranceType,
     });
   };
 
