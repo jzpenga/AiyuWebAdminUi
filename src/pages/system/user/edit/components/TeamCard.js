@@ -3,7 +3,6 @@ import styles from '../index.less';
 import { Card, Row, Col, Button, Modal, Table } from 'antd';
 
 import AComposedChart from '../../../../../components/Charts/AComposedChart';
-import config from '../../../../../utils/config';
 
 const userListColumns = [{
   title: '昵称',
@@ -26,21 +25,7 @@ const userListColumns = [{
   dataIndex: 'lockRepoFunds',
   key: 'lockRepoFunds',
 }];
-const userListData = [{
-  'id': '2',
-  'nickName': '刘德华',
-  'phoneNo': '18317907145',
-  'totalFunds': '10000',
-  'floatingFunds': '2000',
-  'lockrepoFunds': '8000',
-}, {
-  'id': '3',
-  'nickName': '刘德华',
-  'phoneNo': '18317907145',
-  'totalFunds': '10000',
-  'floatingFunds': '2000',
-  'lockrepoFunds': '8000',
-}];
+
 class TeamCard extends React.Component{
 
   constructor(props){
@@ -61,7 +46,7 @@ class TeamCard extends React.Component{
     });
   };
   render() {
-    const {cardTitle,teamData,detailTitle} = this.props;
+    const {cardTitle,teamData,detailTitle,teamType,userListData} = this.props;
     return <Card className={styles.commonCard}>
       <Row>
         <div className={styles.titleLabel}>
@@ -76,7 +61,7 @@ class TeamCard extends React.Component{
               <AComposedChart
                 xName={'creatTime'}
                 dataSource={teamData}
-                dataKey={['totalFunds','totalMember']}
+                dataKey={[teamType===1?'leftFunds':'rightFunds',teamType===1?'leftTotalMember':'rightTotalMember']}
                 barLineName={['资产规模','团队规模']}
               />
             </Col>
@@ -101,7 +86,7 @@ class TeamCard extends React.Component{
         <AComposedChart
           xName={'creatTime'}
           dataSource={teamData}
-          dataKey={['totalFunds','totalMember']}
+          dataKey={[teamType===1?'leftFunds':'rightFunds',teamType===1?'leftTotalMember':'rightTotalMember']}
           barLineName={['资产规模','团队规模']}
         />
         <Table

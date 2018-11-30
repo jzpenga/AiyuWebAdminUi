@@ -1,51 +1,22 @@
 import * as service from '../service';
 import router from 'umi/router';
+import * as utils from '../../../../utils/utils';
+
 
 export default {
   namespace: 'userEdit',
   state: {
-    // /admin/manage/consumer/capitaltotal/{id}
-    assetData: [{ name: 'flow', value: 400 }, { name: 'locked', value: 300 }],
+    assetData: [],
     // /admin/manage/consumer/profitstotal/{id}
-    incomeData: [{ name: 'flow', value: 400 }, { name: 'locked', value: 300 }],
-    assetTrendData: [
-      { creatTime: '11-01', floatingFunds: 2000, lockrepoFunds: 2013 },
-      { creatTime: '11-02', floatingFunds: 3300, lockrepoFunds: 2000 },
-      { creatTime: '11-03', floatingFunds: 3200, lockrepoFunds: 1398 },
-      { creatTime: '11-04', floatingFunds: 2800, lockrepoFunds: 2800 },
-      { creatTime: '11-05', floatingFunds: 2800, lockrepoFunds: 2800 },
-      { creatTime: '11-06', floatingFunds: 2800, lockrepoFunds: 2800 },
-      { creatTime: '11-07', floatingFunds: 2800, lockrepoFunds: 2800 },
-    ],
+    incomeData: [],
+    ///admin/manage/consumer/capitaltotal/{id}
+    assetTrendData: [],
     //  /admin/manage/consumer/profitsdetail/{id}
-    incomeTrendData: [
-      { creatTime: '11-01', floatingFunds: 2000, lockrepoFunds: 2013 },
-      { creatTime: '11-02', floatingFunds: 3300, lockrepoFunds: 2000 },
-      { creatTime: '11-03', floatingFunds: 3200, lockrepoFunds: 1398 },
-      { creatTime: '11-04', floatingFunds: 2800, lockrepoFunds: 2800 },
-      { creatTime: '11-05', floatingFunds: 2800, lockrepoFunds: 2800 },
-      { creatTime: '11-06', floatingFunds: 2800, lockrepoFunds: 2800 },
-      { creatTime: '11-07', floatingFunds: 2800, lockrepoFunds: 2800 },
-    ],
+    incomeTrendData: [],
     // /admin/manage/consumer/team/{id}
-    teamOneData: [
-      { creatTime: '11-01', totalFunds: 4000, totalMember: 2400 },
-      { creatTime: '11-02', totalFunds: 3000, totalMember: 1398 },
-      { creatTime: '11-03', totalFunds: 2000, totalMember: 9800 },
-      { creatTime: '11-04', totalFunds: 2780, totalMember: 3908 },
-      { creatTime: '11-05', totalFunds: 1890, totalMember: 4800 },
-      { creatTime: '11-06', totalFunds: 2390, totalMember: 3800 },
-      { creatTime: '11-07', totalFunds: 3490, totalMember: 4300 },
-    ],
-    teamTwoData: [
-      { creatTime: '11-01', totalFunds: 4000, totalMember: 2400 },
-      { creatTime: '11-02', totalFunds: 3000, totalMember: 1398 },
-      { creatTime: '11-03', totalFunds: 2000, totalMember: 9800 },
-      { creatTime: '11-04', totalFunds: 2780, totalMember: 3908 },
-      { creatTime: '11-05', totalFunds: 1890, totalMember: 4800 },
-      { creatTime: '11-06', totalFunds: 2390, totalMember: 3800 },
-      { creatTime: '11-07', totalFunds: 3490, totalMember: 4300 },
-    ],
+    teamOneData: [],
+    teamTwoData: [],
+    teamData:[],
     userInfo: {},
     pageNo: 0,
     total: 0,
@@ -62,6 +33,9 @@ export default {
         total:payload.total
       };
     },
+    updateData:(state,{payload})=>{
+      return {...state,...payload};
+    }
   },
   effects: {
     * saveUserInfo({ payload }, { call, put }) {
@@ -92,6 +66,54 @@ export default {
       let data = yield call(service.deleteUser, { id: payload });
       router.goBack();
     },
+    * assetData({payload},{call,put}){
+      let {data} = yield call(service.assetData, payload);
+      yield put({
+        type:'updateData',
+        payload:{assetData:utils.arrayCheck(data)}
+      });
+    },
+    * incomeData({payload},{call,put}){
+      let {data} = yield call(service.incomeData, payload);
+      yield put({
+        type:'updateData',
+        payload:{incomeData:utils.arrayCheck(data)}
+      });
+    },
+    * assetTrendData({payload},{call,put}){
+      // startDate
+      payload = {...payload,startDate:utils.getTodayDate(),endDate:utils.getLastMonthDate()};
+      let {data} = yield call(service.assetTrendData, payload);
+      yield put({
+        type:'updateData',
+        payload:{assetTrendData:utils.arrayCheck(data)}
+      });
+    },
+    * incomeTrendData({payload},{call,put}){
+      // startDate endDate
+      payload = {...payload,startDate:utils.getTodayDate(),endDate:utils.getLastMonthDate()};
+      let {data} = yield call(service.incomeTrendData, payload);
+      yield put({
+        type:'updateData',
+        payload:{incomeTrendData:utils.arrayCheck(data)}
+      });
+    },
+    * teamMember({payload},{call,put}){
+      const {witchteam} = payload;
+      let {data} = yield call(service.teamMember, payload);
+      yield put({
+        type:'updateData',
+        payload:witchteam===0?{teamOneData:utils.arrayCheck(data)}:{teamTwoData:utils.arrayCheck(data)}
+      });
+    },
+    * team({payload},{call,put}){
+      payload = {...payload,startDate:utils.getTodayDate(),endDate:utils.getLastMonthDate()};
+      let {data} = yield call(service.team, payload);
+      yield put({
+        type:'updateData',
+        payload:{team:data}
+      });
+    },
   },
   subscriptions: {
     setup({ dispatch, history }) {
@@ -108,6 +130,12 @@ export default {
                 transType: '2',
               },
             });
+            dispatch({ type: 'assetData', payload: { id: query.id } });
+            dispatch({ type: 'incomeData', payload: { id: query.id } });
+            dispatch({ type: 'assetTrendData', payload: { id: query.id } });
+            dispatch({ type: 'incomeTrendData', payload: { id: query.id } });
+            dispatch({ type: 'teamMember', payload: { id: query.id } });
+            dispatch({ type: 'team', payload: { id: query.id } });
           }else {
             dispatch({type:'updateUserInfo',payload:{}})
           }

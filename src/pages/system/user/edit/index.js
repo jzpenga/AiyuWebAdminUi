@@ -98,7 +98,7 @@ class UserEdit extends Component {
   render() {
     const id = this.props.location.query.id;
     const fields = this.state.fields;
-    const { teamOneData, teamTwoData } = this.props;
+    const { teamOneData, teamTwoData,teamData } = this.props;
     return (
       <div>
         <div className={styles.cardOuterMargin}>
@@ -135,16 +135,20 @@ class UserEdit extends Component {
                 <Row gutter={16}>
                   <Col span={12}>
                     <TeamCard
+                      teamType={1}
                       detailTitle={'团队一详情'}
                       cardTitle={'团队一总览'}
-                      teamData={teamOneData}
+                      teamData={teamData}
+                      userListData={teamOneData}
                     />
                   </Col>
                   <Col span={12}>
                     <TeamCard
+                      teamType={2}
                       detailTitle={'团队二详情'}
                       cardTitle={'团队二总览'}
-                      teamData={teamTwoData}
+                      teamData={teamData}
+                      userListData={teamTwoData}
                     />
                   </Col>
                 </Row>
@@ -175,8 +179,8 @@ class UserEdit extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { teamOneData, teamTwoData ,userInfo} = state.userEdit;
-  return { teamOneData, teamTwoData,userInfo };
+  const { teamOneData, teamTwoData ,userInfo,teamData} = state.userEdit;
+  return { teamOneData, teamTwoData,userInfo,teamData };
 };
 
 export default connect(mapStateToProps)(UserEdit);

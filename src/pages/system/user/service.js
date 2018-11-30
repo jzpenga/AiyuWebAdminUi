@@ -49,3 +49,60 @@ export function fetchTranList(data) {
     data
   });
 }
+
+
+
+// /admin/manage/consumer/capitaltotalPie/{id}
+export function assetData(data) {
+  return request({
+    url: `${config.apiPrefix}/consumer/capitaltotalPie/${data.id}`,
+    method: 'get',
+    data
+  });
+}
+
+///admin/manage/consumer/profitstotalPie/{id}
+export function incomeData(data) {
+  return request({
+    url: `${config.apiPrefix}/consumer/profitstotalPie/${data.id}`,
+    method: 'get',
+    data
+  });
+}
+
+///admin/manage/consumer/capitaltotal/{id}  startDate  endDate
+export function assetTrendData(data) {
+  return request({
+    url: `${config.apiPrefix}/consumer/capitaltotal/${data.id}`,
+    method: 'get',
+    data
+  });
+}
+
+////admin/manage/consumer/profitsdetail/{id}
+export function incomeTrendData(data) {
+  return request({
+    url: `${config.apiPrefix}/consumer/profitsdetail/${data.id}`,
+    method: 'get',
+    data
+  });
+}
+
+//  /admin/manage/consumer/teamMember/{id} witchteam 0 团队一     1 团队二
+export function teamMember(data) {
+  return request({
+    url: `${config.apiPrefix}/consumer/teamMember/${data.id}`,
+    method: 'get',
+    data
+  });
+}
+
+
+//  /admin/manage/consumer/team/{id}  startDate  endDate
+export function team(data) {
+  return request({
+    url: `${config.apiPrefix}/consumer/team/${data.id}`,
+    method: 'get',
+    data
+  });
+}

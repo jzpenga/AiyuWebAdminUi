@@ -7,15 +7,6 @@ import AStackBar from '../../../../../components/Charts/AStackBar';
 
 class AssetStatusCard extends React.Component {
 
-  dayWeightTrendData = [
-    { name: '11-01', flow: 2000, locked: 2013 },
-    { name: '11-02', flow: 3300, locked: 2000 },
-    { name: '11-03', flow: 3200, locked: 1398 },
-    { name: '11-04', flow: 2800, locked: 2800 },
-    { name: '11-05', flow: 2800, locked: 2800 },
-    { name: '11-06', flow: 2800, locked: 2800 },
-    { name: '11-07', flow: 2800, locked: 2800 },
-  ];
 
   constructor(props) {
     super(props);

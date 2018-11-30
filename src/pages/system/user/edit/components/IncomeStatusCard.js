@@ -66,9 +66,9 @@ class IncomeStatusCard extends React.Component{
         centered
         closable={false}>
         <AStackBar
-          xName={'name'}
-          barName={['流动','锁仓']}
-          dataKey={['flow','locked']}
+          xName={'creatTime'}
+          barName={['锁仓','推荐','团队']}
+          dataKey={['profitsLockrepo','profitsReferee','profitsTeam']}
           dataSource={incomeTrendData}
         />
         <div style={{ textAlign: 'center' }}>
