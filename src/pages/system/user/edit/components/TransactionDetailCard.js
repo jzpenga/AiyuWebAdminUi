@@ -80,7 +80,7 @@ class TransactionDetailCard extends Component {
 
   handlerTranceTypeChange = (e) => {
     const tranceType = e.target.value;
-    console.log(tranceType);
+    //console.log(tranceType);
     this.setState({
       tranceType: tranceType,
     });

@@ -74,7 +74,7 @@ export default {
     },
     * queryUserInfo({ payload }, { call, put }) {
       let {data} = yield call(service.fetchUserInfo, payload);
-      console.log('queryUserInfo',data);
+      //console.log('queryUserInfo',data);
       yield put({
         type:'updateUserInfo',
         payload:data
@@ -87,7 +87,11 @@ export default {
         type:'updateUserTranList',
         payload:{userTranList:userTranList, pageNo: data.pageNum, total: data.total }
       });
-    }
+    },
+    * deleteUser({ payload }, { call, put }) {
+      let data = yield call(service.deleteUser, { id: payload });
+      router.goBack();
+    },
   },
   subscriptions: {
     setup({ dispatch, history }) {

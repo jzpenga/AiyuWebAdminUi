@@ -21,7 +21,6 @@ class UserEdit extends Component {
   constructor(props){
     super(props);
     oldPassWord = this.props.userInfo.passWord;
-
     this.state = {
       fields: {
         phoneNo: {
@@ -89,6 +88,12 @@ class UserEdit extends Component {
     });
   };
 
+  deleteUser = ()=>{
+    this.props.dispatch({
+      type:'userEdit/deleteUser',
+      payload:this.props.location.query.id
+    });
+  };
 
   render() {
     const id = this.props.location.query.id;
@@ -154,9 +159,9 @@ class UserEdit extends Component {
                 <Button onClick={()=>router.goBack()} className={styles.btnBack}>返回</Button>
                 <Button  onClick={this.saveUser}  type="primary">保存</Button>
                 {
-                  id >= 0 ?
-                    <Button className={styles.btnDelete}>删除</Button>
-                    :''
+                  /*id >= 0 ?
+                    <Button onClick={this.deleteUser} className={styles.btnDelete}>删除</Button>
+                    :''*/
                 }
               </div>
             </Col>
