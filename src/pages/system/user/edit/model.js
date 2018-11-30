@@ -81,7 +81,6 @@ export default {
       })
     },
     * queryUserTranList({ payload }, { call, put }){
-      console.log(payload);
       let {data} = yield call(service.fetchTranList, payload);
       let userTranList = data.list;
       yield put({

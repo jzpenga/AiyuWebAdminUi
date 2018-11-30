@@ -5,19 +5,18 @@ import {  Card, Row, Col} from 'antd';
 import AStackBar from '../../../../components/Charts/AStackBar';
 import APieChart from '../../../../components/Charts/APieChart';
 
-
 class AllAssetCard extends React.Component{
 
   render(){
-    const {assetData,assetTrendData} = this.props;
+    let {assetData,assetTrendData} = this.props;
     let lock=0,flow=0,total=0;
     assetData.forEach((item)=>{
       if (item.name === '锁仓资产') {
         lock = item.value;
-        total+=item.value
+        total+=item.value;
       }else if (item.name === '流动资产') {
-        flow = item.value
-        total+=item.value
+        flow = item.value;
+        total+=item.value;
       }
     });
     return <Card className={styles.commonCard}>

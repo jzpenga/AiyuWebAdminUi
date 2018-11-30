@@ -1,5 +1,6 @@
 
 import * as service from './service';
+import * as utils from '../../../utils/utils';
 
 export default{
   namespace:'asset',
@@ -7,92 +8,28 @@ export default{
     // /admin/manage/statistics/capitaltotalPie
     assetData : [{ name: 'flow', value: 400 }, { name: 'locked', value: 300 }],
     // /admin/manage/statistics/capitaldaily
-    assetTrendData : [
-      { creatTime: '11-01', floatingFunds: 2000, lockrepoFunds: 2013 },
-      { creatTime: '11-02', floatingFunds: 3300, lockrepoFunds: 2000 },
-      { creatTime: '11-03', floatingFunds: 3200, lockrepoFunds: 1398 },
-      { creatTime: '11-04', floatingFunds: 2800, lockrepoFunds: 2800 },
-      { creatTime: '11-05', floatingFunds: 2800, lockrepoFunds: 2800 },
-      { creatTime: '11-06', floatingFunds: 2800, lockrepoFunds: 2800 },
-      { creatTime: '11-07', floatingFunds: 2800, lockrepoFunds: 2800 },
-    ],
+    assetTrendData : [],
     // 缺 /admin/manage/statistics/capitaldailyPie
     incrementData : [{ name: 'flow', value: 400 }, { name: 'locked', value: 300 }],
     // /admin/manage/statistics/capitaldaily
-    incrementTrendData : [
-      { creatTime: '11-01', floatingFunds: 2000, lockrepoFunds: 2013 },
-      { creatTime: '11-02', floatingFunds: 3300, lockrepoFunds: 2000 },
-      { creatTime: '11-03', floatingFunds: 3200, lockrepoFunds: 1398 },
-      { creatTime: '11-04', floatingFunds: 2800, lockrepoFunds: 2800 },
-      { creatTime: '11-05', floatingFunds: 2800, lockrepoFunds: 2800 },
-      { creatTime: '11-06', floatingFunds: 2800, lockrepoFunds: 2800 },
-      { creatTime: '11-07', floatingFunds: 2800, lockrepoFunds: 2800 },
-    ],
+    incrementTrendData : [],
     // 缺 /admin/manage/statistics/profitstotalPie
     userIncomePayData:[{ name: 'flow', value: 400 }, { name: 'locked', value: 300 },{ name: 'recommend', value: 300 }],
     // /admin/manage/statistics/profitstotal
-    userIncomePayTrendData:[
-      { creatTime: '11-01', profitsReferee: 2000, profitsLockrepo: 2013, profitsTeam:2300},
-      { creatTime: '11-02', profitsReferee: 3300, profitsLockrepo: 2000,profitsTeam:2300 },
-      { creatTime: '11-03', profitsReferee: 3200, profitsLockrepo: 1398,profitsTeam:2300  },
-      { creatTime: '11-04', profitsReferee: 2800, profitsLockrepo: 2800 ,profitsTeam:2000 },
-      { creatTime: '11-05', profitsReferee: 2800, profitsLockrepo: 2800 ,profitsTeam:2300 },
-      { creatTime: '11-06', profitsReferee: 2800, profitsLockrepo: 2800,profitsTeam:2300  },
-      { creatTime: '11-07', profitsReferee: 2800, profitsLockrepo: 2800 ,profitsTeam:3000 },
-    ],
+    userIncomePayTrendData:[],
     // 缺 /admin/manage/statistics/profitsdailyPie
     userIncomePayLastDayData:[{ name: 'flow', value: 400 }, { name: 'locked', value: 300 },{ name: 'recommend', value: 300 }],
     // /admin/manage/statistics/profitsdaily
-    userIncomePayTrendLastDayData:[
-      { creatTime: '11-01', profitsReferee: 2000, profitsLockrepo: 2013, profitsTeam:2300},
-      { creatTime: '11-02', profitsReferee: 3300, profitsLockrepo: 2000,profitsTeam:2300 },
-      { creatTime: '11-03', profitsReferee: 3200, profitsLockrepo: 1398,profitsTeam:2300  },
-      { creatTime: '11-04', profitsReferee: 2800, profitsLockrepo: 2800 ,profitsTeam:2000 },
-      { creatTime: '11-05', profitsReferee: 2800, profitsLockrepo: 2800 ,profitsTeam:2300 },
-      { creatTime: '11-06', profitsReferee: 2800, profitsLockrepo: 2800,profitsTeam:2300  },
-      { creatTime: '11-07', profitsReferee: 2800, profitsLockrepo: 2800 ,profitsTeam:3000 },
-    ],
+    userIncomePayTrendLastDayData:[],
 
     // /admin/manage/statistics/feetotal
-    allChargeTrendData:[
-      { creatTime: '11-01', count: 2000},
-      { creatTime: '11-02', count: 3300,  },
-      { creatTime: '11-03', count: 3200,},
-      { creatTime: '11-04', count: 2800, },
-      { creatTime: '11-05', count: 2800, },
-      { creatTime: '11-06', count: 2800, },
-      { creatTime: '11-07', count: 2800, },
-    ],
+    allChargeTrendData:[],
     // /admin/manage/statistics/feedaily
-    dayChargeTrendData:[
-      { creatTime: '11-01', count: 2000},
-      { creatTime: '11-02', count: 3300,  },
-      { creatTime: '11-03', count: 3200,},
-      { creatTime: '11-04', count: 2800, },
-      { creatTime: '11-05', count: 2800, },
-      { creatTime: '11-06', count: 2800, },
-      { creatTime: '11-07', count: 2800, },
-    ],
+    dayChargeTrendData:[],
     // /admin/manage/statistics/destroytotal
-    incomeCancelTrendData:[
-      { creatTime: '11-01', count: 2000},
-      { creatTime: '11-02', count: 3300,  },
-      { creatTime: '11-03', count: 3200,},
-      { creatTime: '11-04', count: 2800, },
-      { creatTime: '11-05', count: 2800, },
-      { creatTime: '11-06', count: 2800, },
-      { creatTime: '11-07', count: 2800, },
-    ],
+    incomeCancelTrendData:[],
     // /admin/manage/statistics/destroydaily
-    dayIncomeCancelTrendData:[
-      { creatTime: '11-01', count: 2000},
-      { creatTime: '11-02', count: 3300,  },
-      { creatTime: '11-03', count: 3200,},
-      { creatTime: '11-04', count: 2800, },
-      { creatTime: '11-05', count: 2800, },
-      { creatTime: '11-06', count: 2800, },
-      { creatTime: '11-07', count: 2800, },
-    ],
+    dayIncomeCancelTrendData:[],
   },
 
   reducers: {
@@ -106,84 +43,84 @@ export default{
      const {data} = yield call(service.statisticsAssetPie);
      yield put({
        type:'updateData',
-       payload:{assetData:data}
+       payload:{assetData:utils.arrayCheck(data)}
      })
    },
     * assetTrendData({payload},{call,put}){
       const {data} = yield call(service.statisticsAssetTrend);
       yield put({
         type:'updateData',
-        payload:{assetTrendData:data}
+        payload:{assetTrendData:utils.arrayCheck(data)}
       })
     },
     * incrementData({payload},{call,put}){
       const {data} = yield call(service.statisticsIncrement);
       yield put({
         type:'updateData',
-        payload:{incrementData:data}
+        payload:{incrementData:utils.arrayCheck(data)}
       })
     },
     * incrementTrendData({payload},{call,put}){
       const {data} = yield call(service.statisticsIncrementTrend);
       yield put({
         type:'updateData',
-        payload:{incrementTrendData:data}
+        payload:{incrementTrendData:utils.arrayCheck(data)}
       })
     },
     * userIncomePayData({payload},{call,put}){
       const {data} = yield call(service.statisticsUserIncomePay);
       yield put({
         type:'updateData',
-        payload:{userIncomePayData:data}
+        payload:{userIncomePayData:utils.arrayCheck(data)}
       })
     },
     * userIncomePayTrendData({payload},{call,put}){
       const {data} = yield call(service.statisticsUserIncomeTrendPay);
       yield put({
         type:'updateData',
-        payload:{userIncomePayTrendData:data}
+        payload:{userIncomePayTrendData:utils.arrayCheck(data)}
       })
     },
     * userIncomePayLastDayData({payload},{call,put}){
       const {data} = yield call(service.statisticsUserIncomePayLastDay);
       yield put({
         type:'updateData',
-        payload:{userIncomePayLastDayData:data}
+        payload:{userIncomePayLastDayData:utils.arrayCheck(data)}
       })
     },
     * userIncomePayTrendLastDayData({payload},{call,put}){
       const {data} = yield call(service.statisticsUserIncomePayLastDayTrend);
       yield put({
         type:'updateData',
-        payload:{userIncomePayTrendLastDayData:data}
+        payload:{userIncomePayTrendLastDayData:utils.arrayCheck(data)}
       })
     },
     * allChargeTrendData({payload},{call,put}){
       const {data} = yield call(service.statisticsAllChargeTrend);
       yield put({
         type:'updateData',
-        payload:{allChargeTrendData:data}
+        payload:{allChargeTrendData:utils.arrayCheck(data)}
       })
     },
     * dayChargeTrendData({payload},{call,put}){
       const {data} = yield call(service.statisticsDayChargeTrend);
       yield put({
         type:'updateData',
-        payload:{dayChargeTrendData:data}
+        payload:{dayChargeTrendData:utils.arrayCheck(data)}
       })
     },
     * incomeCancelTrendData({payload},{call,put}){
       const {data} = yield call(service.statisticsIncomeCancelTrend);
       yield put({
         type:'updateData',
-        payload:{incomeCancelTrendData:data}
+        payload:{incomeCancelTrendData:utils.arrayCheck(data)}
       })
     },
     * dayIncomeCancelTrendData({payload},{call,put}){
-      const {data} = yield call(service.statisticsDayIncomeCancelTrend);
+      let {data} = yield call(service.statisticsDayIncomeCancelTrend);
       yield put({
         type:'updateData',
-        payload:{dayIncomeCancelTrendData:data}
+        payload:{dayIncomeCancelTrendData:utils.arrayCheck(data)}
       })
     },
   },

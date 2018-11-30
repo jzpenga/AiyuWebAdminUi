@@ -11,7 +11,6 @@ class IncrementCard extends React.Component{
   render(){
     const {incrementData,incrementTrendData} = this.props;
     let lock=0,flow=0,total=0;
-    console.log(incrementData);
     incrementData.forEach((item)=>{
       if (item.name === '锁仓资产') {
         lock = item.value;
