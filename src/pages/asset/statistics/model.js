@@ -6,19 +6,19 @@ export default{
   namespace:'asset',
   state:{
     // /admin/manage/statistics/capitaltotalPie
-    assetData : [{ name: 'flow', value: 400 }, { name: 'locked', value: 300 }],
+    assetData : [],
     // /admin/manage/statistics/capitaldaily
     assetTrendData : [],
     // 缺 /admin/manage/statistics/capitaldailyPie
-    incrementData : [{ name: 'flow', value: 400 }, { name: 'locked', value: 300 }],
+    incrementData : [],
     // /admin/manage/statistics/capitaldaily
     incrementTrendData : [],
     // 缺 /admin/manage/statistics/profitstotalPie
-    userIncomePayData:[{ name: 'flow', value: 400 }, { name: 'locked', value: 300 },{ name: 'recommend', value: 300 }],
+    userIncomePayData:[],
     // /admin/manage/statistics/profitstotal
     userIncomePayTrendData:[],
     // 缺 /admin/manage/statistics/profitsdailyPie
-    userIncomePayLastDayData:[{ name: 'flow', value: 400 }, { name: 'locked', value: 300 },{ name: 'recommend', value: 300 }],
+    userIncomePayLastDayData:[],
     // /admin/manage/statistics/profitsdaily
     userIncomePayTrendLastDayData:[],
 

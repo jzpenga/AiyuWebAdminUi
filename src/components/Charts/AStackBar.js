@@ -14,7 +14,7 @@ const AStackBar = ({xName,barName,dataKey,dataSource})=>{
       <Tooltip/>
       <CartesianGrid vertical={false}/>
       {barName.map((item,index)=>{
-        return <Bar key={index} name={item} stackId="0" dataKey={dataKey[index]} fill={config.chartOpt.chartBar.color[index]}>
+        return <Bar key={index} name={item} stackId="0" dataKey={dataKey[index]} fill={config.chartOpt.chartBar.color[index % config.chartOpt.chartBar.color.length]}>
           <LabelList key={index}/>
         </Bar>
       })}
