@@ -9,7 +9,9 @@ const MenuList =({menuList,onMenuClick})=> {
 
   const getIcon = icon => {
     //return <img src={icon} alt="icon" className={`${styles.icon} sider-menu-item-img`}/>;
-    return <Icon type="mail" />;
+    // <Icon type="appstore" />
+
+    return <Icon type={icon} />;
   };
 
   // 递归生成菜单
