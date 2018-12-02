@@ -19,7 +19,7 @@ const AStackBar = ({xName,barName,dataKey,dataSource})=>{
         </Bar>
       })}
       <Legend verticalAlign="top" height={36}/>
-      
+
     </BarChart>
   </ResponsiveContainer>
 };

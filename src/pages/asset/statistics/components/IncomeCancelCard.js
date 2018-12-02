@@ -16,10 +16,10 @@ class IncomeCancelCard extends React.Component{
       </Row>
       <Row gutter={6}>
         <Col span={6}>
-          <span className={styles.chartTitle}>总销账{` 1500000  `}</span>
+          <span className={styles.chartTitle}>总销账{incomeCancelTrendData.length>0?incomeCancelTrendData[incomeCancelTrendData.length-1].total:0}</span>
         </Col>
         <Col span={6}>
-          <span className={styles.chartTitle}>昨日销账{` 800000  `}</span>
+          <span className={styles.chartTitle}>昨日销账{dayIncomeCancelTrendData.length>0?dayIncomeCancelTrendData[dayIncomeCancelTrendData.length-1].total:0}</span>
         </Col>
       </Row>
       <Row>

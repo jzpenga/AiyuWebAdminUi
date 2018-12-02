@@ -13,10 +13,10 @@ class ChargeCard extends React.Component {
       </Row>
       <Row gutter={6}>
         <Col span={6}>
-          <span className={styles.chartTitle}>总收入{` 1500000  `}</span>
+          <span className={styles.chartTitle}>总收入{allChargeTrendData.length>0?allChargeTrendData[allChargeTrendData.length-1].total:0}</span>
         </Col>
         <Col span={6}>
-          <span className={styles.chartTitle}>昨日收入{` 800000  `}</span>
+          <span className={styles.chartTitle}>昨日收入{dayChargeTrendData.length>0?dayChargeTrendData[dayChargeTrendData.length-1].total:0}</span>
         </Col>
       </Row>
       <Row>
