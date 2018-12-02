@@ -26,7 +26,7 @@ class IncrementCard extends React.Component{
       </Row>
       <Row gutter={12}>
         <Col span={8}>
-          <span className={styles.chartTitle}>总增量{total}</span>
+          <span className={styles.chartTitle}>总增量{parseFloat(total.toPrecision(12))}</span>
         </Col>
         <Col span={8}>
           <span className={styles.chartTitle}>流动增量{flow}</span>

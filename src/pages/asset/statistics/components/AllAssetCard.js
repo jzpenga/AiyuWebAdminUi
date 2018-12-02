@@ -25,7 +25,7 @@ class AllAssetCard extends React.Component{
       </Row>
       <Row gutter={12}>
         <Col span={8}>
-          <span className={styles.chartTitle}>总资产:{total}</span>
+          <span className={styles.chartTitle}>总资产:{parseFloat(total.toPrecision(12))}</span>
         </Col>
         <Col span={8}>
           <span className={styles.chartTitle}>锁仓资产:{lock}</span>

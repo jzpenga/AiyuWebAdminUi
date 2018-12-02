@@ -6,6 +6,17 @@ import {
 import config from '../../utils/config';
 
 
+const renderCustomizedLabel = (props) => {
+  const { x, y, width, height, value } = props;
+  const radius = 10;
+
+  console.log(y,value);
+  return <g>
+    <text x={x + width / 2} y={y-10} fill="#000" textAnchor="middle" dominantBaseline="middle">
+      {parseFloat(value.toPrecision(12))}
+    </text>
+  </g>
+};
 const AStackBar = ({ xName, barName, dataKey, dataSource }) => {
 
   return <ResponsiveContainer width="100%" height={config.chartOpt.chartHeight}>
@@ -19,7 +30,7 @@ const AStackBar = ({ xName, barName, dataKey, dataSource }) => {
           isAnimationActive={false}
           key={index} name={item} stackId="0" dataKey={dataKey[index]}
           fill={config.chartOpt.chartBar.color[index % config.chartOpt.chartBar.color.length]}>
-          <LabelList key={index}/>
+          <LabelList key={index} content={renderCustomizedLabel}/>
         </Bar>;
       })}
       <Legend verticalAlign="top" height={36}/>

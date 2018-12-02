@@ -42,7 +42,7 @@ class UserIncomePayCard extends React.Component{
       </Row>
       <Row gutter={12}>
         <Col span={6}>
-          <span className={styles.chartTitle}>支出总量{total}</span>
+          <span className={styles.chartTitle}>支出总量{parseFloat(total.toPrecision(12))}</span>
         </Col>
         <Col span={6}>
           <span className={styles.chartTitle}>锁仓收益{lock}</span>
@@ -75,7 +75,7 @@ class UserIncomePayCard extends React.Component{
       </div>
       <Row gutter={12}>
         <Col span={6}>
-          <span className={styles.chartTitle}>昨日支出总量{totalLastDay}</span>
+          <span className={styles.chartTitle}>昨日支出总量{parseFloat(totalLastDay.toPrecision(12))}</span>
         </Col>
         <Col span={6}>
           <span className={styles.chartTitle}>昨日锁仓收益{lockLastDay}</span>

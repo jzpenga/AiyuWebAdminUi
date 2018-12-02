@@ -61,7 +61,7 @@ class IncomeStatusCard extends React.Component{
             <Col span={12}>
               <div className={styles.assetsTextContainer}>
                 <span className={styles.textLabel}>总收益</span>
-                <span className={styles.textValue}>{total}</span>
+                <span className={styles.textValue}>{parseFloat(total.toPrecision(12))}</span>
                 <span className={styles.textLabel}>团队收益</span>
                 <span className={styles.textValue}>{team}</span>
                 <span className={styles.textLabel}>锁仓收益</span>
