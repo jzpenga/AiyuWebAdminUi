@@ -29,6 +29,16 @@ class AssetStatusCard extends React.Component {
 
   render() {
     const {assetData,assetTrendData} = this.props;
+    let lock=0,flow=0,total=0;
+    assetData.forEach((item)=>{
+      if (item.name === '锁仓资产') {
+        lock = item.value;
+        total+=item.value;
+      }else if (item.name === '流动资产') {
+        flow = item.value;
+        total+=item.value;
+      }
+    });
     return <Card className={styles.commonCard}>
       <Row>
         <Col span={24}>
@@ -50,11 +60,11 @@ class AssetStatusCard extends React.Component {
             <Col span={12}>
               <div className={styles.assetsTextContainer}>
                 <span className={styles.textLabel}>总资产</span>
-                <span className={styles.textValue}>15000</span>
+                <span className={styles.textValue}>{total}</span>
                 <span className={styles.textLabel}>流动资产</span>
-                <span className={styles.textValue}>8000</span>
+                <span className={styles.textValue}>{flow}</span>
                 <span className={styles.textLabel}>锁仓资产</span>
-                <span className={styles.textValue}>7000</span>
+                <span className={styles.textValue}>{lock}</span>
               </div>
             </Col>
           </Row>

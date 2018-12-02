@@ -26,6 +26,20 @@ class IncomeStatusCard extends React.Component{
   };
   render(){
     const {incomeData,incomeTrendData} = this.props;
+    //团队收益 推荐收益 锁仓收益
+    let lock=0,ref=0,team=0,total=0;
+    incomeData.forEach((item)=>{
+      if (item.name === '团队收益') {
+        team = item.value;
+        total+=item.value;
+      }else if (item.name === '推荐收益') {
+        ref = item.value;
+        total+=item.value;
+      }else if (item.name === '锁仓收益') {
+        lock = item.value;
+        total+=item.value;
+      }
+    });
     return <Card className={styles.commonCard}>
       <Row className={styles.titleLabel}>
         <Col span={24}>
@@ -46,12 +60,14 @@ class IncomeStatusCard extends React.Component{
             </Col>
             <Col span={12}>
               <div className={styles.assetsTextContainer}>
-                <span className={styles.textLabel}>总资产</span>
-                <span className={styles.textValue}>15000</span>
-                <span className={styles.textLabel}>流动资产收益</span>
-                <span className={styles.textValue}>8000</span>
-                <span className={styles.textLabel}>锁仓资产收益</span>
-                <span className={styles.textValue}>7000</span>
+                <span className={styles.textLabel}>总收益</span>
+                <span className={styles.textValue}>{total}</span>
+                <span className={styles.textLabel}>团队收益</span>
+                <span className={styles.textValue}>{team}</span>
+                <span className={styles.textLabel}>锁仓收益</span>
+                <span className={styles.textValue}>{lock}</span>
+                <span className={styles.textLabel}>推荐收益</span>
+                <span className={styles.textValue}>{ref}</span>
               </div>
             </Col>
           </Row>

@@ -68,9 +68,9 @@ class TeamCard extends React.Component{
             <Col span={8}>
               <div className={styles.assetsTextContainer}>
                 <span className={styles.textLabel}>资产规模</span>
-                <span className={styles.textValue}>15000000</span>
+                <span className={styles.textValue}>{teamData.length>0?(teamType===1?teamData[teamData.length-1].leftFunds:teamData[teamData.length-1].rightFunds):0}</span>
                 <span className={styles.textLabel}>团队规模</span>
-                <span className={styles.textValue}>8000</span>
+                <span className={styles.textValue}>{teamData.length>0?(teamType===1?teamData[teamData.length-1].leftTotalMember:teamData[teamData.length-1].rightTotalMember):0}</span>
               </div>
             </Col>
           </Row>
