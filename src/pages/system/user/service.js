@@ -82,7 +82,7 @@ export function assetTrendData(data) {
 ////admin/manage/consumer/profitsdetail/{id}
 export function incomeTrendData(data) {
   return request({
-    url: `${config.apiPrefix}/consumer/profitsdetail/${data.id}`,
+    url: `${config.apiPrefix}/consumer/profitstotal/${data.id}`,
     method: 'get',
     data
   });

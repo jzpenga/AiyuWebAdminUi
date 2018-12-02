@@ -82,7 +82,7 @@ export default {
     },
     * assetTrendData({payload},{call,put}){
       // startDate
-      payload = {...payload,startDate:utils.getTodayDate(),endDate:utils.getLastMonthDate()};
+      payload = {...payload,startDate:utils.getLastMonthDate(),endDate:utils.getTodayDate()};
       let {data} = yield call(service.assetTrendData, payload);
       yield put({
         type:'updateData',
@@ -91,7 +91,7 @@ export default {
     },
     * incomeTrendData({payload},{call,put}){
       // startDate endDate
-      payload = {...payload,startDate:utils.getTodayDate(),endDate:utils.getLastMonthDate()};
+      payload = {...payload,startDate:utils.getLastMonthDate(),endDate:utils.getTodayDate()};
       let {data} = yield call(service.incomeTrendData, payload);
       yield put({
         type:'updateData',
@@ -107,7 +107,7 @@ export default {
       });
     },
     * team({payload},{call,put}){
-      payload = {...payload,startDate:utils.getTodayDate(),endDate:utils.getLastMonthDate()};
+      payload = {...payload,startDate:utils.getLastMonthDate(),endDate:utils.getTodayDate()};
       let {data} = yield call(service.team, payload);
       yield put({
         type:'updateData',
@@ -134,7 +134,8 @@ export default {
             dispatch({ type: 'incomeData', payload: { id: query.id } });
             dispatch({ type: 'assetTrendData', payload: { id: query.id } });
             dispatch({ type: 'incomeTrendData', payload: { id: query.id } });
-            dispatch({ type: 'teamMember', payload: { id: query.id } });
+            dispatch({ type: 'teamMember', payload: { id: query.id,witchteam:1 } });
+            dispatch({ type: 'teamMember', payload: { id: query.id,witchteam:0 } });
             dispatch({ type: 'team', payload: { id: query.id } });
           }else {
             dispatch({type:'updateUserInfo',payload:{}})
