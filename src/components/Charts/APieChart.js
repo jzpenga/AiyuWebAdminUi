@@ -5,9 +5,6 @@ import config from '../../utils/config';
 
 const APieChart = ({dataKey,dataSource}) => {
 
-  const assertData = [{ name: 'flow', value: 400 }, { name: 'locked', value: 300 }];
-  const incomeData = [{ name: 'flow', value: 400 }, { name: 'locked', value: 300 }];
-
   const RADIAN = Math.PI / 180;
   const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }) => {
     const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
@@ -25,6 +22,7 @@ const APieChart = ({dataKey,dataSource}) => {
   return <ResponsiveContainer width="100%" height={config.chartOpt.chartHeight}>
     <PieChart>
       <Pie
+        isAnimationActive={false}
         data={dataSource}
         cx={config.chartOpt.chartPie.x}
         cy={config.chartOpt.chartPie.y}
