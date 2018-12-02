@@ -10,7 +10,6 @@ const renderCustomizedLabel = (props) => {
   const { x, y, width, height, value } = props;
   const radius = 10;
 
-  console.log(y,value);
   return <g>
     <text x={x + width / 2} y={y-10} fill="#000" textAnchor="middle" dominantBaseline="middle">
       {parseFloat(value.toPrecision(12))}
