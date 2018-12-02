@@ -2,6 +2,7 @@
 import axios from 'axios'
 import cloneDeep from 'lodash.clonedeep'
 import config from '../utils/config'
+import router from 'umi/router';
 
 
 const fetch = (options) => {
@@ -57,8 +58,12 @@ const fetch = (options) => {
 export default function request(options) {
   return fetch(options).then(response => {
     const {statusText, status} = response;
-
     let data = response.data;
+    if (data.responseCode === 3000) {
+      window.localStorage.setItem(`${config.prefix}userAccount`, null);
+      router.push('/login');
+      return Promise.reject({success: false, statusCode:3000, message: '请重新登录'});
+    }
     if (data.responseCode !== 200) {
       throw '';
     }
