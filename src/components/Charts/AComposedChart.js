@@ -18,7 +18,7 @@ const AComposedChart = ({ xName, dataKey, barLineName, dataSource }) => {
       <Bar
         isAnimationActive={false}
         name={barLineName[0]} yAxisId="left" dataKey={dataKey[0]} barSize={20}
-        fill={config.chartOpt.chartBar.color[1]}/>
+        fill={config.chartOpt.chartBar.color[2]}/>
       <Line
         isAnimationActive={false}
         name={barLineName[1]} yAxisId="right" type='monotone' dataKey={dataKey[1]}
