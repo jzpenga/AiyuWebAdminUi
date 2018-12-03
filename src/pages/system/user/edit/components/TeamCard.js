@@ -47,6 +47,7 @@ class TeamCard extends React.Component{
   };
   render() {
     const {cardTitle,teamData,detailTitle,teamType,userListData} = this.props;
+    const shortData = teamData.length>=7?teamData.slice(0,7):teamData;
     return <Card className={styles.commonCard}>
       <Row>
         <div className={styles.titleLabel}>
@@ -60,7 +61,7 @@ class TeamCard extends React.Component{
             <Col span={16}>
               <AComposedChart
                 xName={'creatTime'}
-                dataSource={teamData}
+                dataSource={shortData}
                 dataKey={[teamType===1?'leftFunds':'rightFunds',teamType===1?'leftTotalMember':'rightTotalMember']}
                 barLineName={['资产规模','团队规模']}
               />
