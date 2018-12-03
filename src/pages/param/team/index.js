@@ -68,7 +68,7 @@ const TeamParam = ({ dispatch, loading, editingKey,paramListData,selectedRowKeys
       dataIndex: 'profitsCode',
       width: '20%',
       editable: true,
-      inputType: 'number',
+      inputType: 'text',
     },
     {
       title: '计算上限',

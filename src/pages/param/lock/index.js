@@ -68,7 +68,7 @@ const LockedParam = ({ dispatch, loading, editingKey,paramListData,selectedRowKe
       dataIndex: 'profitsCode',
       width: '20%',
       editable: true,
-      inputType: 'number',
+      inputType: 'text',
     },
     {
       title: '计算上限',
