@@ -111,7 +111,7 @@ export default {
       let {data} = yield call(service.team, payload);
       yield put({
         type:'updateData',
-        payload:{team:data}
+        payload:{teamData:utils.arrayCheck(data)}
       });
     },
   },
