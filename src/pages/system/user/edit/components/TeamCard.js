@@ -47,7 +47,7 @@ class TeamCard extends React.Component{
   };
   render() {
     const {cardTitle,teamData,detailTitle,teamType,userListData} = this.props;
-    const shortData = teamData.length>=7?teamData.slice(0,7):teamData;
+    const shortData = teamData.length>=7?teamData.slice(teamData.length-7,teamData.length):teamData;
     return <Card className={styles.commonCard}>
       <Row>
         <div className={styles.titleLabel}>

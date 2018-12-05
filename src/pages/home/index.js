@@ -11,6 +11,7 @@ class Home extends React.Component {
       <AssetCard/>
       <UserCard/>
       <UserRankingCard/>
+
     </div>;
   }
 }
