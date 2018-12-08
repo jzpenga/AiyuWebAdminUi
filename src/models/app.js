@@ -28,7 +28,7 @@ const mockMenuList = [
       icon: '',
       path: '/param/lock',
     },{
-      name: '团队收益参数',
+      name: '分享算力参数',
       icon: '',
       path: '/param/team',
     },{

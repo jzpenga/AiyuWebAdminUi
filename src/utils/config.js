@@ -47,7 +47,7 @@ module.exports = {
     lockedParamList:`${API}/parameter/lockrepo/lockrepos`,
     deleteLockedParam:`${API}/parameter/lockrepo/delete/1`,
     deleteLockedParamList:`${API}/parameter/lockrepo/delete`,//批量删除
-    //团队收益参数
+    //分享算力参数
     saveTeamParam:`${API}/parameter/teamprofits/saveteamprofits`,
     teamParamList:`${API}/parameter/teamprofits/teamprofitses`,
     deleteTeamParam:`${API}/parameter/teamprofits/delete/1`,

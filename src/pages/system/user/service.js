@@ -88,7 +88,7 @@ export function incomeTrendData(data) {
   });
 }
 
-//  /admin/manage/consumer/teamMember/{id} witchteam 0 团队一     1 团队二
+//  /admin/manage/consumer/teamMember/{id} witchteam 0 分享一     1 团队二
 export function teamMember(data) {
   return request({
     url: `${config.apiPrefix}/consumer/teamMember/${data.id}`,

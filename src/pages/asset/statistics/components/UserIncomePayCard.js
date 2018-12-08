@@ -10,10 +10,10 @@ class UserIncomePayCard extends React.Component{
 
   render(){
     const {userIncomePayData,userIncomePayTrendData,userIncomePayLastDayData,userIncomePayTrendLastDayData} = this.props;
-    //团队收益 推荐收益 锁仓收益
+    //分享算力 推荐收益 锁仓收益
     let lock=0,ref=0,team=0,total=0,lockLastDay=0,refLastDay=0,teamLastDay=0,totalLastDay=0;
     userIncomePayData.forEach((item)=>{
-      if (item.name === '团队收益') {
+      if (item.name === '分享算力') {
         team = item.value;
         total+=item.value;
       }else if (item.name === '推荐收益') {
@@ -25,7 +25,7 @@ class UserIncomePayCard extends React.Component{
       }
     });
     userIncomePayLastDayData.forEach((item)=>{
-      if (item.name === '团队收益') {
+      if (item.name === '分享算力') {
         teamLastDay = item.value;
         totalLastDay+=item.value;
       }else if (item.name === '推荐收益') {
@@ -48,11 +48,11 @@ class UserIncomePayCard extends React.Component{
           <span className={styles.chartTitle}>锁仓收益{lock}</span>
         </Col>
         <Col span={6}>
-          <span className={styles.chartTitle}>团队收益{team}</span>
+          <span className={styles.chartTitle}>分享算力{team}</span>
         </Col>
-        <Col span={6}>
+       {/* <Col span={6}>
           <span className={styles.chartTitle}>推荐收益{ref}</span>
-        </Col>
+        </Col>*/}
       </Row>
       <Row>
         <Col span={12} push={2}>
@@ -64,8 +64,8 @@ class UserIncomePayCard extends React.Component{
         <Col span={12}>
           <AStackBar
             xName={'creatTime'}
-            barName={['团队','锁仓','推荐']}
-            dataKey={['profitsTeam','profitsLockrepo','profitsReferee']}
+            barName={['团队','锁仓']}
+            dataKey={['profitsTeam','profitsLockrepo']}
             dataSource={userIncomePayTrendData}
           />
           <span className={styles.chartTitle}>趋势</span>
@@ -81,11 +81,11 @@ class UserIncomePayCard extends React.Component{
           <span className={styles.chartTitle}>昨日锁仓收益{lockLastDay}</span>
         </Col>
         <Col span={6}>
-          <span className={styles.chartTitle}>昨日团队收益{teamLastDay}</span>
+          <span className={styles.chartTitle}>昨日分享算力{teamLastDay}</span>
         </Col>
-        <Col span={6}>
+       {/* <Col span={6}>
           <span className={styles.chartTitle}>昨日推荐收益{refLastDay}</span>
-        </Col>
+        </Col>*/}
       </Row>
       <Row>
         <Col span={12} push={2}>
@@ -97,8 +97,8 @@ class UserIncomePayCard extends React.Component{
         <Col span={12}>
           <AStackBar
             xName={'creatTime'}
-            barName={['团队','锁仓','推荐']}
-            dataKey={['profitsTeam','profitsLockrepo','profitsReferee']}
+            barName={['团队','锁仓']}
+            dataKey={['profitsTeam','profitsLockrepo']}
             dataSource={userIncomePayTrendLastDayData}
           />
           <span className={styles.chartTitle}>趋势</span>

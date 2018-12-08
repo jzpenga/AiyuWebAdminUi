@@ -15,7 +15,7 @@ class IncrementCard extends React.Component{
       if (item.name === '锁仓资产') {
         lock = item.value;
         total+=item.value;
-      }else if (item.name === '流动资产') {
+      }else if (item.name === '消费资产') {
         flow = item.value;
         total+=item.value;
       }
@@ -29,7 +29,7 @@ class IncrementCard extends React.Component{
           <span className={styles.chartTitle}>总增量{parseFloat(total.toPrecision(12))}</span>
         </Col>
         <Col span={8}>
-          <span className={styles.chartTitle}>流动增量{flow}</span>
+          <span className={styles.chartTitle}>消费增量{flow}</span>
         </Col>
         <Col span={8}>
           <span className={styles.chartTitle}>锁仓增量{lock}</span>
@@ -45,7 +45,7 @@ class IncrementCard extends React.Component{
         <Col span={12}>
           <AStackBar
             xName={'creatTime'}
-            barName={['流动','锁仓']}
+            barName={['消费','锁仓']}
             dataKey={['floatingFunds','lockrepoFunds']}
             dataSource={incrementTrendData}
           />

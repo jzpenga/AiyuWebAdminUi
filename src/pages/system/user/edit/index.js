@@ -136,8 +136,8 @@ class UserEdit extends Component {
                   <Col span={12}>
                     <TeamCard
                       teamType={1}
-                      detailTitle={'团队一详情'}
-                      cardTitle={'团队一总览'}
+                      detailTitle={'分享一详情'}
+                      cardTitle={'分享一总览'}
                       teamData={teamData}
                       userListData={teamOneData}
                     />
@@ -145,8 +145,8 @@ class UserEdit extends Component {
                   <Col span={12}>
                     <TeamCard
                       teamType={2}
-                      detailTitle={'团队二详情'}
-                      cardTitle={'团队二总览'}
+                      detailTitle={'分享二详情'}
+                      cardTitle={'分享二总览'}
                       teamData={teamData}
                       userListData={teamTwoData}
                     />

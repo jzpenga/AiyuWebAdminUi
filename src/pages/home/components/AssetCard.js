@@ -14,7 +14,7 @@ const AssetCard = ({allTrendData,dayWeightTrendData})=> {
       <Col span={12}>
         <AStackBar
           xName={'creatTime'}
-        barName={['流动','锁仓']}
+        barName={['消费','锁仓']}
         dataKey={['floatingFunds','lockrepoFunds']}
         dataSource={allTrendData}
         />
@@ -23,7 +23,7 @@ const AssetCard = ({allTrendData,dayWeightTrendData})=> {
       <Col span={12}>
         <AStackBar
           xName={'creatTime'}
-          barName={['流动','锁仓']}
+          barName={['消费','锁仓']}
           dataKey={['floatingFunds','lockrepoFunds']}
           dataSource={dayWeightTrendData}/>
         <span className={styles.chartTitle}>每日分量</span>

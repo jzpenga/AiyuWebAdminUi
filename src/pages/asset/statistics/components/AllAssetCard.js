@@ -14,7 +14,7 @@ class AllAssetCard extends React.Component{
       if (item.name === '锁仓资产') {
         lock = item.value;
         total+=item.value;
-      }else if (item.name === '流动资产') {
+      }else if (item.name === '消费资产') {
         flow = item.value;
         total+=item.value;
       }
@@ -31,7 +31,7 @@ class AllAssetCard extends React.Component{
           <span className={styles.chartTitle}>锁仓资产:{lock}</span>
         </Col>
         <Col span={8}>
-          <span className={styles.chartTitle}>流动资产:{flow}</span>
+          <span className={styles.chartTitle}>消费资产:{flow}</span>
         </Col>
       </Row>
       <Row>
@@ -44,7 +44,7 @@ class AllAssetCard extends React.Component{
         <Col span={12}>
           <AStackBar
             xName={'creatTime'}
-            barName={['流动','锁仓']}
+            barName={['消费','锁仓']}
             dataKey={['floatingFunds','lockrepoFunds']}
             dataSource={assetTrendData}
           />

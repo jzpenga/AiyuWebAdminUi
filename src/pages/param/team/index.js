@@ -144,7 +144,7 @@ const TeamParam = ({ dispatch, loading, editingKey,paramListData,selectedRowKeys
       <Row className={styles.titleLabel}>
         <Col span={24}>
           <div className={styles.titleLabel}>
-            <span>团队收益参数</span>
+            <span>分享算力参数</span>
             <span onClick={deleteBatch} className={styles.rightTitleOption}>批量删除</span>
             <span onClick={addColumn} className={styles.rightTitleOption}>新增</span>
           </div>

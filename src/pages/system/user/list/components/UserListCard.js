@@ -39,7 +39,7 @@ class UserListCard extends React.Component {
     dataIndex: 'totalFunds',
     key: 'totalFunds',
   }, {
-    title: '流动资产',
+    title: '消费资产',
     dataIndex: 'floatingFunds',
     key: 'floatingFunds',
   }, {
