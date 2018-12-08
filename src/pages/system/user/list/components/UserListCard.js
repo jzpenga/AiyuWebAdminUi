@@ -60,8 +60,8 @@ class UserListCard extends React.Component {
     key: 'x',
     render: (record) => <div>
       <a onClick={() => this.handleUserEdit(record)}>编辑</a>
-      {/*<span style={{ margin: 5 }}> </span>
-      <a onClick={() => this.handleUserDelete(record)}>删除</a>*/}
+      <span style={{ margin: 5 }}> </span>
+      <a onClick={() => this.handleUserDelete(record)}>删除</a>
     </div>,
   }];
 
@@ -120,7 +120,7 @@ class UserListCard extends React.Component {
       <Row>
         <div className={styles.titleLabel}>
           <span>数据列表</span>
-         {/* <span onClick={this.deleteBatch} className={styles.rightTitleOption}>批量删除</span>*/}
+          <span onClick={this.deleteBatch} className={styles.rightTitleOption}>批量删除</span>
           <span onClick={this.addUser} className={styles.rightTitleOption}>新增</span>
         </div>
       </Row>

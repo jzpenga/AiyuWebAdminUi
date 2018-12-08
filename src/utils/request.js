@@ -23,12 +23,11 @@ const fetch = (options) => {
   const cloneData = cloneDeep(data);
   switch (method.toLowerCase()) {
     case 'get':
-      if (url.indexOf('?') > 0) {
-        url = url + '&time=' + new Date().getTime();
-      } else {
-        url = url + '?time=' + new Date().getTime();
-      }
-
+      // if (url.indexOf('?') > 0) {
+      //   url = url + '&time=' + new Date().getTime();
+      // } else {
+      //   url = url + '?time=' + new Date().getTime();
+      // }
       return axios.get(url, {
         params: cloneData,
         headers: headers
@@ -63,9 +62,6 @@ export default function request(options) {
       window.localStorage.setItem(`${config.prefix}userAccount`, null);
       router.push('/login');
       return Promise.reject({success: false, statusCode:3000, message: '请重新登录'});
-    }
-    if (data.responseCode !== 200) {
-      throw '';
     }
     if (data instanceof Array) {
       data = {
