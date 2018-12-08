@@ -23,7 +23,8 @@ export default {
   },
   proxy: {
     "/admin": {
-      "target": "http://192.168.1.103:8090/",
+      "target": "http://192.168.43.54:8090/",
+      //"target": "http://39.98.40.7:8090/",
       "changeOrigin": true,
       "pathRewrite": { "" : "" }
     },
