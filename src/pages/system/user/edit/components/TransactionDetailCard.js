@@ -74,7 +74,7 @@ class TransactionDetailCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      tranceType: '2',
+      tranceType: '1',
     };
   }
 
@@ -118,9 +118,9 @@ class TransactionDetailCard extends Component {
         <Row>
           <Col span={24}>
             <Radio.Group onChange={this.handlerTranceTypeChange} className={styles.commonRadioGroup}
-                         defaultValue="2" buttonStyle="solid">
-              <Radio.Button value="2">收入</Radio.Button>
-              <Radio.Button value="1">支出</Radio.Button>
+                         defaultValue="1" buttonStyle="solid">
+              <Radio.Button value="1">收入</Radio.Button>
+              <Radio.Button value="2">支出</Radio.Button>
             </Radio.Group>
           </Col>
         </Row>

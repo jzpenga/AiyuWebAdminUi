@@ -18,13 +18,14 @@ export default {
   theme: {
     "primary-color": "#FFB923",
     "text-color":"#333333",
-    "border-radius-base":"4px", // 组件/浮层圆角
+    "border-radius-base":"4px", // 组件/浮层圆角official
     "border-color-base":"#d9d9d9" // 边框色
   },
   proxy: {
     "/admin": {
-      "target": "http://192.168.43.54:8090/",
-      //"target": "http://39.98.40.7:8090/",
+
+      //"target": "http://192.168.1.103:8090/",
+      "target": "http://39.98.40.7:8090/",
       "changeOrigin": true,
       "pathRewrite": { "" : "" }
     },

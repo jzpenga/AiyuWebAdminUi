@@ -127,7 +127,7 @@ export default {
                 pageNo: 1,
                 pageSize: 10,
                 consumerId: query.id,
-                transType: '2',
+                transType: '1',
               },
             });
             dispatch({ type: 'assetData', payload: { id: query.id } });
