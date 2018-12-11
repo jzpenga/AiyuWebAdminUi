@@ -41,7 +41,7 @@ class IncrementCard extends React.Component{
       <Row>
         <Col span={12} push={2}>
           {
-            showPieText?<div>资产为负增长</div>:<APieChart
+            showPieText?<div className={styles.textCenter}>资产为负增长</div>:<APieChart
               dataKey={['value']}
               dataSource={incrementData}
             />

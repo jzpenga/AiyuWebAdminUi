@@ -41,6 +41,9 @@ class UserEdit extends Component {
         lastLoginTime: {
           value:this.props.userInfo.lastLoginTime
         },
+        floatingFunds: {
+          value:this.props.userInfo.floatingFunds
+        },
       },
     };
     this.userInfoForm = React.createRef();
@@ -66,6 +69,9 @@ class UserEdit extends Component {
         },
         lastLoginTime: {
           value:nextProps.userInfo.lastLoginTime
+        },
+        floatingFunds: {
+          value:this.props.userInfo.floatingFunds
         },
       },
     });
@@ -104,7 +110,7 @@ class UserEdit extends Component {
         <div className={styles.cardOuterMargin}>
           <Row>
             <Col span={24}>
-              <UserInfoForm  {...fields} onChange={this.handleFormChange} userInfoProps ref={this.userInfoForm}/>
+              <UserInfoForm addUser={id<0}  {...fields} onChange={this.handleFormChange} userInfoProps ref={this.userInfoForm}/>
             </Col>
           </Row>
 

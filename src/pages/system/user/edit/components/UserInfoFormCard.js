@@ -11,12 +11,13 @@ class UserInfoFormCard extends React.Component{
   };
 
   render(){
+    console.log(this.props);
     const { getFieldDecorator } = this.props.form;
     return <Card className={styles.commonQueryCard}>
        <Row className={styles.titleLabel}>
         <Col span={24}>账户信息</Col>
       </Row>
-      <Row >
+      <Row>
         <Col span={24}>
 
           <Form className={styles.formPadding}>
@@ -68,6 +69,17 @@ class UserInfoFormCard extends React.Component{
                 </FormItem>
               </Col>
             </Row>
+            {
+              this.props.addUser?<Row gutter={24}>
+                <Col span={24}>
+                  <FormItem {...this.formItemLayout} label={`消费资金`}>
+                    {getFieldDecorator(`floatingFunds`)(
+                      <Input  placeholder="" />
+                    )}
+                  </FormItem>
+                </Col>
+              </Row>:''
+            }
           </Form>
         </Col>
       </Row>
@@ -105,6 +117,10 @@ const formOpt = {
       lastLoginTime: Form.createFormField({
         ...props.lastLoginTime,
         value: props.lastLoginTime.value,
+      }),
+      floatingFunds: Form.createFormField({
+        ...props.floatingFunds,
+        value: props.floatingFunds.value,
       }),
     };
   },
