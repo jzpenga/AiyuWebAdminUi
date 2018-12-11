@@ -2,12 +2,17 @@ import {fetchMenuList} from '../services/app';
 
 const mockMenuList = [
   {
+    name: '首页',
+    icon: 'home',
+    path: '/home'
+  },
+  {
     name: '系统管理',
     icon: 'appstore',
     path: '/system',
     children:[{
       name: '用户管理',
-      icon: '',
+      icon: 'user',
       path: '/system/user/list',
     }]
   },{
@@ -16,7 +21,7 @@ const mockMenuList = [
     path: '/asset',
     children:[{
       name: '今日统计',
-      icon: '',
+      icon: 'bar-chart',
       path: '/asset/statistics',
     }]
   },{
@@ -25,15 +30,15 @@ const mockMenuList = [
     path: '/param',
     children:[{
       name: '锁仓收益参数',
-      icon: '',
+      icon: 'lock',
       path: '/param/lock',
     },{
       name: '分享算力参数',
-      icon: '',
+      icon: 'share-alt',
       path: '/param/team',
     },{
       name: '其他参数',
-      icon: '',
+      icon: 'ellipsis',
       path: '/param/other',
     }]
   }
