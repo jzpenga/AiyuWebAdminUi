@@ -10,7 +10,7 @@ class IncrementCard extends React.Component{
 
   render(){
     const {incrementData,incrementTrendData} = this.props;
-    let lock=0,flow=0,total=0;
+    let lock=0,flow=0,total=0,showPieText = false;
     incrementData.forEach((item)=>{
       if (item.name === '锁仓资产') {
         lock = item.value;
@@ -18,6 +18,9 @@ class IncrementCard extends React.Component{
       }else if (item.name === '消费资产') {
         flow = item.value;
         total+=item.value;
+      }
+      if (!showPieText && item.value < 0) {
+        showPieText=true;
       }
     });
     return <Card className={styles.commonCard}>
@@ -37,10 +40,12 @@ class IncrementCard extends React.Component{
       </Row>
       <Row>
         <Col span={12} push={2}>
-          <APieChart
-            dataKey={['value']}
-            dataSource={incrementData}
-          />
+          {
+            showPieText?<div>资产为负增长</div>:<APieChart
+              dataKey={['value']}
+              dataSource={incrementData}
+            />
+          }
         </Col>
         <Col span={12}>
           <AStackBar
