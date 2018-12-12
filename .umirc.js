@@ -14,6 +14,7 @@ export default {
       hardSource: true,
     }],
   ],
+  history:'hash',
   theme: {
     "primary-color": "#FFB923",
     "text-color":"#333333",
