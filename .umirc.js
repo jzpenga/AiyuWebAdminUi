@@ -6,7 +6,6 @@ export default {
     ['umi-plugin-react', {
       antd: true,
       dva: true,
-      dynamicImport: true,
       title: 'aiyu-wallet-admin-ui',
       dll: true,
       routes: {
