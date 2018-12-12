@@ -18,6 +18,20 @@ export function formatDate(time) {
   return Y+M+D;
 }
 
+/**
+ *
+ * @param time 1398250549490
+ * @returns {string} 返回YYYY-MM-DD
+ */
+export function formatDateToHour(time) {
+  const date = new Date(time);
+  const Y = date.getFullYear() + '-';
+  const M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+  const D = date.getDate();
+  const HH = date.getHours();
+  const MM = date.getMinutes();
+  return `${Y+M+D}  ${HH<10?'0'+HH:HH}:${MM<10?'0'+MM:MM}`;
+}
 
 
 export function getTodayDate() {

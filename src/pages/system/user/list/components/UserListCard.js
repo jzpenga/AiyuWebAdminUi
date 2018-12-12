@@ -3,6 +3,7 @@ import styles from '../index.less';
 import router from 'umi/router';
 import { Card, Row, Col, Table } from 'antd';
 import config from '../../../../../utils/config';
+import * as utils from '../../../../../utils/utils';
 import { connect } from 'dva';
 
 
@@ -44,8 +45,8 @@ class UserListCard extends React.Component {
     key: 'floatingFunds',
   }, {
     title: '锁仓资产',
-    dataIndex: 'lockRepoFunds',
-    key: 'lockRepoFunds',
+    dataIndex: 'lockrepoFunds',
+    key: 'lockrepoFunds',
   }, {
     title: '注册时间',
     dataIndex: 'creatTime',
@@ -54,6 +55,15 @@ class UserListCard extends React.Component {
     title: '上次登录时间',
     dataIndex: 'lastLoginTime',
     key: 'lastLoginTime',
+    render:(text, record, index)=>{
+      if (text === null){
+        return text
+      }
+      return utils.formatDateToHour(text);
+      //return utils.formatDate(text);
+      //return new Date(text).format("yyyy-MM-dd HH:mm:ss");
+      //return new Date(text).pattern("yyyy-MM-dd hh:mm:ss")
+    }
   }, {
     title: '操作',
     dataIndex: '',
