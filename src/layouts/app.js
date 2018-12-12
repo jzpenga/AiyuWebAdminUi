@@ -13,6 +13,9 @@ const { Content, Sider } = Layout;
 
 class App extends React.Component {
 
+  componentWillUnmount() {
+    window.localStorage.setItem('selectMenuItem',undefined);
+  }
 
   constructor(props) {
     super(props);
@@ -68,7 +71,7 @@ class App extends React.Component {
    * @param item
    */
   onMenuClick(item){
-
+    window.localStorage.setItem('selectMenuItem',item.path);
   };
 
   render() {

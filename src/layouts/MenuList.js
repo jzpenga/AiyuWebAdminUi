@@ -6,13 +6,13 @@ import { Link } from 'react-router-dom';
 
 const { SubMenu } = Menu;
 
-const MenuList =({menuList,onMenuClick})=> {
+const MenuList = ({ menuList, onMenuClick }) => {
 
   const getIcon = icon => {
     //return <img src={icon} alt="icon" className={`${styles.icon} sider-menu-item-img`}/>;
     // <Icon type="appstore" />
 
-    return <Icon type={icon} />;
+    return <Icon type={icon}/>;
   };
 
   // 递归生成菜单
@@ -41,12 +41,16 @@ const MenuList =({menuList,onMenuClick})=> {
   };
 
   const menuItems = getMenus(menuList);
+  let defaultSelectKey = window.localStorage.getItem('selectMenuItem');
+  if (defaultSelectKey === undefined) {
+    defaultSelectKey = '/home';
+  }
 
-    return (
-      <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
-        {menuItems}
-      </Menu>
-    );
+  return (
+    <Menu theme="dark" mode="inline" selectedKeys={[defaultSelectKey]} defaultSelectedKeys={[defaultSelectKey]}>
+      {menuItems}
+    </Menu>
+  );
 
 };
 
