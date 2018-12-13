@@ -22,7 +22,7 @@ const userListColumns = [{
   key: 'floatingFunds',
 }, {
   title: '锁仓资产',
-  dataIndex: 'lockRepoFunds',
+  dataIndex: 'lockrepoFunds',
   key: 'lockRepoFunds',
 }];
 
