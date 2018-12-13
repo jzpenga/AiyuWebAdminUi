@@ -24,7 +24,7 @@ export default {
   },
   reducers: {
     updateUserInfo:(state,{payload})=>{
-      payload = {...payload,passWord:''};
+      payload = {...payload,passWord:'',lastLoginTime:utils.formatDateToHour(payload.lastLoginTime)};
       return {...state,userInfo: payload};
     },
     updateUserTranList:(state, { payload})=>{
