@@ -24,6 +24,7 @@ export default {
   },
   reducers: {
     updateUserInfo:(state,{payload})=>{
+      payload = {...payload,passWord:''};
       return {...state,userInfo: payload};
     },
     updateUserTranList:(state, { payload})=>{

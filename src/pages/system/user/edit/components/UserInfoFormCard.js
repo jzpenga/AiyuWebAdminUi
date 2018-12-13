@@ -32,7 +32,7 @@ class UserInfoFormCard extends React.Component{
               <Col span={12}>
                 <FormItem {...this.formItemLayout} label={`密码`}>
                   {getFieldDecorator(`passWord`)(
-                    <Input  placeholder="" />
+                    <Input  placeholder="******" />
                   )}
                 </FormItem>
               </Col>

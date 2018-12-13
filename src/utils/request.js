@@ -61,7 +61,7 @@ export default function request(options) {
     if (data.responseCode === 3000) {
       window.localStorage.setItem(`${config.prefix}userAccount`, null);
       router.push('/login');
-      return Promise.reject({success: false, statusCode:3000, message: '请重新登录'});
+      //return Promise.reject({success: false, statusCode:3000, message: '请重新登录'});
     }
     if (data instanceof Array) {
       data = {

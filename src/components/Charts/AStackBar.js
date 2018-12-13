@@ -12,7 +12,7 @@ const renderCustomizedLabel = (props) => {
 
   return <g>
     <text x={x + width / 2} y={y+height/2} fill="#000" textAnchor="middle" dominantBaseline="middle">
-      {parseFloat(value.toPrecision(12))}
+
     </text>
   </g>
 };

@@ -22,11 +22,11 @@ export default {
     "border-color-base":"#d9d9d9" // 边框色
   },
   proxy: {
-    "/admin": {
+    "/api": {
       //"target": "http://192.168.43.54:8090/",
       "target": "http://39.98.40.7:8090/",
       "changeOrigin": true,
-      "pathRewrite": { "" : "" }
+      "pathRewrite": { "/api" : "" }
     },
   },
 }
