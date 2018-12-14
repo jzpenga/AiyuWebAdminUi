@@ -41,7 +41,6 @@ export function fetchUserInfo(data) {
   });
 }
 
-
 export function fetchTranList(data) {
   return request({
     url: config.api.userTranDetail,
@@ -49,8 +48,6 @@ export function fetchTranList(data) {
     data
   });
 }
-
-
 
 // /admin/manage/consumer/capitaltotalPie/{id}
 export function assetData(data) {
@@ -97,12 +94,19 @@ export function teamMember(data) {
   });
 }
 
-
 //  /admin/manage/consumer/team/{id}  startDate  endDate
 export function team(data) {
   return request({
     url: `${config.apiPrefix}/consumer/team/${data.id}`,
     method: 'get',
     data
+  });
+}
+
+//  /admin/manage/consumer/team/{id}  startDate  endDate
+export function getServerTime() {
+  return request({
+    url: `${config.apiPrefix}/sysuser/getSysTime`,
+    method: 'post',
   });
 }

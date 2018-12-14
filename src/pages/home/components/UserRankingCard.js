@@ -29,7 +29,7 @@ const userListColumns = [{
 const UserRankingCard = ({userListData})=>{
   return <Card className={styles.commonCard}>
     <Row className={styles.titleLabel}>
-      <Col span={24}>排行版</Col>
+      <Col span={24}>排行榜</Col>
     </Row>
     <Row>
       <Col span={24}>

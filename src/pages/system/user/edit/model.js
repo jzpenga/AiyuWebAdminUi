@@ -83,7 +83,8 @@ export default {
     },
     * assetTrendData({payload},{call,put}){
       // startDate
-      payload = {...payload,startDate:utils.getLastMonthDate(),endDate:utils.getTodayDate()};
+      let timeData = yield call(service.getServerTime);
+      payload = {...payload,startDate:utils.getLastMonthDate(timeData.data),endDate:utils.getTodayDate(timeData.data)};
       let {data} = yield call(service.assetTrendData, payload);
       yield put({
         type:'updateData',
@@ -92,7 +93,8 @@ export default {
     },
     * incomeTrendData({payload},{call,put}){
       // startDate endDate
-      payload = {...payload,startDate:utils.getLastMonthDate(),endDate:utils.getTodayDate()};
+      let timeData = yield call(service.getServerTime);
+      payload = {...payload,startDate:utils.getLastMonthDate(timeData.data),endDate:utils.getTodayDate(timeData.data)};
       let {data} = yield call(service.incomeTrendData, payload);
       yield put({
         type:'updateData',
@@ -108,7 +110,8 @@ export default {
       });
     },
     * team({payload},{call,put}){
-      payload = {...payload,startDate:utils.getLastMonthDate(),endDate:utils.getTodayDate()};
+      let timeData = yield call(service.getServerTime);
+      payload = {...payload,startDate:utils.getLastMonthDate(timeData.data),endDate:utils.getTodayDate(timeData.data)};
       let {data} = yield call(service.team, payload);
       yield put({
         type:'updateData',

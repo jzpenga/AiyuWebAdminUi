@@ -43,10 +43,14 @@ class UserListCard extends React.Component {
     title: '消费资产',
     dataIndex: 'floatingFunds',
     key: 'floatingFunds',
-  }, {
+  },{
     title: '锁仓资产',
     dataIndex: 'lockrepoFunds',
     key: 'lockrepoFunds',
+  },{
+    title: '推荐人',
+    dataIndex: 'refNickName',
+    key: 'refNickName',
   }, {
     title: '注册时间',
     dataIndex: 'creatTime',

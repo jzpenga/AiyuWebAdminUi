@@ -34,8 +34,8 @@ export function formatDateToHour(time) {
 }
 
 
-export function getTodayDate() {
-  const date = new Date();
+export function getTodayDate(timeStamp) {
+  const date = new Date(timeStamp);
   const Y = date.getFullYear() + '-';
   const M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
   const D = date.getDate();
@@ -43,7 +43,8 @@ export function getTodayDate() {
 }
 
 
-export function getLastMonthDate() {
-  const time = new Date().getTime()-30*24*60*60*1000;
+export function getLastMonthDate(timeStamp) {
+  const time = new Date(timeStamp).getTime()-30*24*60*60*1000;
  return formatDate(time);
 }
+
