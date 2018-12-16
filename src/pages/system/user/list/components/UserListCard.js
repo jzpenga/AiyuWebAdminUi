@@ -51,7 +51,15 @@ class UserListCard extends React.Component {
     title: '推荐人',
     dataIndex: 'refNickName',
     key: 'refNickName',
-  }, {
+  },{
+    title: '左节点',
+    dataIndex: 'leftNickName',
+    key: 'leftNickName',
+  },{
+    title: '右节点',
+    dataIndex: 'rightNickName',
+    key: 'rightNickName',
+  },{
     title: '注册时间',
     dataIndex: 'creatTime',
     key: 'creatTime',
