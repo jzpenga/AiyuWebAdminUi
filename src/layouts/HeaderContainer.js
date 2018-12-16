@@ -14,8 +14,9 @@ class HeaderContainer extends React.Component {
    */
   handlerLoginOut = ()=> {
     window.localStorage.setItem(`${config.prefix}userAccount`, null);
+    window.localStorage.setItem('selectMenuItem','/home');
     router.push('/login');
-  }
+  };
 
   getCurrentDate = ()=> {
     let date = new Date();
@@ -24,7 +25,7 @@ class HeaderContainer extends React.Component {
     let D = date.getDate();
     let currentDate = `${Y}${M}${D}`;
     return ` | ${currentDate} ${this.getWeek(currentDate)}`;
-  }
+  };
 
   getWeek =   (dateString) => {
     let date;
