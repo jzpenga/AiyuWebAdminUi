@@ -20,7 +20,7 @@ export function statisticsAssetPie() {
 
 export function statisticsAssetTrend() {
   return request({
-    url:config.api.statisticsAssetTrend,
+    url:config.api.statisticsAsset,
     method:'get'
   });
 }
