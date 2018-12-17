@@ -14,7 +14,8 @@ const sourceTypeMap = new Map([
   ['7', '复投锁仓'],
   ['8', '锁仓资金销毁'],
   ['9', '交易手续费'],
-  ['10', '流动转锁仓'],
+  ['11', '锁仓资产释放'],
+  ['16', '流动转锁仓'],
 ]);
 const userIncomeTransactionColumns = [
   {

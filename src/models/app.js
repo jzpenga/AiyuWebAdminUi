@@ -63,7 +63,10 @@ export default {
     }
   },
   subscriptions: {
-    setup({dispatch}) {
+    setup({dispatch, history}) {
+      return history.listen(({ pathname, query }) => {
+        window.localStorage.setItem('selectMenuItem',pathname);
+      });
     }
   },
 };

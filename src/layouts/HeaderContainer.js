@@ -14,7 +14,6 @@ class HeaderContainer extends React.Component {
    */
   handlerLoginOut = ()=> {
     window.localStorage.setItem(`${config.prefix}userAccount`, null);
-    window.localStorage.setItem('selectMenuItem','/home');
     router.push('/login');
   };
 
