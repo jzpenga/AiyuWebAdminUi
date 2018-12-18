@@ -26,6 +26,7 @@ const AStackBar = ({ xName, barName, dataKey, dataSource }) => {
       <CartesianGrid vertical={false}/>
       {barName.map((item, index) => {
         return <Bar
+          barSize={20}
           isAnimationActive={false}
           key={index} name={item}  dataKey={dataKey[index]}
           fill={config.chartOpt.chartBar.color[index % config.chartOpt.chartBar.color.length]}>
