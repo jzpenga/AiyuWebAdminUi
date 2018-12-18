@@ -67,7 +67,7 @@ const TeamParam = ({ dispatch, loading, editingKey,paramListData,selectedRowKeys
       title: '编号',
       dataIndex: 'profitsCode',
       width: '16.6%',
-      editable: true,
+      editable: false,
       inputType: 'text',
     },
     {

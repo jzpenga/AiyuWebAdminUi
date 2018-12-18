@@ -68,7 +68,7 @@ const OtherParam = ({ dispatch, loading, editingKey,paramListData,selectedRowKey
       dataIndex: 'paramCode',
       width: '25%',
       inputType: 'text',
-      editable: true,
+      editable: false,
     },
     {
       title: '参数名称',
