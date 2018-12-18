@@ -79,8 +79,8 @@ export default {
   subscriptions: {
     setup({dispatch, history}) {
       return history.listen(({ pathname, query }) => {
-        if (pathname!==undefined){
-          window.localStorage.setItem('selectMenuItem',pathname);
+        if (pathname==='/home'){
+          //window.localStorage.setItem('selectMenuItem',pathname);
           dispatch({
             type:'fetchCoinCurrent',
           })
