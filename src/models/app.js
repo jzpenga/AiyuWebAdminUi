@@ -79,10 +79,12 @@ export default {
   subscriptions: {
     setup({dispatch, history}) {
       return history.listen(({ pathname, query }) => {
-        window.localStorage.setItem('selectMenuItem',pathname);
-        dispatch({
-          type:'fetchCoinCurrent',
-        })
+        if (pathname!==undefined){
+          window.localStorage.setItem('selectMenuItem',pathname);
+          dispatch({
+            type:'fetchCoinCurrent',
+          })
+        }
       });
     }
   },
