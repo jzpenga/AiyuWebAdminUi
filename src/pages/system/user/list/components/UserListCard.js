@@ -156,6 +156,13 @@ class UserListCard extends React.Component {
               total: total,
               current: pageNo,
             }}
+            onRow={(record) => {
+              return {
+                onClick: () => {
+                  router.push(`/system/user/edit?id=${record.id}`);
+                },       // 点击行
+              };
+            }}
             rowKey={record => record.id}
             rowSelection={rowSelection}
             showQuickJumper
