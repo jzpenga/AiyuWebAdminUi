@@ -20,7 +20,7 @@ const mockMenuList = [
     icon: 'file-protect',
     path: '/asset',
     children:[{
-      name: '今日统计',
+      name: '昨日统计',
       icon: 'bar-chart',
       path: '/asset/statistics',
     }]
@@ -47,15 +47,12 @@ export default {
   namespace: 'app',
   state: {
     menuList:[],
-    coinCurrent:''
   },
   reducers: {
     freshMenu(state,{payload}){
       return {...state,menuList:payload};
     },
-    updateCoinCurrent(state,{payload}){
-      return {...state,coinCurrent: payload}
-    }
+
   },
   effects: {
     * fetchMenu({payload},{call,put}){
@@ -66,24 +63,14 @@ export default {
         payload: mockMenuList
       });
     },
-    * fetchCoinCurrent({payload},{call,put}){
 
-      let {data} = yield call(service.fetchCoinCurrent);
-      console.log(data);
-      yield put({
-        type:'updateCoinCurrent',
-        payload: data.currentPrice
-      });
-    }
   },
   subscriptions: {
     setup({dispatch, history}) {
       return history.listen(({ pathname, query }) => {
         if (pathname==='/home'){
           //window.localStorage.setItem('selectMenuItem',pathname);
-          dispatch({
-            type:'fetchCoinCurrent',
-          })
+
         }
       });
     }

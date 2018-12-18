@@ -10,10 +10,3 @@ export function fetchMenuList() {
 }
 
 
-export function fetchCoinCurrent() {
-
-  return request({
-    url: `${apiPrefix}/statistics/coinCurrent`,
-    method: 'post',
-  });
-}

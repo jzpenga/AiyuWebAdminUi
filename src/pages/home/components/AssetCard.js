@@ -7,14 +7,11 @@ import AStackBar from '../../../components/Charts/AStackBar';
 
 const AssetCard = ({allTrendData,dayWeightTrendData})=> {
 
-  let outputTran = () =>{
 
-  };
   return <Card className={styles.commonCard}>
     <Row>
       <div className={styles.titleLabel}>
         <span>资产总览</span>
-        <span onClick={outputTran} style={{color:'#ffb71e'}} className={styles.rightTitleOption}>导出交易流水</span>
       </div>
     </Row>
     <Row>

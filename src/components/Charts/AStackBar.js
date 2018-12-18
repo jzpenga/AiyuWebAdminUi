@@ -27,7 +27,7 @@ const AStackBar = ({ xName, barName, dataKey, dataSource }) => {
       {barName.map((item, index) => {
         return <Bar
           isAnimationActive={false}
-          key={index} name={item} stackId="0" dataKey={dataKey[index]}
+          key={index} name={item}  dataKey={dataKey[index]}
           fill={config.chartOpt.chartBar.color[index % config.chartOpt.chartBar.color.length]}>
           <LabelList key={index} content={renderCustomizedLabel}/>
         </Bar>;

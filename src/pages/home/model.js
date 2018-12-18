@@ -16,6 +16,7 @@ export default {
     userDayTrendData: [],
     // /admin/manage/statistics/rankinlist
     userListData: [],
+    coinCurrent:''
   },
   reducers: {
     updateUserRanking:(state,{payload})=>{
@@ -33,6 +34,9 @@ export default {
     updateDayTrend:(state,{payload})=>{
       return {...state,userDayTrendData:payload}
     },
+    updateCoinCurrent(state,{payload}){
+      return {...state,coinCurrent: payload}
+    }
   },
   effects: {
     * queryUserRanking({payload},{put,call}){
@@ -69,6 +73,13 @@ export default {
         type:'updateDayTrend',
         payload:data
       })
+    },
+    * fetchCoinCurrent({payload},{call,put}){
+      let {data} = yield call(service.fetchCoinCurrent);
+      yield put({
+        type:'updateCoinCurrent',
+        payload: data.currentPrice
+      });
     }
   },
   subscriptions: {
@@ -80,6 +91,9 @@ export default {
           dispatch({ type: 'queryDayWeightTrend' });
           dispatch({ type: 'queryUserAllTrendData' });
           dispatch({ type: 'queryUserDayTrendData' });
+          dispatch({
+            type:'fetchCoinCurrent',
+          })
         }
       });
     },

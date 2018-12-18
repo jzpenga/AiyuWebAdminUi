@@ -11,7 +11,6 @@ class UserInfoFormCard extends React.Component{
   };
 
   render(){
-    console.log(this.props);
     const { getFieldDecorator } = this.props.form;
     return <Card className={styles.commonQueryCard}>
        <Row className={styles.titleLabel}>
