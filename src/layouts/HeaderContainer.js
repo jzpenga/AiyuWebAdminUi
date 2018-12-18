@@ -34,16 +34,27 @@ class HeaderContainer extends React.Component {
   };
 
   render() {
+
     return <Header className={styles.header}>
       <div className={styles.systemName}>BHT钱包后台管理系统</div>
+
       <div className={styles.userPanel}>
         <Icon className={styles.setting} type="setting" theme="outlined"/>
         <Icon onClick={this.handlerLoginOut} className={styles.powerOff} type="poweroff" theme="outlined"/>
         <span
           className={styles.userName}>欢迎您：{window.localStorage.getItem(`${config.prefix}userAccount`)}{this.getCurrentDate()}</span>
       </div>
+      <div className={styles.coinCurrent}>
+        {`现价 `}
+        <span style={{color:'#dfbd75'}}>{this.props.coinCurrent}</span>
+      </div>
     </Header>;
   }
 }
 
-export default connect()(HeaderContainer);
+const mapTo = (state)=>{
+  const {coinCurrent} = state.app;
+  return {coinCurrent};
+};
+
+export default connect(mapTo)(HeaderContainer);

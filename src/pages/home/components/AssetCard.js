@@ -14,7 +14,7 @@ const AssetCard = ({allTrendData,dayWeightTrendData})=> {
     <Row>
       <div className={styles.titleLabel}>
         <span>资产总览</span>
-        <span onClick={outputTran} className={styles.rightTitleOption}>导出交易流水</span>
+        <span onClick={outputTran} style={{color:'#ffb71e'}} className={styles.rightTitleOption}>导出交易流水</span>
       </div>
     </Row>
     <Row>

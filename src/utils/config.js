@@ -63,17 +63,17 @@ module.exports = {
     chartHeight: 300,
     chartLegendTop:36,
     chartBar:{
-      color: [ '#d95850','#eb8146','#ffb248'],
+      color: [ '#dfbd75','#e74656','#ffb248'],
     },
     chartLine:{
       strokeWidth:2,
-      color: ['#d95850'],
+      color: ['#e74656'],
     },
     chartPie:{
       radius:100,
       x:150,
       y:160,
-      color:[ '#d95850','#eb8146','#ffb248'],
+      color:['#dfbd75','#e74656','#ffb248'],
     }
   },
   pageSize:10

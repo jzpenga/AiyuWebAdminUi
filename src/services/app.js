@@ -8,3 +8,12 @@ export function fetchMenuList() {
     method: 'get',
   });
 }
+
+
+export function fetchCoinCurrent() {
+
+  return request({
+    url: `${apiPrefix}/statistics/coinCurrent`,
+    method: 'post',
+  });
+}

@@ -1,4 +1,4 @@
-import {fetchMenuList} from '../services/app';
+import * as service from '../services/app';
 
 const mockMenuList = [
   {
@@ -46,19 +46,33 @@ const mockMenuList = [
 export default {
   namespace: 'app',
   state: {
-    menuList:[]
+    menuList:[],
+    coinCurrent:''
   },
   reducers: {
-    freshMenu({payload},state){
-      return {...state};
+    freshMenu(state,{payload}){
+      return {...state,menuList:payload};
+    },
+    updateCoinCurrent(state,{payload}){
+      return {...state,coinCurrent: payload}
     }
   },
   effects: {
     * fetchMenu({payload},{call,put}){
       //let data = yield call(fetchMenuList);
+      //let data = yield call(fetchMenuList);
       yield put({
         type:'freshMenu',
-        menuList: mockMenuList
+        payload: mockMenuList
+      });
+    },
+    * fetchCoinCurrent({payload},{call,put}){
+
+      let {data} = yield call(service.fetchCoinCurrent);
+      console.log(data);
+      yield put({
+        type:'updateCoinCurrent',
+        payload: data.currentPrice
       });
     }
   },
@@ -66,6 +80,9 @@ export default {
     setup({dispatch, history}) {
       return history.listen(({ pathname, query }) => {
         window.localStorage.setItem('selectMenuItem',pathname);
+        dispatch({
+          type:'fetchCoinCurrent',
+        })
       });
     }
   },

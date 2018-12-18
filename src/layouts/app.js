@@ -76,6 +76,7 @@ class App extends React.Component {
 
   render() {
     const props = this.props;
+
     if (this.shouldToLogin()) {
       return (<div>
         {this.props.children}
