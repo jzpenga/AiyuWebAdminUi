@@ -53,7 +53,7 @@ export default {
       }else {
         param = { ...row, id: data.id };
       }
-      let resData = yield call(service.saveParamToServer, param);
+      let resData = yield call(service.saveParamToServer, {...param,paramCode:data.paramCode});
       if (resData.responseCode === 200) {
         let newData = resData.data;
         //更新本地

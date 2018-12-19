@@ -47,13 +47,13 @@ export default {
   effects: {
     * saveTeamParam({ payload: { data, row } }, { put, call }) {
       //保存服务端
-      let param = { ...row, id: data.id };
+      let param = { ...row, id: data.id ,paramCode:data.paramCode };
       if (data.id===-1){
         param = { ...row, id: ''};
       }else {
         param = { ...row, id: data.id };
       }
-      let resData = yield call(service.saveTeamParamToServer, param);
+      let resData = yield call(service.saveTeamParamToServer, {...param,paramCode:data.paramCode});
       if (resData.responseCode === 200) {
         let newData = resData.data;
         //更新本地
