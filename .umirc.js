@@ -1,4 +1,4 @@
-
+import config from './src/utils/config';
 // ref: https://umijs.org/config/
 export default {
   plugins: [
@@ -23,8 +23,8 @@ export default {
   },
   proxy: {
     "/api": {
-      //"target": "http://172.30.9.149:8090/",
-      "target": "http://39.98.40.7:8090/",
+      "target": `${config.baseUrl}/`,
+      //"target": "http://39.98.40.7:8090/",
       "changeOrigin": true,
       "pathRewrite": { "/api" : "" }
     },

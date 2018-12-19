@@ -80,6 +80,9 @@ export default {
         type:'updateCoinCurrent',
         payload: data.currentPrice
       });
+    },
+    * fetchTranFile({payload},{call,put}){
+      let {data} = yield call(service.fetchTranFile);
     }
   },
   subscriptions: {

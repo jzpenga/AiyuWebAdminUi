@@ -46,3 +46,12 @@ export function fetchCoinCurrent() {
     method: 'post',
   });
 }
+
+
+export function fetchTranFile() {
+
+  return request({
+    url: `${apiPrefix}/statistics/exportXls`,
+    method: 'get',
+  });
+}
