@@ -24,7 +24,7 @@ class Home extends React.Component {
         </div>
 
         <span  style={{color:'#ffb71e'}} className={styles.rightTitleOption}>
-          <a href={`${config.baseUrl}/admin/manage/statistics/exportXls`} download>导出交易流水</a></span>
+          <a href={`${config.baseUrl}/api/admin/manage/statistics/exportXls`} download>导出交易流水</a></span>
       </div>
       <AssetCard/>
       <UserCard/>
