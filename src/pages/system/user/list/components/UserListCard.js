@@ -144,7 +144,7 @@ class UserListCard extends React.Component {
         <div className={styles.titleLabel}>
           <span>数据列表</span>
           <span className={styles.rightTitleOption}>
-          <a href={`${config.baseUrl}/admin/manage/consumer/exportXlsConsumers`} download>导出交易流水</a>
+          <a href={`${config.baseUrl}/admin/manage/consumer/exportXlsConsumers`} download>导出用户数据</a>
           </span>
           <span onClick={this.deleteBatch} className={styles.rightTitleOption}>批量删除</span>
           <span onClick={this.addUser} className={styles.rightTitleOption}>新增</span>
