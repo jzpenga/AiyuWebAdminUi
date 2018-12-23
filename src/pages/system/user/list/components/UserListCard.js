@@ -83,7 +83,7 @@ class UserListCard extends React.Component {
     render: (record) => <div>
       <a onClick={() => this.handleUserEdit(record)}>编辑</a>
       <span style={{ margin: 5 }}> </span>
-      <a onClick={() => this.handleUserDelete(record)}>删除</a>
+      <a onClick={(e) => this.handleUserDelete(e,record)}>删除</a>
     </div>,
   }];
 
@@ -92,7 +92,8 @@ class UserListCard extends React.Component {
     router.push(`/system/user/edit?id=${record.id}`);
   }
 
-  handleUserDelete(record) {
+  handleUserDelete(e,record) {
+    e.stopPropagation();
     this.props.dispatch({
       type: 'userList/deleteUser',
       payload: record.id
@@ -142,6 +143,9 @@ class UserListCard extends React.Component {
       <Row>
         <div className={styles.titleLabel}>
           <span>数据列表</span>
+          <span className={styles.rightTitleOption}>
+          <a href={`${config.baseUrl}/admin/manage/consumer/exportXlsConsumers`} download>导出交易流水</a>
+          </span>
           <span onClick={this.deleteBatch} className={styles.rightTitleOption}>批量删除</span>
           <span onClick={this.addUser} className={styles.rightTitleOption}>新增</span>
         </div>
