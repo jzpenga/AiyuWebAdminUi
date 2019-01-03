@@ -41,7 +41,7 @@ class Home extends React.Component {
         <BatchTranForm/>
 
 
-        <div style={{ textAlign: 'center',marginTop:'10px' }}>
+        <div style={{ textAlign: 'center',marginTop:'24px' }}>
           <Button onClick={this.handleBack} type={'primary'} htmlType={'button'}>返回</Button>
           <span style={{margin:'0 10px'}}/>
           <Button type={'primary'} htmlType={'button'}>确认</Button>
