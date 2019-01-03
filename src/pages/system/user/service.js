@@ -110,3 +110,12 @@ export function getServerTime() {
     method: 'post',
   });
 }
+
+export function queryBalance(data) {
+  //admin/manage/consumer/queryBalance
+  return request({
+    url: `${config.apiPrefix}/consumer/queryBalance`,
+    method: 'get',
+    data:data
+  });
+}

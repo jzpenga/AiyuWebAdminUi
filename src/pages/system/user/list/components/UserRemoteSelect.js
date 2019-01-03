@@ -28,7 +28,7 @@ class UserRemoteSelect extends React.Component {
     //fetch(`https://randomuser.me/api/?results=5`)
      // .then(response => response.json())
       .then((body) => {
-        console.log(body);
+        //console.log(body);
         if (body.status!==200) {
           this.setState({ fetching: false });
           return ;
@@ -50,6 +50,7 @@ class UserRemoteSelect extends React.Component {
       data: [],
       fetching: false,
     });
+    this.props.onSelect(value)
   };
 
   render() {

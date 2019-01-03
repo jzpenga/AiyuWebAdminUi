@@ -9,8 +9,12 @@ export default {
     userListData: [],
     pageNo: 0,
     total: 0,
+    balance:0
   },
   reducers: {
+    updateState(state, { payload }) {
+      return { ...state, ...payload };
+    },
     queryParamChange: (state, { payload: { queryParam } }) => {
       return { ...state, queryParam };
     },
@@ -47,6 +51,14 @@ export default {
       yield put({
         type: 'queryParamChange',
         payload: { queryParam: {} },
+      });
+    },
+    * queryBalance({ payload }, { call, put }) {
+      let {data} = yield call(service.queryBalance, payload);
+      console.log(data);
+      yield put({
+        type: 'updateState',
+        payload: { balance: data.balance },
       });
     },
   },

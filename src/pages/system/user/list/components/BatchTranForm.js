@@ -1,6 +1,7 @@
 import React from 'react';
 import { Col, Form, Input, Row, Radio, Select, Button, List, Icon } from 'antd';
 import UserRemoteSelect from './UserRemoteSelect';
+import { connect } from 'dva';
 
 const FormItem = Form.Item;
 const { Option } = Select;
@@ -34,58 +35,66 @@ const data = [
   '13677623544',
 ];
 
-class BatchTranForm extends React.Component{
+class BatchTranForm extends React.Component {
   formItemLayout = {
     labelCol: { span: 6 },
     wrapperCol: { span: 16 },
   };
-  otherFormItemLayout = {labelCol: { span: 9 }, wrapperCol: { span: 12 }};
+  otherFormItemLayout = { labelCol: { span: 9 }, wrapperCol: { span: 12 } };
 
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
-      outerType:0,
-      inType:'left',
-      outerPhone:'',
-    }
+      outerType: 0,
+      inType: 'left',
+      outerPhone: '',
+    };
   }
 
   onOuterTypeChange = (e) => {
+  /*  this.props.dispatch({
+      type: 'userList/updateState',
+      payload: { balance: 0 },
+    });*/
     this.setState({
       outerType: e.target.value,
     });
   };
 
 
-  onOuterPhoneChange =(e)=>{
-
+  onOuterPhoneChange = (value) => {
+    this.props.dispatch({
+      type: 'userList/queryBalance',
+      payload: { phoneNo: value.key },
+    });
   };
 
 
-  removePhone = (e,item)=>{
+  removePhone = (e, item) => {
     console.log(item);
   };
 
   render() {
     const { getFieldDecorator } = this.props.form;
-    const {outerType} = this.state;
+    const { outerType } = this.state;
+    console.log(this.props);
     return <Form>
       <Row>
         <Col span={12}>
           <FormItem {...this.formItemLayout} label={`转出方`}>
-              <Radio.Group onChange={this.onOuterTypeChange} value={outerType}>
-                <Radio value={0}>系统</Radio>
-                <Radio value={1}>个人</Radio>
-              </Radio.Group>
+            <Radio.Group onChange={this.onOuterTypeChange} value={outerType}>
+              <Radio value={0}>系统</Radio>
+              <Radio value={1}>个人</Radio>
+            </Radio.Group>
           </FormItem>
         </Col>
         <Col span={12}>
           <FormItem {...this.formItemLayout} label={`转入方`}>
-              <Radio.Group>
-                <Radio value={'left'}>左团队</Radio>
-                <Radio value={'right'}>右团队</Radio>
-                <Radio value={'all'}>全团队</Radio>
-              </Radio.Group>
+            <Radio.Group>
+              <Radio value={'left'}>左团队</Radio>
+              <Radio value={'right'}>右团队</Radio>
+              <Radio value={'all'}>全团队</Radio>
+            </Radio.Group>
           </FormItem>
         </Col>
       </Row>
@@ -93,7 +102,7 @@ class BatchTranForm extends React.Component{
         <Col span={12}>
           <FormItem {...this.formItemLayout} label={`转出人`}>
 
-              {/*<Select
+            {/*<Select
                 onChange={this.onOuterPhoneChange}
                 disabled={outerType===0}
                 placeholder="输入手机号">
@@ -104,7 +113,7 @@ class BatchTranForm extends React.Component{
                 }
               </Select>*/}
 
-          <UserRemoteSelect disabled={outerType===0}/>
+            <UserRemoteSelect onSelect={this.onOuterPhoneChange} disabled={outerType === 0}/>
           </FormItem>
         </Col>
         <Col span={12}>
@@ -112,12 +121,12 @@ class BatchTranForm extends React.Component{
             <Col span={17}>
               <FormItem {...this.otherFormItemLayout} label={`其他`}>
                 {getFieldDecorator(`d`)(
-                  <UserRemoteSelect disabled={false}/>
+                  <UserRemoteSelect onSelect={() => ''} disabled={false}/>,
                 )}
               </FormItem>
             </Col>
             <Col span={4}>
-              <Button style={{marginTop:4}} type={'primary'} htmlType={'button'}>确定</Button>
+              <Button style={{ marginTop: 4 }} type={'primary'} htmlType={'button'}>确定</Button>
             </Col>
           </Row>
 
@@ -126,7 +135,7 @@ class BatchTranForm extends React.Component{
       <Row>
         <Col span={12}>
           <FormItem {...this.formItemLayout} label={`余额`}>
-            {outerType===0?'':32232332.9988}
+            {outerType === 0 ? '' : this.props.balance}
           </FormItem>
         </Col>
         <Col span={12}>
@@ -140,7 +149,7 @@ class BatchTranForm extends React.Component{
             <Col span={24}>
               <FormItem {...this.formItemLayout} label={`单笔额度`}>
                 {getFieldDecorator(`e`)(
-                  <Input/>
+                  <Input/>,
                 )}
               </FormItem>
 
@@ -163,7 +172,7 @@ class BatchTranForm extends React.Component{
             renderItem={item => (<List.Item>{item}</List.Item>)}
           />*/}
           <List
-            style={{maxHeight:'200px',overflow:'auto'}}
+            style={{ maxHeight: '200px', overflow: 'auto' }}
             grid={{
               gutter: 8, xs: 1, sm: 2, md: 2, lg: 3, xl: 3, xxl: 2,
             }}
@@ -173,7 +182,8 @@ class BatchTranForm extends React.Component{
             renderItem={item => (
               <List.Item>
                 {item}
-                <Icon onClick={(e)=>this.removePhone(e,item)} style={{marginLeft:'10px',color:'#FF1E1E'}} type="close-circle" />
+                <Icon onClick={(e) => this.removePhone(e, item)} style={{ marginLeft: '10px', color: '#FF1E1E' }}
+                      type="close-circle"/>
               </List.Item>
             )}
           />
@@ -183,5 +193,9 @@ class BatchTranForm extends React.Component{
   }
 }
 
+const mapStateToProps = (state) => {
+  const { balance } = state.userList;
+  return { balance };
+};
 
-export default Form.create()(BatchTranForm);
+export default connect(mapStateToProps)(Form.create()(BatchTranForm));
