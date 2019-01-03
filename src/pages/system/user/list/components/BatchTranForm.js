@@ -109,7 +109,7 @@ class BatchTranForm extends React.Component{
         </Col>
         <Col span={12}>
           <Row>
-            <Col span={16}>
+            <Col span={17}>
               <FormItem {...this.otherFormItemLayout} label={`其他`}>
                 {getFieldDecorator(`d`)(
                   <UserRemoteSelect disabled={false}/>

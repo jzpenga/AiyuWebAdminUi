@@ -1,40 +1,15 @@
 import { Select, Spin } from 'antd';
-import debounce from 'lodash/debounce';
 import React from 'react';
+import config from '../../../../../utils/config'
+import axios from 'axios';
 
 const Option = Select.Option;
-const phoneData = [
-  '13677665544',
-  '13677665545',
-  '13677665546',
-  '13677665548',
-  '13677665549',
-  '13677665541',
-  '13677665524',
-  '13677665534',
-  '13677665514',
-  '13677665554',
-  '13677365544',
-  '13677625544',
-  '13672665544',
-  '13677165544',
-  '13617665544',
-  '13673665544',
-  '17677665544',
-  '13670665544',
-  '13623665544',
-  '13671265544',
-  '13643265544',
-  '13677645544',
-  '13677612544',
-  '13609766544',
-  '13677623544',
-];
+
 class UserRemoteSelect extends React.Component {
   constructor(props) {
     super(props);
     this.lastFetchId = 0;
-    this.fetchUser = debounce(this.fetchUser, 800);
+    //this.fetchUser = debounce(this.fetchUser, 800);
   }
 
   state = {
@@ -48,16 +23,20 @@ class UserRemoteSelect extends React.Component {
     this.lastFetchId += 1;
     const fetchId = this.lastFetchId;
     this.setState({ data: [], fetching: true });
-    fetch('https://randomuser.me/api/?results=5')
-      .then(response => response.json())
+    axios.get(`${config.apiPrefix}/consumer/phoneNoAssociate?phoneNo=${value}`)
+    //fetch(`${config.baseUrl}${config.apiPrefix}/consumer/phoneNoAssociate?phoneNo=${value}`)
+    //fetch(`https://randomuser.me/api/?results=5`)
+     // .then(response => response.json())
       .then((body) => {
+        console.log(body);
+        if (body.status!==200) {
+          this.setState({ fetching: false });
+          return ;
+        }
         if (fetchId !== this.lastFetchId) { // for fetch callback order
           return;
         }
-        const phoneDataAfterFilter = phoneData.filter((item)=>{
-          return item.includes(value);
-        });
-        const data = phoneDataAfterFilter.map(phone => ({
+        const data = body.data.data.map(phone => ({
           text: phone,
           value: phone,
         }));
