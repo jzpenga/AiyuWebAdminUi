@@ -2,38 +2,13 @@ import React from 'react';
 import { Col, Form, Input, Row, Radio, Select, Button, List, Icon } from 'antd';
 import UserRemoteSelect from './UserRemoteSelect';
 import { connect } from 'dva';
+import axios from 'axios';
+import config from '../../../../../utils/config';
+import * as utils from '../../../../../utils/utils';
+
 
 const FormItem = Form.Item;
 const { Option } = Select;
-
-
-const data = [
-  '13677665544',
-  '13677665545',
-  '13677665546',
-  '13677665548',
-  '13677665549',
-  '13677665541',
-  '13677665524',
-  '13677665534',
-  '13677665514',
-  '13677665554',
-  '13677365544',
-  '13677625544',
-  '13672665544',
-  '13677165544',
-  '13617665544',
-  '13673665544',
-  '17677665544',
-  '13670665544',
-  '13623665544',
-  '13671265544',
-  '13643265544',
-  '13677645544',
-  '13677612544',
-  '13609766544',
-  '13677623544',
-];
 
 class BatchTranForm extends React.Component {
   formItemLayout = {
@@ -46,8 +21,10 @@ class BatchTranForm extends React.Component {
     super(props);
     this.state = {
       outerType: 0,
-      inType: 'left',
+      inType: '',
       outerPhone: '',
+      members:[],
+      otherMember:''
     };
   }
 
@@ -63,21 +40,57 @@ class BatchTranForm extends React.Component {
 
 
   onOuterPhoneChange = (value) => {
+    this.setState({
+      outerPhone:value.key,
+      inType: '',
+      otherMember:'',
+      members:[],
+    });
     this.props.dispatch({
       type: 'userList/queryBalance',
       payload: { phoneNo: value.key },
     });
   };
 
+  onInMemberChange = (e) => {
+    this.setState({
+      members:[],
+      inType:e.target.value
+    });
+    axios.get(`${config.apiPrefix}/consumer/transferTeamInfo?transferPhone=${this.state.outerPhone}&witchTeam=${e.target.value}`)
+      .then((body) => {
+        console.log('onInMemberChange',body);
+        if (body.status!==200 || body.data.responseCode!==200) {
+          return ;
+        }
+        this.setState({
+          members:utils.arrayCheck(body.data.data)
+        })
+      });
+  };
+
 
   removePhone = (e, item) => {
-    console.log(item);
+    const newState = JSON.parse(JSON.stringify(this.state));
+    const index = newState.members.indexOf(item);
+    newState.members.splice(index,1);
+    this.setState({...newState})
+  };
+
+  addOtherMember = ()=>{
+    const otherMember = this.state.otherMember;
+    if (otherMember === ''){
+      return ;
+    }
+    const newState = JSON.parse(JSON.stringify(this.state));
+    newState.members.unshift(otherMember);
+    newState.otherMember = '';
+    this.setState({...newState})
   };
 
   render() {
     const { getFieldDecorator } = this.props.form;
-    const { outerType } = this.state;
-    console.log(this.props);
+    const { outerType,inType } = this.state;
     return <Form>
       <Row>
         <Col span={12}>
@@ -90,10 +103,10 @@ class BatchTranForm extends React.Component {
         </Col>
         <Col span={12}>
           <FormItem {...this.formItemLayout} label={`转入方`}>
-            <Radio.Group>
-              <Radio value={'left'}>左团队</Radio>
-              <Radio value={'right'}>右团队</Radio>
-              <Radio value={'all'}>全团队</Radio>
+            <Radio.Group onChange={this.onInMemberChange} value={inType} disabled={outerType === 0}>
+              <Radio value={'0'}>左团队</Radio>
+              <Radio value={'1'}>右团队</Radio>
+              <Radio value={'2'}>全团队</Radio>
             </Radio.Group>
           </FormItem>
         </Col>
@@ -101,18 +114,6 @@ class BatchTranForm extends React.Component {
       <Row>
         <Col span={12}>
           <FormItem {...this.formItemLayout} label={`转出人`}>
-
-            {/*<Select
-                onChange={this.onOuterPhoneChange}
-                disabled={outerType===0}
-                placeholder="输入手机号">
-                {
-                  data.map((phone)=>{
-                    return <Option key={phone} value={phone}>{phone}</Option>
-                  })
-                }
-              </Select>*/}
-
             <UserRemoteSelect onSelect={this.onOuterPhoneChange} disabled={outerType === 0}/>
           </FormItem>
         </Col>
@@ -121,12 +122,12 @@ class BatchTranForm extends React.Component {
             <Col span={17}>
               <FormItem {...this.otherFormItemLayout} label={`其他`}>
                 {getFieldDecorator(`d`)(
-                  <UserRemoteSelect onSelect={() => ''} disabled={false}/>,
+                  <UserRemoteSelect  onSelect={(value) => this.setState({otherMember:value.key})} disabled={false}/>,
                 )}
               </FormItem>
             </Col>
             <Col span={4}>
-              <Button style={{ marginTop: 4 }} type={'primary'} htmlType={'button'}>确定</Button>
+              <Button onClick={this.addOtherMember} style={{ marginTop: 4 }} type={'primary'} htmlType={'button'}>添加</Button>
             </Col>
           </Row>
 
@@ -162,23 +163,14 @@ class BatchTranForm extends React.Component {
           </Row>
         </Col>
         <Col span={12}>
-          {/*<List
-            style={{maxHeight:'200px',overflow:'auto'}}
-            header={null}
-            footer={null}
-            size={'small'}
-            bordered
-            dataSource={data}
-            renderItem={item => (<List.Item>{item}</List.Item>)}
-          />*/}
           <List
-            style={{ maxHeight: '200px', overflow: 'auto' }}
+            style={{ height: '200px', overflow: 'auto' }}
             grid={{
               gutter: 8, xs: 1, sm: 2, md: 2, lg: 3, xl: 3, xxl: 2,
             }}
             bordered
             split={true}
-            dataSource={data}
+            dataSource={this.state.members}
             renderItem={item => (
               <List.Item>
                 {item}
