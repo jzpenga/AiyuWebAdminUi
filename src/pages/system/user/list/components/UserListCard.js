@@ -143,6 +143,23 @@ class UserListCard extends React.Component {
 
   };
 
+  fileChange = (info)=>{
+    if (info.file.status !== 'uploading') {
+      //console.log(info.file, info.fileList);
+    }
+    if (info.file.status === 'done') {
+      //console.log(info);
+      if (info.file.response !== undefined && info.file.response.responseCode===200){
+        message.success(`用户导入成功`);
+        this.props.dispatch({ type: 'userList/queryUserList', payload: { pageNo: 1 } })
+      } else {
+        message.error(`用户导入失败 ${info.file.response !== undefined ? info.file.response.responseMsg:''}`);
+      }
+    } else if (info.file.status === 'error') {
+      message.error(`${info.file.name} 文件上传失败`);
+    }
+  };
+
   uploadProps = {
     name: 'file',
    // action: '/consumer/importExcelAddConsumer',
@@ -154,21 +171,7 @@ class UserListCard extends React.Component {
     showUploadList:{
       showRemoveIcon:false
     },
-    onChange(info) {
-      if (info.file.status !== 'uploading') {
-        //console.log(info.file, info.fileList);
-      }
-      if (info.file.status === 'done') {
-        //console.log(info.response);
-        if (info.response !== undefined && info.response.responseCode===200){
-          message.success(`用户导入成功`);
-        } else {
-          message.error(`用户导入失败 ${info.response !== undefined ? info.response.responseMsg:''}`);
-        }
-      } else if (info.file.status === 'error') {
-        message.error(`${info.file.name} 文件上传失败`);
-      }
-    },
+    onChange:this.fileChange,
   };
 
   render() {
