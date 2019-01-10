@@ -119,3 +119,13 @@ export function queryBalance(data) {
     data:data
   });
 }
+
+
+export function batchTransfer(data) {
+  //admin/manage/consumer/batchTransfer
+  return request({
+    url: `${config.apiPrefix}/consumer/batchTransfer`,
+    method: 'post',
+    data:data
+  });
+}

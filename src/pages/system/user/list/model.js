@@ -55,11 +55,17 @@ export default {
     },
     * queryBalance({ payload }, { call, put }) {
       let {data} = yield call(service.queryBalance, payload);
-      console.log(data);
+      //console.log(data);
       yield put({
         type: 'updateState',
         payload: { balance: data.balance },
       });
+    },
+    * batchTransfer({ payload }, { call, put }) {
+      let data = yield call(service.batchTransfer, payload);
+      if(data.responseCode === 200){
+        //成功
+      }
     },
   },
   subscriptions: {

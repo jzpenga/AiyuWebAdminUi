@@ -24,7 +24,8 @@ class BatchTranForm extends React.Component {
       inType: '',
       outerPhone: '',
       members:[],
-      otherMember:''
+      otherMember:'',
+      transferAmt:''
     };
   }
 
@@ -59,7 +60,7 @@ class BatchTranForm extends React.Component {
     });
     axios.get(`${config.apiPrefix}/consumer/transferTeamInfo?transferPhone=${this.state.outerPhone}&witchTeam=${e.target.value}`)
       .then((body) => {
-        console.log('onInMemberChange',body);
+        //console.log('onInMemberChange',body);
         if (body.status!==200 || body.data.responseCode!==200) {
           return ;
         }
@@ -69,6 +70,11 @@ class BatchTranForm extends React.Component {
       });
   };
 
+  onTransferAmtChange = (e) =>{
+    this.setState({
+      transferAmt:e.target.value
+    })
+  };
 
   removePhone = (e, item) => {
     const newState = JSON.parse(JSON.stringify(this.state));
@@ -86,6 +92,23 @@ class BatchTranForm extends React.Component {
     newState.members.unshift(otherMember);
     newState.otherMember = '';
     this.setState({...newState})
+  };
+
+
+
+  handleBack = () => {
+    this.props.toggle();
+  };
+
+  onSubmit = ()=>{
+    this.props.dispatch({
+      type:'userList/batchTransfer',
+      payload:{ transferor:this.state.outerType,
+        balance:this.props.balance,
+        transferorPhone:this.state.outerPhone,
+        transferAmt:this.state.transferAmt,
+        transfereePhones:this.state.members}
+    });
   };
 
   render() {
@@ -150,7 +173,7 @@ class BatchTranForm extends React.Component {
             <Col span={24}>
               <FormItem {...this.formItemLayout} label={`单笔额度`}>
                 {getFieldDecorator(`e`)(
-                  <Input/>,
+                  <Input onChange={this.onTransferAmtChange}/>,
                 )}
               </FormItem>
 
@@ -179,6 +202,15 @@ class BatchTranForm extends React.Component {
               </List.Item>
             )}
           />
+        </Col>
+      </Row>
+      <Row>
+        <Col span={24}>
+          <div style={{ textAlign: 'center',marginTop:'24px' }}>
+            <Button onClick={this.handleBack} type={'primary'} htmlType={'button'}>返回</Button>
+            <span style={{margin:'0 10px'}}/>
+            <Button onClick={this.onSubmit} type={'primary'} htmlType={'button'}>确认</Button>
+          </div>
         </Col>
       </Row>
     </Form>;

@@ -16,15 +16,15 @@ class Home extends React.Component {
       visible: false,
     };
   }
+
   toggle = ()=> {
     this.setState({
       visible: !this.state.visible,
     });
   };
 
-  handleBack = () => {
-    this.toggle();
-  };
+
+
 
   render() {
     return <div>
@@ -38,14 +38,9 @@ class Home extends React.Component {
         centered
         closable={false}>
 
-        <BatchTranForm/>
+        <BatchTranForm toggle={this.toggle}/>
 
 
-        <div style={{ textAlign: 'center',marginTop:'24px' }}>
-          <Button onClick={this.handleBack} type={'primary'} htmlType={'button'}>返回</Button>
-          <span style={{margin:'0 10px'}}/>
-          <Button type={'primary'} htmlType={'button'}>确认</Button>
-        </div>
       </Modal>
     </div>;
   }
