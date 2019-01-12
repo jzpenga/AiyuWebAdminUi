@@ -1,5 +1,5 @@
 import React from 'react';
-import { Col, Form, Input, Row, Radio, Select, Button, List, Icon } from 'antd';
+import { Col, Form, Input, Row, Radio, Select, Button, List, Icon,message } from 'antd';
 import UserRemoteSelect from './UserRemoteSelect';
 import { connect } from 'dva';
 import axios from 'axios';
@@ -36,6 +36,7 @@ class BatchTranForm extends React.Component {
     });*/
     this.setState({
       outerType: e.target.value,
+      members:[],
     });
   };
 
@@ -86,6 +87,11 @@ class BatchTranForm extends React.Component {
   addOtherMember = ()=>{
     const otherMember = this.state.otherMember;
     if (otherMember === ''){
+      return ;
+    }
+    const index = this.state.members.indexOf(otherMember);
+    if (index>=0){
+      message.error('号码重复了');
       return ;
     }
     const newState = JSON.parse(JSON.stringify(this.state));

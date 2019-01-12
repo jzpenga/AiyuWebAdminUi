@@ -1,6 +1,7 @@
 import * as service from '../service';
 import config from '../../../../utils/config';
 import * as routerRedux from 'react-router-redux';
+import {message} from 'antd';
 
 export default {
   namespace: 'userList',
@@ -65,6 +66,11 @@ export default {
       let data = yield call(service.batchTransfer, payload);
       if(data.responseCode === 200){
         //成功
+        message.info('转账成功',1,()=>{
+          document.location.reload();
+        });
+      }else {
+        message.error(data.responseMsg);
       }
     },
   },
