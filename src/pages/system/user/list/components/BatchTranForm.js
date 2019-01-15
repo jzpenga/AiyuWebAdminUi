@@ -25,7 +25,8 @@ class BatchTranForm extends React.Component {
       outerPhone: '',
       members:[],
       otherMember:'',
-      transferAmt:''
+      transferAmt:'',
+      addressFlag:1
     };
   }
 
@@ -113,13 +114,20 @@ class BatchTranForm extends React.Component {
         balance:this.props.balance,
         transferorPhone:this.state.outerPhone,
         transferAmt:this.state.transferAmt,
+        addressFlag:this.state.addressFlag,
         transfereePhones:this.state.members}
+    });
+  };
+
+  addressFlagChange = (e)=> {
+    this.setState({
+      addressFlag: e.target.value,
     });
   };
 
   render() {
     const { getFieldDecorator } = this.props.form;
-    const { outerType,inType } = this.state;
+    const { outerType,inType, addressFlag} = this.state;
     return <Form>
       <Row>
         <Col span={12}>
@@ -169,8 +177,13 @@ class BatchTranForm extends React.Component {
           </FormItem>
         </Col>
         <Col span={12}>
-          <FormItem {...this.formItemLayout} label={`转出账号展示`}>
+          <FormItem {...this.formItemLayout} label={`转入账户`}>
+            <Radio.Group onChange={this.addressFlagChange} value={addressFlag}>
+              <Radio value={1}>锁仓</Radio>
+              <Radio value={0}>消费</Radio>
+            </Radio.Group>
           </FormItem>
+
         </Col>
       </Row>
       <Row>
@@ -192,6 +205,8 @@ class BatchTranForm extends React.Component {
           </Row>
         </Col>
         <Col span={12}>
+          <FormItem {...this.formItemLayout} label={`转出账号展示`}>
+          </FormItem>
           <List
             style={{ height: '200px', overflow: 'auto' }}
             grid={{
@@ -221,6 +236,8 @@ class BatchTranForm extends React.Component {
       </Row>
     </Form>;
   }
+
+
 }
 
 const mapStateToProps = (state) => {
