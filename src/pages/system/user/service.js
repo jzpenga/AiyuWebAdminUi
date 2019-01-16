@@ -129,3 +129,13 @@ export function batchTransfer(data) {
     data:data
   });
 }
+
+
+export function getCharge() {
+  //admin/manage/parameter/sysparam/queryParamValue
+  return request({
+    url: `${config.apiPrefix}/parameter/sysparam/queryParamValue`,
+    method: 'post',
+    data:{paramCode:'transaction_fee_rate'}
+  });
+}

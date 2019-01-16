@@ -6,8 +6,8 @@ module.exports = {
   logo: '/public/logo.svg',
   loginPage: '/login',
   apiPrefix: '/api/admin/manage',
-  baseUrl:'http://192.168.8.104:8090',
-  //baseUrl:'http://39.98.40.7:8090',
+  //baseUrl:'http://192.168.8.104:8090',
+  baseUrl:'http://39.98.40.7:8089',
   API,
   api: {
     //登录

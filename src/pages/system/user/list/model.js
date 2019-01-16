@@ -10,6 +10,7 @@ export default {
     userListData: [],
     pageNo: 0,
     total: 0,
+    charge:0,
     balance:0
   },
   reducers: {
@@ -62,6 +63,14 @@ export default {
         payload: { balance: data.balance },
       });
     },
+    * getCharge({ payload }, { call, put }) {
+      let {data} = yield call(service.getCharge, payload);
+      //console.log(data);
+      yield put({
+        type: 'updateState',
+        payload: { charge: data.paramValue },
+      });
+    },
     * batchTransfer({ payload }, { call, put }) {
       let data = yield call(service.batchTransfer, payload);
       if(data.responseCode === 200){
@@ -79,6 +88,7 @@ export default {
       return history.listen(({ pathname, query }) => {
         if (pathname === '/system/user/list') {
           dispatch({ type: 'queryUserList', payload: { pageNo: 1 } });
+          dispatch({ type: 'getCharge'});
         }
       });
     },

@@ -25,7 +25,7 @@ class BatchTranForm extends React.Component {
       outerPhone: '',
       members:[],
       otherMember:'',
-      transferAmt:'',
+      transferAmt:0,
       addressFlag:1
     };
   }
@@ -127,6 +127,7 @@ class BatchTranForm extends React.Component {
 
   render() {
     const { getFieldDecorator } = this.props.form;
+    const { charge } = this.props;
     const { outerType,inType, addressFlag} = this.state;
     return <Form>
       <Row>
@@ -199,7 +200,7 @@ class BatchTranForm extends React.Component {
             </Col>
             <Col span={24}>
               <FormItem {...this.formItemLayout} label={`总额`}>
-                单笔额度 x 批量人数 x ( 1 + 手续费比率 )
+                {this.state.outerType===1?this.state.transferAmt*this.state.members.length*(1+charge):0}
               </FormItem>
             </Col>
           </Row>
@@ -241,8 +242,8 @@ class BatchTranForm extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  const { balance } = state.userList;
-  return { balance };
+  const { balance,charge } = state.userList;
+  return { balance,charge };
 };
 
 export default connect(mapStateToProps)(Form.create()(BatchTranForm));
