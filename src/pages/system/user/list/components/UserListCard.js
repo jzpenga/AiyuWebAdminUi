@@ -9,14 +9,11 @@ import { connect } from 'dva';
 
 class UserListCard extends React.Component {
 
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      visible: false,
-      selectedRowKeys: [],
-    };
-  }
+  state = {
+    visible: false,
+    selectedRowKeys: [],
+    fileList:[]
+  };
 
   toggle = () => {
     this.setState({
@@ -139,9 +136,6 @@ class UserListCard extends React.Component {
     router.push(`/system/user/edit?id=-1`);
   };
 
-  batchImport = () => {
-
-  };
 
   fileChange = (info)=>{
     if (info.file.status !== 'uploading') {
@@ -160,21 +154,30 @@ class UserListCard extends React.Component {
     }
   };
 
-  uploadProps = {
-    name: 'file',
-   // action: '/consumer/importExcelAddConsumer',
-    action: `${config.apiPrefix}/consumer/importExcelAddConsumer`,
-    headers: {
-      authorization: 'authorization-text',
-    },
-    accept:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel',
-    showUploadList:{
-      showRemoveIcon:false
-    },
-    onChange:this.fileChange,
-  };
+
 
   render() {
+    const {  fileList } = this.state;
+    const uploadProps = {
+      name: 'file',
+      // action: '/consumer/importExcelAddConsumer',
+      action: `${config.apiPrefix}/consumer/importExcelAddConsumer`,
+      headers: {
+        authorization: 'authorization-text',
+      },
+      accept:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel',
+      showUploadList:{
+        showRemoveIcon:false
+      },
+      beforeUpload: (file) => {
+        this.setState(state => ({
+          fileList: [file],
+        }));
+        return true;
+      },
+      fileList,
+      onChange:this.fileChange,
+    };
 
     const { selectedRowKeys } = this.state;
     const rowSelection = {
@@ -189,14 +192,15 @@ class UserListCard extends React.Component {
         <div className={styles.titleLabel}>
           <span>数据列表</span>
           <span className={styles.rightTitleOption}>
-          <a href={`${config.baseUrl}/admin/manage/consumer/exportXlsConsumers`} download>导出用户数据</a>
+          <a href={`${config.baseUrl}/admin/manage/consumer/exportXlsConsumers`} download>导出用户</a>
           </span>
-          <span onClick={this.deleteBatch} className={styles.rightTitleOption}>批量删除</span>
+          <span onClick={this.toggle} className={styles.rightTitleOption}>导入用户</span>
+          <span onClick={() => batchTran()} className={styles.rightTitleOption}>批量转账</span>
+
+          <span onClick={this.deleteBatch} className={styles.rightTitleOption}>多选删除</span>
+
           <span onClick={this.addUser} className={styles.rightTitleOption}>新增</span>
-          <span onClick={() => batchTran()} className={styles.rightTitleOption}>批量转出</span>
-          <span onClick={this.toggle} className={styles.rightTitleOption}>
-            批量导入
-          </span>
+
         </div>
       </Row>
       <Row>
@@ -226,13 +230,13 @@ class UserListCard extends React.Component {
       </Row>
 
       <Modal
-        title={'批量转出'}
+        title={'导入用户'}
         visible={this.state.visible}
         footer={null}
         width={900}
         centered
         closable={false}>
-        <Upload {...this.uploadProps}>
+        <Upload {...uploadProps}>
           <Button>
             <Icon type="upload"/> 上传文件
           </Button>

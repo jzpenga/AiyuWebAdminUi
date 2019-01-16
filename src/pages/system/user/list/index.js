@@ -31,7 +31,7 @@ class Home extends React.Component {
       <UserQueryFormCard/>
       <UserListCard batchTran={this.toggle}/>
       <Modal
-        title={'批量转出'}
+        title={'批量转账'}
         visible={this.state.visible}
         footer={null}
         width={900}
